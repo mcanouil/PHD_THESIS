@@ -1,0 +1,43 @@
+# Liste des communications scientifiques {-}
+\setcounter{section}{0}
+
+## Communications en lien avec la thèse
+
+### Conférences
+
+\begin{itemize}
+\item Rocheleau, G., \underline{\textbf{Canouil, M.}}, Yengo, L., Froguel, P. (2015). Application of Joint Models in Genetic Association Studies. \textit{International Genetic Epidemiology Society - IGES}, Baltimore, United-States.
+
+\item \underline{\textbf{Canouil, M.}}, Rocheleau, G., Yengo, L., Froguel, P. (2016). Longitudinal Genetic Modelling: Revisiting Associations of SNPs Associated with Blood Fasting Glucose in Normoglycemic Individuals. \textit{Statistical Methods for Post Genomic Data - SMPGD}, Lille, France.
+
+\item \underline{\textbf{Canouil, M.}}, Froguel, P., Rocheleau, G. (2016). Single Nucleotide Polymorphisms Associated with Fasting Blood Glucose Trajectory and Type 2 Diabetes Incidence: A Joint Modelling Approach. \textit{International Genetic Epidemiology Society - IGES}, Toronto, Canada.
+
+\item \underline{\textbf{Canouil, M.}}, Froguel, P., Rocheleau, G. (2016). Single Nucleotide Polymorphisms Associated with Fasting Blood Glucose Trajectory and Type 2 Diabetes Incidence: A Joint Modelling Approach. \textit{4th Symposium European Genomic Institute for Diabetes (E.g.i.d)}, Lille, France.
+
+\item \underline{\textbf{Canouil, M.}}, Froguel, P., Rocheleau, G. (2017). Variants Génétiques Associés à la Trajectoire de la Glycémie à Jeun et à l’Incidence du Diabète de Type 2: Une Approche par Modèle Joint. \textit{Annual Congress of Société Francophone du Diabète (SFD)}, Lille, France. 
+\end{itemize}
+\clearpage
+
+### Articles publiés dans des revues internationales à comité de lecture
+
+\begin{itemize}
+\item Ndiaye, F. K., Ortalli, A., \underline{\textbf{Canouil, M.}} \textit{et al.} (2017). Expression and functional assessment of candidate type 2 diabetes susceptibility genes identify four new genes contributing to human insulin secretion. \textit{Molecular Metabolism}.
+
+\item Verbanck, M., \underline{\textbf{Canouil, M.}} \textit{et al.} (2017). Low-dose exposure to bisphenols A, F and S of human primary adipocyte impacts coding and non-coding RNA profiles. \textit{PLOS ONE}, 12(6), e0179583.
+\end{itemize}
+
+
+## Autres communications dans le domaine de la génétique
+
+\begin{itemize}
+\item Yengo, L., Jacques, J., Biernacki, C. and \underline{\textbf{Canouil, M.}} (2016). Variable Clustering in High-Dimensional Linear Regression: The R Package clere. \textit{The R Journal}, 8(1), 92–106.
+
+\item Baumeier, C., Saussenthaler, S., Kammel, A., Jähnert, M., Schlüter, L., Hesse, D., \underline{\textbf{Canouil, M.}} \textit{et al.} (2017). Hepatic DPP4 DNA Methylation Associates With Fatty Liver. \textit{Diabetes}, 66(1), 25–35.
+
+\item Carrat, G. R., Hu, M., Nguyen-Tu, M.-S., Chabosseau, P., Gaulton, K. J., van de Bunt, M., Siddiq, A., Falchi, M., Thurner, M., \underline{\textbf{Canouil, M.}} \textit{et al.} (2017). Decreased STARD10 Expression Is Associated with Defective Insulin Secretion in Humans and Mice. \textit{The American Journal of Human Genetics}, 100(2), 238–256.
+
+\item Bonnefond, A., Yengo, L., Dechaume, A., \underline{\textbf{Canouil, M.}} \textit{et al.} (2017). Relationship between salivary/pancreatic amylase and body mass index: a systems biology approach. \textit{BMC Medicine}, 15(1).
+\end{itemize}
+
+`r if (knitr:::is_latex_output()) {'\\clearpage'} else {}`
+`r if (is_docx_output()) {'# Bibliographie {-}'} else {}`

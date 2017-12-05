@@ -1,0 +1,146 @@
+\pdfpageattr{/Group << /S /Transparency /I true /CS /DeviceRGB>>}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{pifont}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage{textcomp}
+\usepackage{listings}
+\usepackage{courier}
+
+
+\definecolor{dodgerblue}{RGB}{30,144,255}
+\definecolor{springgreen3}{RGB}{0,139,69}
+\definecolor{springgreen2}{RGB}{0,205,102}
+\definecolor{firebrick2}{RGB}{238,44,44}
+\definecolor{maroon2}{RGB}{238,48,167}
+\definecolor{goldenrod2}{RGB}{238,180,34}
+\definecolor{deepskyblue}{RGB}{0,191,255}
+\renewcommand{\thefootnote}{\textcolor{maroon2}{\arabic{footnote}}}
+\hypersetup{
+    linkcolor=dodgerblue,
+    urlcolor=firebrick2,
+    citecolor=dodgerblue,
+    filecolor=goldenrod2,
+    menucolor=dodgerblue,
+    pdftex=true,
+    bookmarks=true,
+    hyperfootnotes=true,
+    breaklinks=true,
+    pdftitle={Soutenance de Thèse},
+    pdfauthor={Mickaël CANOUIL}
+}
+\setcitestyle{square,authoryear}
+
+\usepackage[sfdefault]{AlegreyaSans}
+
+\usepackage[francais]{babel}
+\selectlanguage{francais}
+\DecimalMathComma
+
+
+\usetheme{CambridgeUS}
+\useoutertheme{infolines}
+\useinnertheme{rectangles}
+\setbeamercolor{frametitle}{fg=white, bg=springgreen3!90!black!60!white}
+\setbeamercolor{title}{fg=white, bg=springgreen3!50!white}
+\setbeamercolor{palette primary}{fg=springgreen3!40!black, bg=springgreen3!50!white}
+\setbeamercolor{palette secondary}{fg=springgreen3!30!black, bg=springgreen3!70!white}
+\setbeamercolor{palette tertiary}{fg=springgreen3!20!black, bg=springgreen3!90!white}
+\setbeamercolor{structure}{fg=springgreen3!70!white}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{normal text}{fg=black}
+\setbeamercolor{block title}{bg=dodgerblue, fg=white!75!dodgerblue}
+\setbeamercolor{example text}{fg=springgreen3}
+\setbeamercolor{block title example}{bg=springgreen3, fg=white!75!springgreen3}
+\setbeamercolor{alerted text}{fg=firebrick2}
+\setbeamercolor{block title alerted}{bg=firebrick2, fg=white!75!firebrick2}
+\setbeamertemplate{navigation symbols}{}
+\addtobeamertemplate{headline}{\hypersetup{allcolors=springgreen3!40!black}}{}
+\setbeamerfont{section title}{series=\bfseries}
+
+\def\cst#1{\def\@cst{#1}}
+
+\newcommand\LaboratoryFont{\fontsize{8}{10}\selectfont}
+\newcommand\MyNameFont{\fontsize{8}{10}\itshape\selectfont}
+\newcommand\MyMailFont{\fontsize{6}{8}\itshape\selectfont}
+\newcommand\MyTitlePageTitleFont{\fontsize{14}{18}\slshape\bfseries\selectfont}
+\newcommand\MySubTitlePageTitleFont{\fontsize{10}{14}\slshape\bfseries\selectfont}
+
+\defbeamertemplate*{title page}{custom}[1][]{
+    \renewcommand{\baselinestretch}{1.25}
+    \begin{centering}
+        \begin{beamercolorbox}[sep=3pt,center,#1]{institute}
+            {\LaboratoryFont\textsc{\insertinstitute}}
+        \end{beamercolorbox}
+        \begin{beamercolorbox}[sep=8pt, center, colsep=-4bp, rounded=true, shadow=true, #1]{title}
+            \MyTitlePageTitleFont Développement et Application de Méthodologies Statistiques pour Études Multi-Omiques dans le Diabète de Type 2\par%
+            {\MySubTitlePageTitleFont\usebeamercolor[fg]{subtitle}\textit{\insertsubtitle}\par}%
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[sep=8pt,center,#1]{author}
+            {\MyNameFont\textsc{\texorpdfstring{Soutenance de Thèse\\\insertauthor\\ \vskip -0.25cm \href{mailto:mickael.canouil@cnrs.fr}{{\MyMailFont mickael.canouil@cnrs.fr}}}{\insertauthor}}}
+        \end{beamercolorbox}
+        \vskip -0.25cm
+        \begin{beamercolorbox}[sep=8pt,center,#1]{}
+            {\MyNameFont\@cst}
+        \end{beamercolorbox}
+        \vskip -0.25cm
+        \begin{beamercolorbox}[sep=8pt,center,#1]{date}
+            {\MyNameFont{\small{\color{springgreen3!70!white}\insertdate}}}
+        \end{beamercolorbox}
+        \vskip -0.25cm
+        {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+    \end{centering}
+    % \renewcommand{\baselinestretch}{1.5}
+}
+
+
+
+
+\newcommand\bref[2]{\hyperref[#1]{#2~\ref*{#1}}}
+\newcommand\cmd[1]{\texttt{\color{black}\textbf{#1}}}
+\newcommand\cmdb[1]{\texttt{\color{dodgerblue}\textbf{#1}}}
+\newcommand\cmdr[1]{\texttt{\color{firebrick2}\textbf{#1}}}
+\newcommand\cmdg[1]{\texttt{\color{springgreen3}\textbf{#1}}}
+\newcommand\cmdy[1]{\texttt{\color{goldenrod2}\textbf{#1}}}
+\newcommand\blue[1]{{\color{dodgerblue}\textbf{#1}}}
+\newcommand\red[1]{{\color{firebrick2}\textbf{#1}}}
+\newcommand\green[1]{{\color{springgreen3}\textbf{#1}}}
+\newcommand\yellow[1]{{\color{goldenrod2}\textbf{#1}}}
+\newcommand\pql{{\rmfamily \textbf{\color{goldenrod2}``}}}
+\newcommand\pqr{{\rmfamily \textbf{\color{goldenrod2}''}}}
+\newcommand\pq[3]{{\rmfamily \textbf{\color{#3}``}}#1{\rmfamily \textbf{\color{#3}''}} - \textcolor{#3}{#2}}
+
+\graphicspath{{images/}}
+
+\usepackage[labelfont=bf,singlelinecheck=true,labelsep=period,justification=centerlast,margin=1cm]{caption}
+
+
+\usepackage{tikz}
+\usebackgroundtemplate{%
+    \shorthandoff{;}%
+    \tikz\node[opacity=0.20, inner sep=0pt] {\includegraphics[height=\paperheight, width=\paperwidth]{../template/BG03_Beamer.jpg}};%
+}
+
+\institute[CNRS UMR 8199]{%
+    {\color{springgreen3!90!white}\blue{G}énomique \blue{I}ntégrative et \blue{M}odélisation des \blue{M}aladies \blue{M}étaboliques
+    \linebreak UMR 8199 (CNRS / Université de Lille 2 / Institut Pasteur de Lille)}%
+}
+
+\titlegraphic{%
+    \includegraphics[height=1cm, keepaspectratio]{../template/logo_cnrs.pdf}\hspace{1.5cm}
+    \includegraphics[height=1cm, keepaspectratio]{../template/UL2-WEB-2014.png}\hspace{1.5cm}
+    \includegraphics[height=1cm, keepaspectratio]{../template/Institut-Pasteur-de-Lille.png}\hspace{1.5cm}
+    \includegraphics[height=1cm, keepaspectratio]{../template/logo_egid.pdf}%
+}
+
+\cst{{\color{springgreen3!90!white}\textbf{Direction de thèse}}\\ Dr. Ghislain ROCHELEAU \& Pr. Philippe FROGUEL}
+
+\title[\texorpdfstring{\color{black}Soutenance de Thèse}{}]{%
+    Développement et Application de Méthodologies Statistiques pour Études Multi-Omiques dans le Diabète de Type 2%
+}
+\subtitle{Au-delà de l'Ère des Études d'Association Pangénomiques}

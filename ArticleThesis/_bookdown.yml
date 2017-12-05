@@ -1,0 +1,19 @@
+book_filename: "ArticleThesis_MickaelCanouil"
+output_dir: "_thesis"
+clean: ["ArticleThesis_MickaelCanouil.glo", "ArticleThesis_MickaelCanouil.ist", "ArticleThesis_MickaelCanouil.log"]
+language:
+    label:
+        fig: 'FIGURE '
+        tab: 'TABLEAU '
+        eq: 'EQUATION '
+        thm: 'THEOREME '
+        lem: 'LEMME '
+        def: 'DEFINITION '
+        cor: 'COROLLAIRE '
+        prp: 'PROPOSITION '
+        ex: 'EXEMPLE '
+        proof: 'PREUVE '
+        remark: 'REMARQUE '
+    ui:
+        chapter_name: "CHAPITRE "
+

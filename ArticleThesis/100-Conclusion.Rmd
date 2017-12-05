@@ -1,0 +1,55 @@
+# Conclusion {-}  
+\setcounter{section}{0}
+
+Nous proposons dans cette thèse une contribution au domaine de la statistique génétique appliquée à la pathologie du diabète de type 2.
+Cette contribution se scinde en deux aspects.
+Le premier aspect est un développement méthodologique visant à améliorer les connaissances actuelles et exploiter au mieux les données disponibles.
+Le second aspect se concentre sur le support méthodologique et l'application des méthodes adaptées aux questionnements inhérents aux différents projets de recherche sur les données "omiques".
+
+## Développement méthodologique
+
+Deux principaux développements ont été réalisés au cours de cette thèse (Chapitres \@ref(Article1) et \@ref(Article2))\ :
+
+  - Le premier est une nouvelle approche, dans le domaine de la génétique, permettant de modéliser conjointement l'évolution d'un trait longitudinal et la survenue d'un événement, tout en évaluant l'effet des SNPs simultanément sur ces deux traits. 
+  Contrairement aux approches dites "classiques" des GWAS qui ont étudié l'effet des SNPs, d'une part, sur la glycémie à jeun dans des groupes d'individus normoglycémiques, et d'autre part, l'association des SNPs dans des études cas/témoins, l'approche par modèle joint que nous proposons dans cette thèse permet d'identifier des SNPs associés à l'évolution de la glycémie sans qu'ils ne soient nécessairement associés au risque de développement d'un diabète.
+  De plus, nous apportons une solution au problème computationnel de l'application  de cette approche à l'échelle du génome (p. ex. puce-à-ADN imputée, séquençage, etc.), au moyen  d'une méthode approchée dite en "deux étapes".
+  Nous avons montré que l'approche en "deux étapes" est aussi robuste et précise que l'approche par modèle joint tout en offrant un gain en terme de temps de calcul.  
+
+  - Le second développement réalisé porte sur l'amélioration et l'automatisation de la récupération et l'analyse des données provenant de la technologie NanoString et de culture cellulaire. 
+  Dans ce second développement, j'ai réalisé deux applications web Shiny, nommées _NanoStringTissueCartography_ et _EndoC\_Beta_\ :
+
+    - L'application _NanoStringTissueCartography_ permet, en premier lieu, à partir des données brutes générées via la technologie NanoString, d'effectuer et de visualiser les différentes étapes du contrôle-qualité, ainsi que les niveaux d'expressions de plusieurs gènes de ménage, et en second lieu, d'analyser et de visualiser les données importées dans l'application, tout en offrant un cadre interactif.
+    Par exemple, il est possible de sélectionner un ou plusieurs gènes selon une fonction, mais également de sélectionner les tissus d'intérêts, pour lesquels l'analyse d'expression et l'étude enrichissement doivent être réalisées.  
+    
+    - L'application _EndoC\_Beta_ permet d'inclure des fichiers de résultats au format Excel (ici, des mesures d'absorbance réalisées sur un modèle de cellule $\beta$) dès le remplissage de ces fichiers par les personnes en charge des expérimentations.
+    L'agrégation de ces résultats dans un format standardisé permet de mesurer et de prendre en compte plusieurs facteurs techniques tels que l'expérimentateur, le jour d'expérimentation et la qualité de l'étalonnage des appareils, et de ce fait permet de réduire les biais que ces facteurs peuvent entraîner dans l'analyse.
+    En outre, cette application permet différents niveaux de contrôle-qualité.
+    Par exemple, j'ai incorporé une étape de contrôle de la gamme étalon utilisée pour estimer la sécrétion d'insuline.
+    Cette étape vise à vérifier que les mesures d'absorbances observées, pour chaque concentration de référence, restent homogènes d'une expérience à l'autre, puisque le matériel (spectromètre et produits de référence de la gamme) est théoriquement le même.
+    De plus, une erreur d'estimation de la pente de la gamme étalon (relation linéaire entre la concentration et l'absorbance) impactera l'ensemble des mesures utilisant celle-ci.
+    Cette application, en plus de prendre en compte les facteurs techniques dans l'analyse, fournit un critère objectif quant à la mesure de sécrétion d'insuline par les cellules $\beta$.
+    En effet, le regroupement de l'ensemble des expérimentations réalisées sur les cellules $\beta$ a permis d'établir un seuil à partir du ratio de la quantité d'insuline sécrétée dans la condition cible et dans la condition témoin. 
+    Ce seuil fournit une indication relative au développement des cellules $\beta$ et donc indirectement sur la qualité de la culture.
+
+## Support méthodologique
+La nature et la complexité des données "omiques" nécessitent de pouvoir identifier et appliquer une grande variété de méthodes connues et/ou nouvelles pour s'adapter au mieux à la problématique des projets de recherche.
+Il existe de nombreux articles traitant des méthodes d'analyses des données de génomique, de transcriptomique et de méthylomique.
+Cependant, le domaine de la méthylomique reste quant à lui en retard par rapport aux deux autres, principalement en raison de son caractère récent et en développement.  
+Les Chapitres \@ref(Article3) et \@ref(Article4), sont le résultat des études méthodologiques sur les trois "omiques" discutées dans cette thèse, d'une part, au niveau des méthodes de contrôle-qualité plus ou moins spécifiques, et d'autre part, au niveau des méthodes d'analyse statistique.
+Dans ces deux chapitres, les études décrites ont fait l'objet d'une étude pilote, en particulier pour étudier la méthylation de l'ADN.
+Ces études pilotes ont permis l'identification et le développement d'un processus d'analyse allant de la lecture des données à la génération des résultats d'analyse, sur lequel se sont appuyées les études définitives et les demandes de financement subséquentes.
+En effet, ces résultats ont permis d'établir le nombre d'échantillon nécessaire et/ou d'évaluer la puissance de l'étude, et d'élaborer les plans d'expériences les mieux adaptés afin de réduire les biais techniques ou les facteurs de confusion.
+
+
+## Multi-omiques & Perspectives
+Les différents projets abordés dans les Chapitres \@ref(Article1), \@ref(Article2), \@ref(Article3) et \@ref(Article4) s'inscrivent dans une démarche multi-omiques, notamment par l'intégration de la méthylomique, de la transcriptomique, de la génomique et de la phénomique (phénotype).
+Néanmoins, cette intégration est partielle dans le sens où l'analyse est réalisée sous la forme de filtres successifs\ : par exemple dans le Chapitre \@ref(Article3), l'analyse s'est concentrée sur la méthylomique, puis les autres "omiques" ont été incluses pour apporter une nouvelle couche "mécanistique" et ainsi remonter à la pathophysiologie.
+Cette approche d'intégration successive des "omiques" offrent un cadre de mise en oeuvre simple et robuste, et permet de mettre en évidence un aspect mécanistique plus proche des hypothèses biologiques et cliniques, que ne le permet une analyse séparée des "omiques".
+
+Avec le développement de la médecine de précision, qui vise à caractériser, à plusieurs niveaux, un individu et prédire son avenir médical, des méthodes d'intégrations de données se sont développées conjointement aux méthodes relatives au "Big Data" (c.-à-d. "machine learning", tels que les "neural network") permettant de traiter des gros volumes de données [@huang_more_2017; @lin_machine_2017].
+La cohorte D.E.S.I.R. fournit un cadre idéal d'application et de développement des approches pour données longitudinales et des approches d'intégration de données.
+En effet, dans cette cohorte interrogée lors de quatre vagues de mesure conduites à intervalle régulier sur une période 9 ans, des données de différentes natures sont disponibles telles que plus de 200 variables phénotypiques, des données de génomique, de métabolomique (deux temps de mesure) et prochainement des données de méthylomique (deux temps de mesure).
+À cela s'ajoute la mise en place de consortia permettant de regrouper plusieurs laboratoires et cohortes (p. ex. RHAPSODY portant sur l'évaluation du risque et de la progression du diabète de type 2 et du pré-diabète), établissant un cadre de plus en plus adapté aux différentes méthodes décrites et développées dans cette thèse.
+
+<!-- Malgré que cette approche permette d'accroitre la compréhension des maladies complexes, elle présente une limitation quant à la nature de ce qu'elle permet de découvrir. -->
+<!-- En effet, une grande partie de l'information (brute ou analysée) est omise, par exemple, dans les analyses eQTLs/mQTLs (en _cis_ et _trans_), l'ensemble des résultats est généralement placé au sein de base de données pour de la recherche ciblé sur un locus [@gaunt_systematic_2016; @aguet_local_2016; @jo_distant_2016]. -->

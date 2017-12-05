@@ -1,0 +1,132 @@
+\documentclass[10pt, xcolors={RGB}, hyperref={pdfpagelabels=false,
+        colorlinks=true,
+        pdftex=true,
+        bookmarks=true,
+        bookmarksopen=true,
+        hyperfootnotes=true}]{beamer}
+\pdfpageattr{/Group << /S /Transparency /I true /CS /DeviceRGB>>}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{pifont}
+\usepackage{multicol}
+\usepackage{setspace}
+\renewcommand{\baselinestretch}{1.5}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[square, authoryear]{natbib}
+
+%-------------- Define Colours ------------------%
+\definecolor{dodgerblue}{RGB}{30,144,255}
+\definecolor{springgreen3}{RGB}{0,139,69}
+\definecolor{springgreen2}{RGB}{0,205,102}
+\definecolor{firebrick2}{RGB}{238,44,44}
+\definecolor{maroon2}{RGB}{238,48,167}
+\definecolor{goldenrod2}{RGB}{238,180,34}
+\definecolor{deepskyblue}{RGB}{0,191,255}
+
+%-------------- Customise template --------------%
+\usetheme{CambridgeUS}
+\useoutertheme{infolines}
+\useinnertheme{rectangles}
+\setbeamercolor{frametitle}{fg=white, bg=springgreen3!90!black!60!white}
+\setbeamercolor{title}{fg=white, bg=springgreen3!50!white}
+\setbeamercolor{palette primary}{fg=springgreen3!40!black, bg=springgreen3!50!white}
+\setbeamercolor{palette secondary}{fg=springgreen3!30!black, bg=springgreen3!70!white}
+\setbeamercolor{palette tertiary}{fg=springgreen3!20!black, bg=springgreen3!90!white}
+\setbeamercolor{structure}{fg=springgreen3!70!white}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{normal text}{fg=black}
+\setbeamercolor{block title}{bg=dodgerblue, fg=white!75!dodgerblue}
+\setbeamercolor{example text}{fg=springgreen3}
+\setbeamercolor{block title example}{bg=springgreen3, fg=white!75!springgreen3}
+\setbeamercolor{alerted text}{fg=firebrick2}
+\setbeamercolor{block title alerted}{bg=firebrick2, fg=white!75!firebrick2}
+\setbeamertemplate{navigation symbols}{}
+\addtobeamertemplate{headline}{\hypersetup{allcolors=springgreen3!40!black}}{}
+
+%-------------- Define Title Page ---------------%
+\def\cst#1{\def\@cst{#1}}
+\defbeamertemplate*{title page}{custom}[1][]{
+    \renewcommand{\baselinestretch}{1.25}
+    \begin{centering}
+        \begin{beamercolorbox}[sep=3pt,center,#1]{institute}
+            \usebeamerfont{institute}{\insertinstitute}
+        \end{beamercolorbox}
+        \vfill
+        \begin{beamercolorbox}[sep=8pt, center, colsep=-4bp, rounded=true, shadow=true, #1]{title}
+            \usebeamerfont{title}\inserttitle\par%
+            \ifx\insertsubtitle\@empty%
+            \else%
+            \vskip0.25em%
+            {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+            \fi%
+        \end{beamercolorbox}%
+        \vskip1em\par
+        \begin{beamercolorbox}[sep=8pt,center,#1]{author}
+            \usebeamerfont{author}\insertauthor
+        \end{beamercolorbox}
+        \begin{beamercolorbox}[sep=8pt,center,#1]{cst}
+            \usebeamerfont{institute}\@cst
+        \end{beamercolorbox}
+        \begin{beamercolorbox}[sep=8pt,center,#1]{date}
+            \usebeamerfont{date}{\small\insertdate}
+        \end{beamercolorbox}
+        \vfill
+        {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+    \end{centering}
+    \renewcommand{\baselinestretch}{1.5}
+}
+
+
+\hypersetup{%
+    linkcolor=dodgerblue,
+    urlcolor=firebrick2,
+    citecolor=springgreen3,
+    filecolor=goldenrod2,
+    menucolor=dodgerblue,
+    bookmarksopen=true}
+\renewcommand{\thefootnote}{\textcolor{maroon2}{\arabic{footnote}}}
+
+\usepackage{textcomp}
+\usepackage{listings}
+\usepackage{courier}
+
+
+\bibliographystyle{apalike}
+
+
+\let\oldcitep=\citep
+\renewcommand{\citep}[1]{\textcolor{springgreen3}{\oldcitep{#1}}}
+\let\oldcitet=\citet
+\renewcommand{\citet}[1]{\textcolor{springgreen3}{\oldcitet{#1}}}
+\let\oldcite=\cite
+\renewcommand{\cite}[1]{\textcolor{springgreen3}{\oldcite{#1}}}
+
+\newcommand\bref[2]{\hyperref[#1]{#2~\ref*{#1}}}
+\newcommand\cmd[1]{\texttt{\color{black}\textbf{#1}}}
+\newcommand\cmdb[1]{\texttt{\color{dodgerblue}\textbf{#1}}}
+\newcommand\cmdr[1]{\texttt{\color{firebrick2}\textbf{#1}}}
+\newcommand\cmdg[1]{\texttt{\color{springgreen3}\textbf{#1}}}
+\newcommand\cmdy[1]{\texttt{\color{goldenrod2}\textbf{#1}}}
+\newcommand\blue[1]{{\color{dodgerblue}\textbf{#1}}}
+\newcommand\red[1]{{\color{firebrick2}\textbf{#1}}}
+\newcommand\green[1]{{\color{springgreen3}\textbf{#1}}}
+\newcommand\yellow[1]{{\color{goldenrod2}\textbf{#1}}}
+\newcommand\pql{{\rmfamily \textbf{\color{goldenrod2}``}}}
+\newcommand\pqr{{\rmfamily \textbf{\color{goldenrod2}''}}}
+\newcommand\pq[3]{{\rmfamily \textbf{\color{#3}``}}#1{\rmfamily \textbf{\color{#3}''}} - \textcolor{#3}{#2}}
+\newenvironment{bquote}[1]
+    {\begin{quotation}
+    \vspace{10pt}
+    \newcommand{\bqauthor}{\normalfont \begin{quote}\begin{flushright}--- #1\end{flushright}\end{quote}}
+    \rmfamily \itshape {\huge\textbf{``}}
+    }
+    {{\huge\textbf{''}}
+    \bqauthor
+    \end{quotation}
+    }
+\newcommand\lettrine[1]{{\huge{$\mathcal{#1}$}}}

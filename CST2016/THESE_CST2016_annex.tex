@@ -1,0 +1,317 @@
+% cd /disks/PROJECT/Mickael/COMMUNICATION/CST2016/;
+% pdflatex THESE_CST2016_annex.tex; bibtex THESE_CST2016_annex; pdflatex THESE_CST2016_annex.tex; pdflatex THESE_CST2016_annex.tex;
+% evince THESE_CST2016_annex.pdf &
+
+\documentclass[11pt, a4paper]{article}
+\input{Header_Article.tex}
+\usepackage{eso-pic}
+\usepackage{transparent}
+% \AddToShipoutPicture*{\AtPageLowerLeft{\transparent{0.30}\includegraphics[width=\paperwidth,height=\paperheight]{figures/BG03_A0.jpg}}}
+
+\usepackage{pdfpages}
+
+\usepackage[english, francais]{babel}
+\selectlanguage{francais}
+
+\addto\captionsfrancais{%
+   \def\figurename{Figure}%
+}
+\addto\captionsfrancais{%
+   \def\tablename{Table}%
+}
+
+\title{\huge{Développement et Application de Méthodologies Statistiques pour Etudes Longitudinales d'Association Génétique}\linebreak \large{\textit{Comité de Suivi de Thèse: deuxième année}}}
+\date{26 septembre 2016}
+\email{\href{mailto:mickael.canouil@cnrs.fr}{mickael.canouil@cnrs.fr}}
+\author{Mickaël Canouil}
+\grade{Doctorant en Biostatistique}
+\institute{\cmdb{G}énomique \cmdb{I}ntégrative et \cmdb{M}odélisation des \cmdb{M}aladies \cmdb{M}étaboliques \linebreak UMR 8199 (CNRS / Université de Lille 2 / Institut Pasteur de Lille)}
+\address{CNRS UMR 8199 - Institut de Biologie de Lille\linebreak
+1 Rue du Professeur Calmette\linebreak
+BP 245\linebreak
+F-59019 LILLE CEDEX
+}
+\cst{
+\textbf{Directeur de thèse:}\\ Pr. Philippe Froguel\\ \vskip 0.25cm
+\textbf{Co-directeur de thèse:}\\ Dr. Ghislain Rocheleau (Lille 2)\\ \vskip 0.25cm
+\textbf{Membres du CST:}\\ Dr. Hélène Jacqmin-Gadda (INSERM U 897, Bordeaux)\\
+Pr. Cristian Preda (Ecole Polytechnique, Lille)
+}
+
+% <<title, echo = FALSE, results = hide>>=
+% @
+
+
+\begin{document}
+% \maketitle
+% \tableofcontents
+
+\clearpage
+\section{Travaux précédents}
+\subsection{Modèle Joint}
+\begin{figure}[ht]
+    \begin{center}
+        \fbox{\includegraphics[width=7.5cm]{figures/jointModel.png}}
+    \end{center}
+    \vspace{-15pt}
+    \captionof{figure}{Diagramme général d'un modèle joint pour le T2D (adapté de \cite{ibrahim_basic_2010})\newline
+    {\small $X(t)$: trajectoire de la glycémie à jeun inférée des données longitudinales observées;
+    $\alpha$: effet du SNP sur le diabète;
+    $\gamma$: effet du SNP sur la trajectoire de la glycémie à jeun;
+    $\beta$: effet de la trajectoire de la glycémie à jeun sur le diabète.}}
+    \label{fig:JointModel}
+\end{figure}
+\par{En utilisant, l'approche de modèle joint implémentée dans l'extension JM \citep{rizopoulos_jm_2010} du logiciel R (version 3.2.3)\citep{r_core_team_r_2015},
+124~095 SNPs de la MetaboChip ont été testés simultanément pour leur association avec la glycémie à jeun et le risque de DT2.}
+
+\par{La formulation standard du modèle joint implique deux composantes, d'une part, une composante longitudinale pour modéliser la trajectoire de la variable étudiée,
+et d'autre part, une composante de survie pour modéliser la survenue de l'événement étudié.
+La composante longitudinale consiste typiquement à l'application d'un modèle linéaire mixte:
+\begin{eqnarray}Y_{ij}=X_{ij}+\epsilon_{ij},\label{eq:1}\end{eqnarray}
+où $Y_{ij}$ est la valeur observée et $X_{ij}$ la vraie (non-observée) valeur de la variable longitudinale.
+Le terme $\epsilon_{ij}$ est le terme d'erreur aléatoire supposé être distribué selon la Loi Normale:
+\begin{eqnarray}\epsilon_{ij} \sim \mathcal{N}(0, \sigma^2)\label{eq:2}\end{eqnarray}
+La quantité $X_{ij}$ (ou $X(t)$) est la fonction de la trajectoire et est définie usuellement comme une fonction linéaire (ou quadratique) du temps $t$.}
+
+\par{Des covariables peuvent être incluses dans la fonction de la trajectoire, comme l'âge, le sexe ou l'IMC.
+Dans notre étude, $Y_{ij}$ représente les valeurs mesurées la glycémie à jeun au temps $t_{ij}$, $Z_i$ désigne le génotype du SNP analysé pour l'individu $i$ et $W_i$ désigne les covariables selon le modèle suivant:
+\begin{eqnarray}Y_{ij}=X_{ij}+\epsilon_{ij}=\theta_{0i}+\theta_{1i}\times t_{ij}+\gamma \times Z_i+\delta \times W_i\epsilon_{ij}\label{eq:3}\end{eqnarray}
+Pour simplifier, le terme $\delta \times W_i$ sera omis dans la suite.}
+
+\par{Les paramètres $\theta_{0i}$ et $\theta_{1i}$ sont supposés être distribués selon une distribution normale multivariée:
+\begin{eqnarray}\boldsymbol\theta \sim \mathcal{N}_2(\boldsymbol\mu, \boldsymbol\Sigma)\label{eq:4}\end{eqnarray}
+Le paramètre $\gamma$ évalue l'effet additif du SNP ($Z_i$) sur la fonction de la trajectoire.
+Pour tenir compte éventuellement de pentes variant entre les génotypes, un terme d'interaction entre le SNP et le temps peut être inclus dans la fonction de la trajectoire.
+Le terme d'interaction n'a pas été inclus dans notre étude.}
+
+\par{La composante de survie (survenue du DT2) se compose généralement d'un modèle paramétrique (p.ex. exponentielle ou Weibull) ou semi-paramétrique (p.ex. risques proportionnels de Cox) avec:
+\begin{eqnarray}h_i(t)=h_0(t) exp(\beta X_i(t)+\alpha Z_i),\label{eq:5}\end{eqnarray}
+où $h_i(t)$ est la fonction de risque au temps $t$ pour l'individu $i$ et $h_0(t)$ est la fonction de risque de base non spécifiée, supposée être une constante par morceaux avec deux noeuds placés à des temps intermédiaires
+(c'est-à-dire, à trois et six ans sur les neuf ans du suivi). Le coefficient $\alpha$ mesure l'effet du SNP sur le délai d'apparition du DT2,
+alors que le coefficient $\beta$ mesure l'association entre la trajectoire du niveau de la glycémie à jeun et le temps d'apparition du DT2.}
+
+\clearpage
+\subsection{Simulation}
+\par{Des études de simulation ont été menées pour examiner la puissance statistique et l'erreur de type 1 des SNPs trouvés comme nominalement associé (à 5\%) en utilisant le modèle joint, comme implémenté par \citet{rizopoulos_jm_2010}.
+Notre objectif principal était de déterminer le gain ou la perte de puissance du modèle joint par rapport aux approches classiques transversales (p.ex. régression logistique ou linéaire, modèle de Cox)
+pour détecter l'effet d'un SNP, sur la glycémie à jeun et le statut DT2 dans notre étude.
+Les jeux de données de simulation, qui ont été réalisés avec R, suivent les \hyperref[eq:1]{Equations~\ref*{eq:1}~à~\ref{eq:5}},
+avec la fonction de risque de base fixée ($h_0(t)=\lambda$) de façon à obtenir une incidence équivalente à celle de la cohorte D.E.S.I.R (environ 5\%), durant la période de suivi de neuf ans.
+Les temps d'événements ont été générés selon une distribution exponentielle dans le cadre du modèle de Cox à risque proportionnel \citep{austin_generating_2012}.
+\begin{eqnarray}H(T)=\int_0^T \lambda exp(\beta \times X(t) + \alpha \times Z) dt\end{eqnarray}
+\begin{eqnarray}T=\frac{1}{\beta\theta_1} log\left( - \frac{\beta\theta_1 \times log(1-u)}{\lambda exp(\beta\theta_0+(\beta\gamma+\alpha)Z)}+1 \right)\end{eqnarray}
+}
+
+\clearpage
+\subsection{Etudes des estimateurs du modèle joint par simulation}
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{lc}
+            \hline
+            Paramètres & Valeurs\\
+            \hline
+            Effectif ($N$) & $5000$\\
+            Temps de mesures (en années) & $0, 3, 6, 9$\\
+            Incidence à neuf ans ($I$) & $5\%$\\
+            LMM : Trajectoire $\left (\begin{bmatrix}\theta_{0}\\\theta_{1}\end{bmatrix}\right )$ & $\mathcal{N}_2\left (\begin{bmatrix}4.50\\0.013\end{bmatrix} , \begin{bmatrix} 0.16 & 0 \\ 0 & 1\times 10^{-3} \end{bmatrix} \right )$\\
+            LMM : Effet du SNP ($\gamma$) & $0.025$\\
+            Cox : Effet du SNP ($\alpha$) & $0.2$\\
+            JM : Effet de la trajectoire ($\beta$) & $3.50$\\
+            \hline
+        \end{tabular}
+    \end{center}
+    \vspace{-15pt}
+    \captionof{table}{Paramètres initiaux pour la simulation des données. {\small Caractéristiques basées sur le SNP de TCF7L2 (SNP le plus fortement associé au DT2).}}
+    \label{tab:simpar}
+\end{table}
+\par{Dans le but d’identifier les avantages et limites des approches de type modèle joint (\cmd{JM}),
+un jeu de données a été simulé sur la base de la cohorte D.E.S.I.R. et les paramètres donnés dans la \bref{tab:simpar}{Table}.
+}
+\par{Plusieurs scénarios de simulation ont été réalisés pour tester la robustesse des estimations des paramètres
+en présence de données manquantes, en utilisant la classification usuelle:}
+\begin{description}
+    \addtolength{\itemindent}{1cm}
+    \item[MCAR (missing completely at random):] les données sont manquantes indépendamment des données observées et non observées;
+    \item[MAR (missing at random):] conditionnellement aux données observées, les données manquantes sont indépendantes des données non observées;
+    \item[MNAR (missing not at random):] les données manquantes sont dépendantes de variables non observées.
+\end{description}
+\par{D’autres paramètres ont également été étudiés, tels que l’effectif de la population,
+la fréquence du marqueur génétique et dans le cas plus général des LMM, le nombre de mesures longitudinales.
+Ces scénarios ont été étudiés avec les paquets \cmd{JM}.}
+\par{Les scénarios adoptés et étudiés sont les suivants:
+\begin{description}
+    \addtolength{\itemindent}{1cm}
+    \item[Scénario 1] Données complètes et variation de la fréquence allélique;
+    \item[Scénario 2] Données complètes et variation du nombre de mesures longitudinales;
+    \item[Scénario 3] Données complètes et variation de l'effectif;
+    \item[Scénario 4] Données manquantes distribuées de façon uniforme (MCAR);
+    \item[Scénario 5] Perte au suivi (MCAR).
+\end{description}
+}
+\par{
+La \bref{fig:Scenario1}{Figure} et la \bref{tab:Scenario1}{Table} montrent les résultats obtenus pour 10~000 jeux de données simulées (\hyperref[eq:1]{Equations~\ref*{eq:1}~à~\ref{eq:5}})
+en faisant varier la fréquence allélique du marqueur de 5\% à 95\% (ici les résultats sont symétriques puisque le marqueur est bi-allélique).
+Pour ce scénario, les estimations du modèle joint se montrent proches des valeurs des paramètres simulés, avec cependant une légère sous-estimation des paramètres relatifs ($\alpha$ et $\gamma$) au marqueur génétique testé.
+Ceci est d'autant plus vrai lorsque la fréquence de l'allèle mineur diminue.
+\begin{figure}[ht]
+    \begin{center}
+        \fbox{\includegraphics[width=15cm]{/disks/DATA/DESIR_longitudinal/06-JointModel_Simulation/Scenario1.png}}
+        \captionof{figure}{Estimation de l'erreur relative des paramètres du modèle joint en fonction de la fréquence allélique (10~000 simulations).}
+        \label{fig:Scenario1}
+    \end{center}
+\end{figure}
+}
+\newpage
+\par{
+Le même type de résultats a pu être observé pour les autres scénarios (données non montrées), à savoir:
+\begin{description}
+    \addtolength{\itemindent}{1cm}
+    \item[Scénario 2] sous-estimations ($\alpha$, $\beta$ et $\gamma$) réduites avec l'augmentation du nombre de mesures, notamment pour $\beta$;
+    \item[Scénario 3] sous-estimations ($\alpha$, $\beta$ et $\gamma$) réduites avec l'augmentation du nombre d'individus, le gain reste cependant faible au-delà de 1~000 individus;
+    \item[Scénario 4-5] le taux de données manquantes impacte les estimations de façon importante au-delà de 10\%, notamment sur la composante longitudinale du modèle joint.
+\end{description}
+}
+\begin{table}[!h]
+    \begin{center}
+        \begin{tabular}{ccccc}
+            \hline
+            Paramètre & Estimée & Simulée & Fréquence allélique\\
+            \hline
+            \multirow{7}{*}{$\alpha$} & 0.215 [-0.0762, 0.551] & \multirow{7}{*}{0.23} & 0.05 \\
+             & 0.219 [0.00346, 0.459] &  & 0.10 \\
+             & 0.22 [0.0741, 0.373] &  & 0.25 \\
+             & 0.219 [0.101, 0.343] &  & 0.50 \\
+             & 0.219 [0.0825, 0.349] &  & 0.75 \\
+             & 0.218 [0.0284, 0.398] &  & 0.90 \\
+             & 0.218 [-0.0538, 0.461] &  & 0.95 \\
+            \hline
+            \multirow{7}{*}{$\beta$} & 3.56 [3.29, 3.85] & \multirow{7}{*}{3.60} & 0.05 \\
+             & 3.57 [3.3, 3.85] &  & 0.10 \\
+             & 3.57 [3.3, 3.86] &  & 0.25 \\
+             & 3.56 [3.29, 3.85] &  & 0.50 \\
+             & 3.57 [3.29, 3.85] &  & 0.75 \\
+             & 3.57 [3.29, 3.85] &  & 0.90 \\
+             & 3.57 [3.29, 3.85] &  & 0.95 \\
+            \hline
+            \multirow{7}{*}{$\gamma$} & 0.0196 [-0.0164, 0.0558] & \multirow{7}{*}{0.02} & 0.05 \\
+             & 0.0195 [-0.00712, 0.0456] &  & 0.10 \\
+             & 0.0194 [0.00111, 0.038] &  & 0.25 \\
+             & 0.0197 [0.00322, 0.0353] &  & 0.50 \\
+             & 0.0196 [0.00115, 0.0385] &  & 0.75 \\
+             & 0.0196 [-0.00678, 0.0457] &  & 0.90 \\
+             & 0.0195 [-0.0165, 0.0558] &  & 0.95 \\
+            \hline
+        \end{tabular}
+        \captionof{table}{Estimation des paramètres du modèle joint en fonction de la fréquence allélique (10~000 simulations).}
+        \label{tab:Scenario1}
+    \end{center}
+\end{table}
+
+
+\clearpage
+\subsection{Modèles pour données longitudinales}
+\par{%
+Nous avons comparé plusieurs approches, d'une part, pour tester l'effet principal d'un SNP ($\beta_g$), et d'autre part pour tester l'effet d'interaction entre le SNP et le temps.
+Pour le premier, nous avons comparé cinq méthodes: les modèles de régression linéaires en utilisant les mesures à l'inclusion dans la cohorte D.E.S.I.R. ou en utilisant la moyenne de l'ensemble des mesures du suivi,
+l'approche "Two-Step" avec l'ordonnée à l'origine en terme aléatoire (RI), les équations estimantes généralisées (GEE) et les modèles linéaires mixtes (LMM);
+tandis que pour le dernier, nous avons comparé l'approche "Two-Step" avec une pente aléatoire, "Two-Step conditionnelle", GEE et LMM avec terme d'interaction.
+}
+\par{%
+$Y_i$ est la variable mesurée et $G_i$ désigne le génotype (SNP) codés 0, 1 ou 2.
+\begin{description}
+    % \addtolength{\itemindent}{1cm}
+    \addtolength{\itemsep}{-1em}
+    \item[Modèle linéaire (à l'inclusion)] \hfill  \\ $Y_i = \beta_0 + \beta_gG_i + \epsilon_i${\footnotesize{, où $\epsilon_i\sim\mathcal{N}(0, \sigma^2)$}}\\
+    \item[Modèle linéaire (Moyenne des $m$ mesures)] \hfill \\ $\bar{Y}_{i} = \beta_{0} + \beta_gG_i + \epsilon_{i}${\footnotesize{, où $\epsilon_i\sim\mathcal{N}(0, \frac{\sigma^2}{m})$}}\\
+    \item["Two-Step"] \hfill \\ \vspace{-2.5em}
+        \begin{enumerate}
+            \item $Y_{ij} = \beta_{0} + b_{0i} + \beta_{1}t_{ij} + b_{1i}t_{ij} + \epsilon_{ij}${\footnotesize{, où $\epsilon_{ij}\sim{\mathcal{N}}_m(0, V^\dagger{}_i\equiv Z^\dagger{}_iD^\dagger{}Z^\dagger{}_i'+{\sigma^\dagger{}}^2I_m)$}}
+            \item $\hat{b}_{0i} = \beta_0^* + \beta_g^*G_i + \epsilon_{i}^*${\footnotesize{, où $\epsilon_{i}^*\sim\mathcal{N}(0, {\sigma^*}^2)$}}
+        \end{enumerate} \vspace{1.5em}
+    \item[Modèle linéaire mixte] \hfill \\ $Y_{ij} = \beta_{0} + b_{0i} + \beta_{1}t_{ij} + b_{1i}t_{ij} + \beta_gG_i + \epsilon_{ij}${\footnotesize{, où $\epsilon_{ij}\sim{\mathcal{N}}_m(0, V_i\equiv Z_iDZ_i'+\sigma^2I_m)$}}\\
+    \item[Equations d'Estimation Généralisée (GEE)] \hfill \\ $\mathbb{E}(Y_i) = \beta_{0} + \beta_{1}t_{ij} + \beta_gG_i$ et $\mathbb{V}(Y_i)=V_i$ (Compound Symmetry).\\
+\end{description}
+}
+\par{%
+L'approche "Two-Step", consiste dans un premier temps, à l'application d'un modèle linéaire mixte sans le génotype $G_i$,
+puis dans un second temps, à l'application d'un modèle linéaire sur l'ordonnée à l'origine (aléatoire) en incluant cette fois, le génotype dans les variables explicatives.
+}
+\par{%
+L'erreur de type I et la puissance statistique, de l'effet du SNP, ont été obtenus via des procédures de ré-échantillonnages et de permutations appliquées sur le jeu de données complet,
+ou par simulations dans le cas d'un où un terme d'interaction était inclus.
+Dans tous les modèles testés, l'erreur de type I était maintenu au seuil de 5\%.
+En revanche, une puissance statistique accrue de l'approche classique (modèle de régression linéaire) par rapport aux méthodes prenant en compte des mesures répétées, a pu dans certains cas être mis en évidence,
+en dépit du fait que la prise en compte de mesures répétées apporte un gain de puissance.
+}
+\par{%
+Ce comportement "contre-intuitif" peut s'observer et s'expliquer au niveau du paramètre de décentralité (NCP) de ces modèles, à l'aide des formules closes suivantes,
+pour tester l'association d'un SNP sous l'approche transversale (CS: Cross-Sectional), avec l’ordonnée à l’origine en aléatoire (RI: Random Intercept) et pente et ordonnée à l'origine aléatoire (RIS: Random Intercept and Slope):
+\begin{eqnarray}
+    NCP_{CS} =& nd^2\left(\frac{2p(1-p)}{\sigma^2}\right)\\[0.25cm]
+    NCP_{RI} =& NCP_{CS}\left(\frac{m\sigma^2}{\sigma^2+m\sigma^2_{b0}}\right)\\[0.25cm]
+    NCP_{RIS} =& NCP_{RI}U\label{eq:6}\\[0.25cm]
+    \textnormal{avec \hspace{1em}} U =& \frac{%
+            (\sigma^2+\sigma^2_{b1}\sum^{m}_{j=1}(t_j-\bar{t})^2)(\sigma^2+m\sigma^2_{b0})%
+        }{%
+            (\sigma^2+\sigma^2_{b1}\sum^{m}_{j=1}(t_j-\bar{t})^2)(\sigma^2+m\sigma^2_{b0})-m\rho^2\sigma^2_{b0}\sigma^2_{b1}\sum^{m}_{j=1}(t_j-\bar{t})^2
+        }\geq 1 \label{eq:7}%\\[0.25cm]
+\end{eqnarray}
+Où $d$ est la taille d'effet;\\
+$n$ est la taille d'échantillon (nombre d'individus);\\
+$m$ est le nombre de mesures répétées;\\
+$\sigma^2$ est la variance des résidus;\\
+$\sigma^2_{b0}$ et $\sigma^2_{b1}$ sont les variances des paramètres en effet aléatoire $b_{0i}$ et $b_{1i}$;\\
+$\rho$ est le coefficient de corrélation entre $b_{0i}$ et $b_{1i}$.
+}
+\par{%
+Nous pouvons écrire le $NCP_{RIS}$ comme le produit du NCP sous le modèle RI et un facteur $U$ supérieur ou égal à un (\hyperref[eq:6]{Equations~\ref*{eq:6}~à~\ref{eq:7}}).
+Cela garantit que le NCP sous le modèle RIS est toujours supérieur ou égal au NCP du modèle RI, mais n'implique pas que $NCP_{RIS}$ est supérieur au $NCP_{CS}$ dans l'approche transversale.
+\begin{eqnarray}NCP_{RIS} \geq NCP_{RI} \nRightarrow NCP_{RIS} > NCP_{CS}\end{eqnarray}
+}
+\newpage
+\par{Les résultats des calculs des  NCPs montrés dans la \bref{tab:NCP}{Table} concordent avec notre étude de puissance,
+où une analyse transversale pouvait être plus puissante à détecter un effet qu'une approche prenant en compte des mesures répétées (\bref{fig:NCP}{Figure}).
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{ccccc}
+            \hline
+            $SNP$ & $Gene$ & $NCP_{CS}$ &  & $NCP_{RIS}$ $(NCP_{RI})$ \\
+            \hline
+            rs560887 & G6PC2 & \textcolor{dodgerblue}{63.33} & \textcolor{maroon2}{\LARGE <} & \textcolor{firebrick2}{93.08 (92.69)} \\
+            rs2908289 & GCK & \textcolor{dodgerblue}{17.02} & \textcolor{maroon2}{\LARGE <} & \textcolor{firebrick2}{26.37 (26.26)} \\
+            rs16913693 & IKBKAP & \textcolor{firebrick2}{12.75} & \textcolor{maroon2}{\LARGE >} & \textcolor{dodgerblue}{6.55 (6.53)} \\
+            rs6072275 & TOP1 & \textcolor{firebrick2}{7.78} & \textcolor{maroon2}{\LARGE >} & \textcolor{dodgerblue}{6.78 (6.76)} \\
+            \hline
+        \end{tabular}
+        \captionof{table}{Calcul du paramètre de décentralité pour une sélection de SNPs associés au glucose sanguin.}
+        \label{tab:NCP}
+    \end{center}
+\end{table}
+\begin{figure}[h]
+    \begin{center}
+        \fcolorbox{black}{white}{\includegraphics[width=6.5cm]{/disks/DATA/DESIR_longitudinal/12-SMPGD2016/Power_Intercept_rs560887.png}}
+        \fcolorbox{black}{white}{\includegraphics[width=6.5cm]{/disks/DATA/DESIR_longitudinal/12-SMPGD2016/Power_Intercept_rs2908289.png}}\\
+        \fcolorbox{black}{white}{\includegraphics[width=6.5cm]{/disks/DATA/DESIR_longitudinal/12-SMPGD2016/Power_Intercept_rs16913693.png}}
+        \fcolorbox{black}{white}{\includegraphics[width=6.5cm]{/disks/DATA/DESIR_longitudinal/12-SMPGD2016/Power_Intercept_rs6072275.png}}
+        \captionof{figure}{Calcul de puissance pour une sélection de SNPs associés au glucose sanguin.}
+        \label{fig:NCP}
+    \end{center}
+\end{figure}
+}
+
+% \setlength{\tabcolsep}{10pt} % default
+% \clearpage
+% \addcontentsline{toc}{section}{Références}
+% \bibliographystyle{apalike}
+% \bibliography{CST2016.bib}
+% \nocite{*}
+
+
+% \appendix
+% \setcounter{table}{0}
+% \setcounter{figure}{0}
+% \renewcommand\thetable{\alph{table}}
+% \renewcommand\thefigure{\alph{figure}}
+% \clearpage
+
+\end{document}

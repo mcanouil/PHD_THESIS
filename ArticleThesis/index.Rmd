@@ -1,0 +1,98 @@
+---
+title: "Développement et Application de Méthodologies Statistiques pour Études Multi-Omiques dans le Diabète de Type 2"
+subtitle: "Au-delà de l'Ère des Études d'Association Pangénomiques"
+author: "Mickaël CANOUIL"
+date: "29 Septembre 2017"
+documentclass: krantz
+classoption: a4paper,notrimn
+bibliography: [bib/Mickael_ThesisClean.bib, bib/MyArticles.bib, bib/Rpackages.bib]
+biblio-style: apalike
+csl: csl/apa.csl
+link-citations: true
+colorlinks: false
+lot: false
+lof: false
+fontsize: 11pt
+monofont: "Source Code Pro"
+monofontoptions: "Scale=0.7"
+description: ""
+site: "bookdown::bookdown_site"
+knit: "bookdown::render_book"
+cover-image: Background/Cover.png
+---
+
+```{r, include = FALSE}
+library(knitr)
+opts_knit$set(
+    fig.align = 'center',
+    echo = FALSE,
+    warning = FALSE,
+    message = FALSE,
+    cache = FALSE,
+    include = FALSE,
+    fig.pos = '!htb'
+)
+opts_chunk$set(
+    fig.align = 'center',
+    echo = FALSE,
+    warning = FALSE,
+    message = FALSE,
+    cache = FALSE,
+    include = FALSE,
+    fig.pos = '!htb'
+)
+is_docx_output <- function (fmt = knitr:::pandoc_to()) {
+    if (length(fmt) == 0) {
+        return(FALSE)
+    } else {
+        return(fmt == "docx")
+
+    }
+}
+
+numberEq.docx <- function (eq, lab, envir = docx.eqcounter) {
+    is_docx_output <- function (fmt = knitr:::pandoc_to()) {
+        if (length(fmt) == 0) {
+            return(FALSE)
+        } else {
+            return(fmt == "docx")
+        }
+    }
+    if (is_docx_output() | knitr:::is_html_output()) {
+        assign(x = "counter", value = get(x = "counter", envir = envir)+1, envir = envir)
+        assign(x = gsub("eq:", "", lab), value = get(x = "counter", envir = envir), envir = envir)
+        lab <- get("counter", envir = envir)
+        neach <- 8
+        return(paste0('$$', eq, paste0(rep('\\;', neach), collapse = ''), '(', lab, ')', '$$'))
+    } else {
+        out <- paste0('\\begin{equation}', eq, '(\\#', lab, ')\\end{equation}')
+        if (knitr:::is_latex_output()) {
+            return(out)
+        } else {
+            return(paste0("$$", out, "$$"))
+        }
+    }
+}
+
+labEq.docx <- function (lab, envir = docx.eqcounter) {
+    is_docx_output <- function (fmt = knitr:::pandoc_to()) {
+        if (length(fmt) == 0) {
+            return(FALSE)
+        } else {
+            return(fmt == "docx")
+        }
+    }
+    if (is_docx_output() | knitr:::is_html_output()) {
+        paste0('(', get(x = gsub("eq:", "", lab), envir = envir), ')')
+    } else {
+        paste0('\\@ref(eq:', lab, ')')
+    }
+}
+
+if (is_docx_output() | knitr:::is_html_output()) {
+    docx.eqcounter <- new.env()
+    docx.eqcounter$counter <- 0
+} else {}
+
+knitr::write_bib(x = c("limma", "AgiMicroRna", "JM", "mixOmics", "RGCCA", "JMbayes", "joineR", "shiny"), file = "bib/Rpackages.bib")
+```

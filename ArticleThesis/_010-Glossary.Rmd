@@ -1,0 +1,11 @@
+# Glossaire {-}
+
+\gls{dt2}
+\gls{ada}
+\gls{hba1c}
+\gls{imc}
+\gls{nafld}
+\gls{nash}
+
+\printglossary
+

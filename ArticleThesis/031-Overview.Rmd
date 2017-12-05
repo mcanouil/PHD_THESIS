@@ -1,0 +1,160 @@
+## Préceptes
+Dans un premier temps, nous proposons de revenir sur quelques notions et définitions, qui pourront au besoin faire l’objet de simplifications.
+
+
+### Génome
+
+(ref:EukaryoteDNA) Localisation de l'ADN dans une cellule eucaryote.
+
+```{r EukaryoteDNA, fig.cap = '(ref:EukaryoteDNA)', out.width = '6in', include = TRUE, echo = FALSE}
+  knitr::include_graphics(path = "FiguresTables/Eukaryote_DNA.png")
+```
+
+Le patrimoine génétique (génome) d’un individu est l’ensemble de l’information génétique présente sous forme de chromosomes dans le noyau des cellules eucaryotes (Figure \@ref(fig:EukaryoteDNA)). 
+L’Homme dispose de 22 paires de chromosomes, appelés autosomes, et d’une paire de chromosomes sexuels ou gonosomes (notés XX chez la femme, et XY chez l’homme). 
+Ces chromosomes constituent la forme condensée de deux molécules, appelées brins, d’Acide DésoxyriboNucléique (ADN), et composées de la répétition de quatre nucléotides (ou bases nucléotidiques)\ : A, C, G et T, respectivement pour adénosine, cytosine, guanine et thymine. 
+La position de l’une de ces bases, donnée en paire de base (pb), est appelée locus (loci, au pluriel).
+Il est à noter qu’un locus peut également désigner une région de plusieurs dizaines de paires de bases, voire d’un gène entier. 
+Ces quatre nucléotides sont la base de l’information génétique et sont complémentaires pour une même paire\ : A est couplé à T, tandis que C est couplé à G. 
+Cette complémentarité permet aux deux brins d’ADN de se lier l’un à l’autre via une liaison hydrogène et de former une structure en double-hélice. 
+L’association de cette double-hélice avec des complexes protéiques, tels que les histones, permet à l’ADN d’être présent dans deux états de condensation différents\ : l’euchromatine, un état décondensé, et l’hétérochromatine, un état condensé où les histones sont très rapprochées les unes des autres. 
+Ces deux états de condensation de la molécule d’ADN auront un effet sur les mécanismes de transcription de l’ADN. 
+La transcription est un mécanisme de lecture de l’ADN et d’écriture d'une partie de l'information génétique se trouvant au niveau d'un gène sous une forme dérivée\ : l'Acide RiboNucléique (ARN). 
+Les gènes sont le résultat de l’arrangement en séquence des 3,5 milliards de paires de bases du génome humain (Ensembl version 89, mai 2017). 
+Cependant, l’ensemble de l’ADN n’est pas codant.
+Chez l’Homme, il existe environ 20 000 gènes codant pour des protéines, répartis de façon discontinue sur l’ensemble du génome (Ensembl version 89, mai 2017). 
+
+(ref:ensembl) Diagramme des gènes répertoriés sur la base Ensembl.
+
+```{r ensembl, fig.cap = '(ref:ensembl)', out.width = '6in', out.height = '4in', include = TRUE, echo = FALSE}
+library(dplyr)
+library(ggplot2)
+library(ggrepel)
+library(viridis)
+
+dta <- read.table(text = "cDNAs only	6556
+RefSeq proteins only	144
+UniProt proteins only	209
+RefSeq and UniProt proteins only	179
+cDNAs and RefSeq proteins only	1238
+cDNAs and UniProt proteins only	10944
+cDNAs and RefSeq and UniProt proteins	2424", sep = "\t")
+dta <- dta[order(dta[, "V2"], decreasing = TRUE), ]
+dta[, "V1"] <- factor(dta[, "V1"], levels = unique(dta[, "V1"]))
+dta <- dta %>% mutate(pos = (cumsum(rev(V2))-rev(V2)/2))
+
+ggplot(data = dta, aes(x = 1, y = V2, fill = V1)) +
+  geom_bar(width = 1, stat = "identity", colour = "white") +
+  geom_label_repel(aes(x = 1.25, y = rev(pos), label = V2),
+      colour = "black",
+      size = 3,
+      nudge_x = 0.5,
+      # nudge_y = 0.5,
+      segment.colour = "black",
+      min.segment.length = unit(0, "lines"),
+      show.legend = FALSE
+  ) +
+  coord_polar(theta = "y") +
+  scale_fill_viridis(discrete = TRUE, name = NULL, begin = 0.95, end = 0.30) +
+  theme_void()
+```
+
+D’une cellule à une autre dans un même organisme, le génome est le même. 
+Cependant, il existe des disparités entre le génome de deux individus d’une même espèce, et d'autant plus entre deux espèces. 
+Ainsi, deux individus d’une même espèce vont partager pour plusieurs loci les mêmes allèles, mais pourront présenter des variations appelées polymorphismes. 
+Pour un même locus, le génotype donne l'allèle présent sur chacun des deux chromosomes d'une même paire, et s'écrit sous la forme d'un couple d'allèles\ : AA, AB, ou BB, où A et B désignent les bases nucléotidiques (c.-à-d. A, C, G ou T).
+
+Au sein d’une population, la variabilité génétique est engendrée principalement par l'intermédiaire de deux phénomènes\ : la mutation ou la recombinaison. 
+La mutation est un mécanisme introduisant un polymorphisme, c'est-à-dire par l’introduction d’une nouvelle version d’un allèle au sein de la séquence, soit par l’ajout, la suppression ou l’insertion d’un ou plusieurs nucléotides, provoquant ainsi des changements dans la séquence d’ADN. 
+Ces changements peuvent être classés en différentes catégories selon leur conséquence sur la synthèse de la protéine. 
+Ainsi, une mutation est dite "silencieuse" ou "synonyme", lorsque l’acide aminé n’est pas changé.
+
+(ref:RNAcodon) Brin d'ARN et codons.
+
+```{r RNAcodon, fig.cap = '(ref:RNAcodon)', out.width = '2.3in', out.height = '4in', include = TRUE, echo = FALSE}
+  knitr::include_graphics(path = "FiguresTables/RNA-codon.png")
+```
+
+Un acide aminé est le résultat de la traduction, depuis un ARN messager, d'une séquence de trois bases nucléotidiques nommée "codon" (Figure \@ref(fig:RNAcodon)). 
+Il existe 64 codons ($4^3$ combinaisons de bases), correspondant à 22 acides aminés uniques, ce qui permet à plusieurs codons d’être traduits en un même acide aminé. 
+Quand la mutation engendre l’apparition d’un codon stop, arrêtant par le fait même la synthèse de la protéine avant la fin de la séquence d'ARN, elle est alors appelée "non-sens".
+
+La recombinaison est un mécanisme se produisant lors de la méiose, c'est-à-dire lors du processus de formation des gamètes, où les chromosomes homologues (c.-à-d. les chromosomes d’une même paire) se chevauchent, et peuvent alors échanger une partie de l’ADN les constituant. 
+La recombinaison n’affecte pas l’ensemble du chromosome de façon homogène. 
+En effet, les événements de recombinaison sont plus fréquents avec l’éloignement du centromère, c'est-à-dire à la position de jointure des chromosomes d’une même paire. 
+On parle de déséquilibre de liaison lorsque la probabilité d'observer un allèle à un locus A n'est pas indépendante de celle d'observer un allèle à un locus B, autrement dit, lorsque la probabilité d'observer un certain couple d'allèle n'est pas égale au produit au produit des probabilités d'observé chaque allèle individuellement. 
+
+Pour la suite, nous nous intéresserons principalement aux variants génétiques polymorphiques au niveau d’une seule base nucléotidique, les SNPs ("Single Nucleotide Polymorphisms"), et omettrons les insertions/délétions (INDEL), ou encore les variations du nombre de copies ou CNVs ("Copy Number Variations").
+
+
+### Transcriptome
+
+(ref:LocalGlobale) Schéma simplifié de la synthèse des protéines chez les eucaryotes.
+
+```{r LocalGlobale, fig.cap = '(ref:LocalGlobale)', out.width = '4in', include = TRUE, echo = FALSE}
+  knitr::include_graphics(path = "FiguresTables/2LocalGlobale.png")
+```
+
+La transcriptomique étudie les ARN formés lors de la transcription d’un gène dans le noyau. 
+La transcription est une étape indispensable pour la synthèse de protéines permettant de faire transiter l’information contenue dans l’ADN nucléaire vers le cytoplasme sous la forme d'ARN, où se trouve le matériel nécessaire à la traduction en protéine (c.-à-d. les ribosomes et les acides aminés) (Figure \@ref(fig:LocalGlobale)). 
+La transcription de l’ADN en ARN est réalisée par l’enzyme ARN polymérase. 
+Il existe plusieurs classes d’ARN, dont la plus abondante est la classe des ARN messagers (mRNA). 
+
+(ref:RNAtype) Classification des différents types d'ARN.
+
+```{r RNAtype, fig.cap = '(ref:RNAtype)', out.width = '6in', include = TRUE, echo = FALSE}
+  knitr::include_graphics(path = "FiguresTables/RNAtype.png")
+```
+
+À cette classe s’ajoutent les ARN de transfert (tRNA), qui apportent les acides aminés nécessaires à la traduction des mRNA en protéines, et les ARN ribosomaux (rRNA), qui constituent les complexes protéiques que sont les ribosomes, ainsi que des ARN mesurant moins de 200 nucléotides, soit les petits ARN ("small RNA"), les miRNA ("microRNA"), les snoRNA ("small nucleolar RNA"), les siRNA ("small interfering RNA"), les piRNA ("piwi interfering RNA"), etc. (Figure \@ref(fig:RNAtype)). 
+Ces derniers participent à divers mécanismes métaboliques, notamment la régulation de l’expression des gènes [@ambros_functions_2004; @bartel_micrornas:_2004].
+
+L’expression des gènes est mesurée directement par les mRNA, qui représentent les ARN codant pour les protéines. 
+Il est à noter que le nombre de protéines pouvant être synthétisé est supérieur au nombre de gènes. 
+En effet, un gène se compose de plusieurs exons (parties codantes) et d’introns (parties non-codantes), et lors de la transcription, l’épissage du gène permet la création d’une molécule mRNA ne comportant que les parties codantes. 
+Cette phase d’épissage peut être "alternative", c’est-à-dire, que pourront être conservées, lors de la synthèse de mRNA, différentes combinaisons d’exons aboutissant à la synthèse de plusieurs mRNA ou transcrits, qui seront alors exportés en dehors du noyau pour être ensuite synthétisés en protéines dans le cytoplasme de la cellule. 
+Ainsi, un gène peut produire plusieurs protéines différentes selon les besoins et la fonction de la cellule et du tissu. 
+Le transcriptome est défini comme l’ensemble des ARN présents à un instant donné dans un tissu ou type cellulaire spécifique, et nécessaires à la synthèse protéique et à sa régulation en partie via les petits ARN.
+
+
+### Épigénome et Méthylome
+Les mécanismes de régulation de l’expression des gènes sont nombreux. 
+L'un de ces mécanismes passe par des marques épigénétiques modifiant la structure et la conformation de l’ADN, rendant de ce fait plus simple ou plus difficile selon les cas, la fixation des facteurs de transcription, et plus généralement de la machinerie cellulaire sur l’ADN. 
+Il existe principalement deux types de modifications épigénétiques\ : la méthylation de l’ADN et les modifications d’histones. 
+L’ensemble de ces modifications constitue l’épigénome d’un individu. 
+Le méthylome constitue un sous-ensemble de l’épigénome regroupant uniquement les marques de méthylation. 
+Nous nous concentrerons sur le méthylome impliqué principalement dans la régulation des gènes, la maintenance et la formation de la chromatine, constituant de ce fait un élément important de la régulation du transcriptome.
+
+(ref:cytosine) Formule structurelle de la méthylation de la cytosine.
+
+```{r cytosine, fig.cap = '(ref:cytosine)', out.width = '3in', include = TRUE, echo = FALSE}
+  knitr::include_graphics(path = "FiguresTables/cytosine.png")
+```
+
+La méthylation de l’ADN est l’ajout d’un groupement méthyl via une enzyme de la famille des ADN méthyltransférases (_DNMT_). 
+Cette enzyme va catalyser l’ajout d’un groupement méthyl sur le carbone en position 5 d’une cytosine (5mC), cytosine généralement suivie (5’ vers 3’) d’une guanine, formant ainsi un groupement CpG (cytosine-phosphate-guanine) (Figure \@ref(fig:cytosine)). 
+Ces groupements, ou sites CpG, ne sont pas les seuls groupements de dinucléotides pouvant faire l’objet d’une méthylation CpHpG (H = A, T, ou C) [@lister_human_2009].
+Cependant, ces marques ne sont pas les plus fréquentes chez les organismes eucaryotes [@bird_dna_1980].
+
+Les sites CpG représentent une faible fraction du génome ($\simeq 1 \%$) et sont distribués de façon hétérogène sur l’ensemble du génome en raison d’une déamination spontanée, au cours du temps, des 5mC en thymine [@bird_dna_1980; @cooper_cytosine_1989]. 
+
+(ref:CpG) Schéma représentant la localisation des sites CpG sur le génome.
+
+```{r CpG, fig.cap = '(ref:CpG)', out.width = '6in', include = TRUE, echo = FALSE}
+  knitr::include_graphics(path = "FiguresTables/CpG.png")
+```
+
+Les sites CpG peuvent être regroupés en îlots, appelés îlots CpG [@deaton_cpg_2011] (Figure \@ref(fig:CpG)). 
+Ces îlots CpG sont des régions enrichies en dinucléotide guanine-cytosine (GC) et sont généralement non-méthylés. 
+Un îlot CpG est défini comme une séquence d’une longueur de 200 à 1 000 paires de bases comportant plus de 50\ % de GC et un ratio $\frac{CpG_{observé}}{CpG_{attendu}}>=60$\ % [@antequera_structure_2003; @gardiner-garden_cpg_1987]. 
+Ces îlots CpG sont localisés dans les régions promotrices et exoniques pour 40 à 60\ % d’entre eux [@larsen_cpg_1992; @saxonov_genome-wide_2006], traduisant l’importance du processus de méthylation dans la régulation de l’expression des gènes. 
+Les sites et îlots CpG sont principalement déméthylés lorsqu'ils sont situés dans des régions promotrices (p. ex. site d’initiation de la transcription, en amont d'un gène) et des exons, et sont méthylés lorsqu’ils sont localisés dans le corps des gènes [@ball_targeted_2009; @hellman_gene_2007; @jones_dna_1999]. 
+En effet, une hypométhylation observée au niveau des régions promotrices de la transcription est généralement inversement corrélée avec l’expression des gènes [@schultz_human_2015; @wagner_relationship_2014], mais pas de façon systématique [@moarii_changes_2015], rendant complexe l’étude de l’épigénome conjointement avec le transcriptome. 
+À cela s’ajoute l’impact potentiel des mutations survenant au niveau de la cytosine d’un site CpG.
+Ces polymorphismes sont appelés CpG-SNPs et permettent de mettre en évidence des mécanismes d’interaction entre génome et épigénome [@dayeh_identification_2013; @zhi_snps_2013].
+
+
+### Phénotype
+Le phénotype correspond à l’ensemble des caractères ou traits physiques observables chez un individu (p. ex. la taille, la couleur des yeux, le statut diabétique, etc.). 
+Le phénotype est le résultat à la fois du génotype et des facteurs environnementaux, comme le mode de vie, le régime alimentaire ou l’activité physique par exemple. 
+Un biomarqueur est une marque phénotypique particulière qui est la mesure d’un composé (p. ex. protéine, métabolite, etc.) présent dans le corps d’un individu et servant, en médecine, à des fins diagnostiques d’une pathologie.

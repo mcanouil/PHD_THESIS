@@ -1,0 +1,2 @@
+\includepdf[pages=-, scale=1, clip, fitpaper=true, offset = 0cm -0.3cm, pagecommand={\thispagestyle{headings}}]{Articles/Article3.pdf}
+\includepdf[pages=35-47, scale=0.8, clip, trim=0cm 0cm 0cm 0cm, pagecommand={\thispagestyle{headings}}]{Articles/Article3_Figures.pdf}

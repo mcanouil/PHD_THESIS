@@ -1,0 +1,87 @@
+# L'Expression et l'Évaluation Fonctionnelle des Gènes de Susceptibilité au Diabète de Type 2 Identifient Quatre Nouveaux Gènes Contribuant à la Sécrétion d'Insuline Humaine {#Article2}
+`r if (knitr:::is_latex_output()) {"\\chaptermark{L'Expression et l'Évaluation Fonctionnelle des Gènes de Susceptibilité au Diabète de Type 2 [...]}"} else {}`
+Publié dans __*\href{http://doi.org/10.1016/j.molmet.2017.03.011}{Molecular Metabolism}*__.
+
+Fatou K Ndiaye^1,\textasteriskcentered^, Ana Ortalli^1,\textasteriskcentered^, __Mickaël Canouil^1,\textasteriskcentered^__, Marlène Huyvaert^1^, Clara Salazar-Cardozo^1^, Cécile Lecoeur^1^, Marie Verbanck^1^, Valérie Pawlowski^1^, Raphaël Boutry^1^, Emmanuelle Durand^1^, Iandry Rabearivelo^1^, Olivier Sand^1^, Lorella Marselli^2^, Julie Kerr-Conte^3^, Vikash Chandra^4^, Raphaël Scharfmann^4^, Odile Poulain-Godefroy^1^, Piero Marchetti^2^, François Pattou^3^, Amar Abderrahmani^1,5^, Philippe Froguel^1,5,\textdagger^ & Amélie Bonnefond^1,5,\textdagger^
+
+\footnotesize
+^1^CNRS UMR 8199, European Genomic Institute for Diabetes (EGID), Institut Pasteur de Lille, University of Lille, 59000 Lille, France\ ; 
+^2^Department of Clinical and Experimental Medicine, Islet Cell Laboratory, University of Pisa, 56100 Pisa, Italy\ ; 
+^3^Inserm U1190, EGID, CHU Lille, University of Lille, 59000 Lille, France\ ; 
+^4^Inserm U1016, Institut Cochin, Faculté de Médecine, Paris Descartes University, Sorbonne Paris Cité, 75014 Paris, France\ ; 
+^5^Department of Genomics of Common Disease, Imperial College London, W12 0NN London, United Kingdom.
+  
+^\textasteriskcentered^Co-premier auteurs.  
+^\textdagger^Co-dernier auteurs.
+\normalsize
+
+`r if (knitr:::is_latex_output()) {'\\clearpage'} else {}`
+
+## Introduction
+### Contexte/objectifs
+Les études d'association pangénomiques (GWAS) ont permis l'identification de plus de 100 loci associés au risque de diabète de type 2 (DT2) dont la fonction n'a pas encore été élucidée.
+Notre objectif dans cette étude est de palier à ce manque de connaissances quant au processus liant l'expression des gènes identifiés et la pathophysiologie du DT2, notamment au travers de l'effet de ces gènes sur la sécrétion d'insuline.
+
+### Méthodes
+#### Spécificité et enrichissement dans un panel pluritissulaire
+Le transcriptome de 104 gènes candidats associés au DT2 en _cis_ (c.-à-d. localisés sur le même chromosome) et des SNPs identifiés par GWAS a été étudié dans 24 organes, tissus et types cellulaires différents, incluant des échantillons de foie, muscle squelettique, cerveau, pancréas, cellules $\beta$ pancréatiques, îlots pancréatiques, pancréas exocrine et adipocytes (primaires et matures).
+Un ensemble de cinq gènes de ménages a été constitué sur une base d'expression ubiquitaire, c'est-à-dire exprimés de la même façon dans les différents tissus.
+L'expression des gènes est ensuite mesurée pour 148 cibles (incluant les 5 gènes de ménages et les 104 gènes candidats) au moyen d'une technique sans étape d'amplification PCR (NanoString) qui peut, suite à des erreurs de copie de l'ARN polymérase, engendrer un biais des mesures.
+Les données transcriptomiques obtenues sont alors normalisées, en prenant la transformation logarithme en base 2, du ratio d'expression du gène d'intérêt par la moyenne d'expression des 5 gènes de ménages et ce, dans chacun des 24 tissus.
+
+(ref:App2) Application Shiny développée dans le cadre de l'analyse de l'expression de gènes de susceptibilité au diabète de type 2 dans un panel pluritissulaire.
+
+```{r App2, fig.cap = '(ref:App2)', out.width = "6in", include = TRUE, echo = FALSE}
+  knitr::include_graphics(path = "FiguresTables/App2.png")
+```
+
+Dans un premier temps, une interface web (Figure \@ref(fig:App2)), via l'extension R shiny [@R-shiny], a été développée pour visualiser l'ensemble des données générées, principalement à l'aide de représentations "heatmap" et de dendrogrammes, créées à partir de la classification hiérarchique des mesures d'expression (distance de Ward sur les données centrées et réduites).
+Cette interface, permet la visualisation et l'identification de groupes de gènes exprimés de façon similaires entre les tissus, notamment dans les échantillons liés au pancréas, siège de la sécrétion d'insuline.
+Dans un second temps, les gènes ont été regroupés selon leur nature, à savoir les 104 gènes candidats, les gènes spécifiques à chaque organe (p. ex. gènes exprimés uniquement dans le foie), et les gènes identifiés dans les formes monogéniques de DT2. 
+Pour chacun de ces ensembles, une table de contingence a été construite sur la base des comptages de gènes présentant une expression supérieure à celle observée en moyenne dans l'ensemble des tissus ($Expr_{i}>\mu_{Tissus}+1,5\times\sigma_{Tissus}$). 
+L'enrichissement en gènes surexprimés dans un ensemble et dans un tissu donné est testé au moyen du test exact de Fisher.
+Les valeurs-p obtenues ont été présentées sous la forme d'un histogramme au sein de l'interface web, permettant la visualisation simultanée des résultats de l'enrichissement des ensembles de gènes, ainsi que l'homogénéité ou l'hétérogénéité de l'expression ces gènes.
+
+#### Sécrétion d'insuline en réponse au glucose (modèle cellulaire)
+Le rôle des gènes candidats a été ensuite étudié en diminuant leur expression au moyen de petits ARN interférents (siRNA), ayant pour fonction de cibler spécifiquement les mRNA et induire leur dégradation, dans un modèle de cellules $\beta$ humaines (c.-à-d. EndoC $\beta H1$). 
+
+(ref:App1) Application Shiny développée dans le cadre de l'analyse de la sécrétion d'insuline par le modèle cellulaire d'EndoC $\beta$H1.
+
+```{r App1, fig.cap = '(ref:App1)', out.width = "6in", include = TRUE, echo = FALSE}
+  knitr::include_graphics(path = "FiguresTables/App1.png")
+```
+
+Le processus d'analyse comprend d'abord une étape de contrôle-qualité des différentes étapes de l'expérimentation, notamment au niveau des mesures de la gamme étalon d'absorbance, permettant d'évaluer la sécrétion d'insuline par les cellules. 
+Cette étape consiste en l'évaluation du biais (erreur relative) entre les deux mesures d'absorbance (duplicats) des triplicats expérimentaux (cellules), et des mesures servant à établir la gamme étalon sur plus de 100 expériences. 
+Un seuil de qualité a été défini graphiquement via la courbe de distribution des erreurs relatives des mesures d'absorbances\ : les expériences dont l'erreur relative était inférieure à 20\ % étaient conservées pour analyse.
+Les expériences validant les critères du contrôle-qualité sont ensuite analysées pour deux conditions de stimulation\ : glucose et glucose + IBMX (3-isobutyl-1-methylxanthine). 
+Les mesures de sécrétion d'insuline sont ainsi comparées entre les cellules contrôles (où l’expression du gène n’est pas altérée), et les cellules d’intérêt (où l’expression du gène est réduite via la transfection d'un siRNA), par une approche de régression linéaire avec ajustement sur les variables d'expérimentation, tels l'expérimentateur et le jour de l'expérience. 
+Les mesures de sécrétion d'insuline sont ensuite exprimées en "Fold Change". 
+
+L'ensemble des étapes de contrôle-qualité et des analyses ont été implémentées au sein d'une interface web (Figure \@ref(fig:App1)), via l'extension R shiny [@R-shiny] permettant la visualisation, à la volée, de la qualité et des résultats de chaque expérience, dès leur inclusion dans l'application.
+
+### Résultats
+#### Spécificité et enrichissement dans un panel pluritissulaire
+L'étude transcriptomique des 104 gènes candidats a montré que ces gènes étaient préférentiellement exprimés dans les cellules $\beta$ du pancréas\ :
+
++ cellules $\beta$ prélevées à l'aide d'une microdissection par capture laser (LCM)\ : $\textrm{valeur-p}=5,1\times 10^{-4}$ (valeur-p du test exact de Fisher)\ ; 
+
++ cellules $\beta$ triées ("Fluorescence Activated Cell Sorting" ou FACS)\ : $\textrm{valeur-p}=1,6\times 10^{-3}$\ ; 
+
++ modèle de cellules $\beta$ (EndoC $\beta H1$)\ : $\textrm{valeur-p}=1,6\times 10^{-3}$\ ; 
+
+mais aucun enrichissement significatif de ces gènes n'a pu être montré dans les tissus cibles de l'insuline (c.-à-d. foie, muscle squelettique et tissu adipeux).
+
+#### Sécrétion d'insuline en réponse au glucose (modèle cellulaire)
+L'étude de la sécrétion de l'insuline par les EndoC $\beta H1$, pour les gènes dont la transfection de siRNA a réussi, a permis l'identification et la confirmation de sept gènes (_GCK_, _HNF4A_, _TCF19_, _SLC30A8_, _TBC1D4_, _CDKN2A_ et _KNCK16_) connus pour être exprimés ou ayant un rôle dans les cellules $\beta$, et particulièrement sur la sécrétion d'insuline. 
+L'approche développée ici a également permis de mettre en lumière quatre gènes candidats additionnels (_PRC1_, _SRR_, _ZFAND3_ et _ZFAND6_), pouvant impacter la sécrétion d'insuline, et dont le rôle dans la cellule $\beta$ en fait de bons candidats pour l'étude des mécanismes liant la cellule $\beta$ au développement d'un diabète de type 2. 
+L'expression de ces gènes a été validée par immunofluorescence. 
+De plus, une corrélation positive significative a été retrouvée dans les ilots de cellules $\beta$ pancréatiques de souris entre l’expression de l’insuline et l’expression de ces quatre gènes.
+Enfin, un séquençage de l'ARN d'EndoC $\beta H1$, transfectées avec _siPRC1_, _siSRR_, _siZFAND6_, _siZFAND3_ ou _siNTP_ (contrôle), a été réalisé afin d'identifier des voies physiopathologiques pouvant expliquer la corrélation avec la sécrétion d’insuline observée (p. ex. réseau de gènes liés à l'apoptose des cellules $\beta$ pancréatiques, au stress du reticulum endoplasmique, etc.)
+
+### Conclusion
+Les développements statistiques apportés dans cette étude fonctionnelle, quoique non directement appliquée à l'ensemble des gènes localisés au voisinage des SNPs identifiés par GWAS ou méta-analyses, se révèlent des outils robustes ayant permis de mettre en évidence un aspect plus mécanistique/pathophysiologique des loci identifiés par les approches GWAS, augmentant ainsi la compréhension des maladies complexes.
+
+## Article
+Article disponible en ligne sur __*Molecular Metabolism*__ (\url{http://doi.org/10.1016/j.molmet.2017.03.011})
+\clearpage

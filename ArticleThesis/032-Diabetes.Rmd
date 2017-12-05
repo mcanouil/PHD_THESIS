@@ -1,0 +1,195 @@
+## Le diabète de type 2
+
+
+### Définition et chiffres du diabète
+Le diabète est défini par une hyperglycémie. 
+Dès 1999, l’organisation Mondiale de la Santé (OMS) [@world_health_organization_definition_1999] préconise deux mesures de glycémie pour diagnostiquer le diabète\ : la glycémie à jeun et la glycémie mesurée deux heures après un test de tolérance au glucose par voie orale (OGTT). 
+Dans la pratique, le diagnostic du diabète s’effectue, dans certains cas, via la mesure d’hémoglobine glyquée (HbA1c).  
+C’est notamment le cas aux États-Unis, où la mesure d’HbA1c fait partie des critères de définition proposés par l’Association Américaine pour le Diabète (ADA). 
+L’HbA1c est utilisée ici pour sa propriété à refléter l'évolution de la glycémie sur les trois derniers mois, ce qui correspond à la durée de vie moyenne d’un d’érythrocyte. 
+
+```{r t2ddefinitionOMS, include = TRUE, echo = FALSE}
+dta1 <- readxl::read_xlsx(path = "FiguresTables/DiabetesCriterion.xlsx", sheet = 1)
+dta1[2, 1] <- gsub(" / hyperglycémie modérée à jeun", "", dta1[2, 1])
+colnames(dta1)[1] <- ""
+knitr::kable(
+  dta1,
+  caption = "Critères glycémiques de l'organisation mondiale de la santé (OMS), définissant les statuts insulinorésistant et diabétique. (OGTT\ : test de tolérance au glucose par voie orale).", 
+  booktabs = TRUE,
+  longtable = FALSE
+)
+```
+
+```{r t2ddefinitionADA, include = TRUE, echo = FALSE}
+dta2 <- readxl::read_xlsx(path = "FiguresTables/DiabetesCriterion.xlsx", sheet = 2)
+dta2[2, 1] <- gsub(" / hyperglycémie modérée à jeun", "", dta2[2, 1])
+colnames(dta2)[1] <- ""
+knitr::kable(
+  dta2,
+  caption = "Critères glycémiques de l'association américaine pour le diabète (ADA), définissant les statuts insulinorésistant et diabétique.", 
+  booktabs = TRUE,
+  longtable = FALSE
+)
+```
+
+Même si l’ADA et l’OMS s’accordent pour définir le diabète à partir d’une glycémie à jeun supérieure à 7,0 mmol/L, les critères pour définir une glycémie normale diffèrent entre les deux organisations, avec un seuil de glycémie inférieure à 5,6 mmol/L pour l’ADA et 6,1 mmol/L pour l’OMS (Tableau \@ref(tab:t2ddefinitionOMS) et \@ref(tab:t2ddefinitionADA)). 
+Cette phase, ainsi définie pour une glycémie entre 5,6 ou 6,1 mmol/L et 7 mmol/L, peut être transitoire vers un diabète, et est parfois appelée "prédiabète". 
+Les patients diagnostiqués comme intolérants au glucose font l’objet d’une prise en charge préventive consistant principalement en une modification du comportement alimentaire et plus généralement des habitudes de vie.
+
+L’hyperglycémie chronique peut, lorsqu’elle n’est pas traitée, provoquer des complications au niveau cardiovasculaire, rénale, oculaire, et dans certains cas, conduire à une amputation d'un ou des membres inférieurs. 
+Selon le dernier rapport de l’OMS, plus de 400 millions de personnes en 2014 vivaient avec le diabète, contre seulement 108 millions en 1980 selon les estimations mondiales [@roglic_global_2016]. 
+Depuis 1980, la prévalence du diabète est passée de 4,7 à 8,5\ % chez la population adulte dans le monde.  
+En France, selon les derniers rapports de l’Institut de Veille Sanitaire (InVS) [@mandereau-bruno_prevalence_2014; @ricci_diabete_2010], la prévalence du diabète traité est passée de 4,6\ % en 2012 à 5\ % en 2015. 
+En 2006-2007, la prévalence de l’intolérance au glucose représentait 5,6\ %, ce qui en fait un véritable enjeu de santé publique.
+
+Il existe 4 formes de diabète, le diabète de type 1, le diabète de type 2, le diabète gestationnel et les diabètes monogéniques.  
+Le diabète de type 1 est le diabète dit insulinodépendant et nécessite des injections régulières d’insuline. 
+Ce diabète se développe généralement chez un individu jeune qui perd rapidement sa capacité à réguler sa glycémie, suite à une réaction auto-immune contre les cellules $\beta$ du pancréas (cellules sécrétrices de l’insuline).  
+Le diabète de type 2 est parfois appelé diabète de l’adulte ou diabète non-insulinodépendant, par opposition au diabète de type 1. 
+Il se caractérise principalement par un défaut du métabolisme de l’insuline d'un ou plusieurs organes. 
+Le diabète de type 2 représente plus de 90\ % des diabètes dans le monde [@lyssenko_genetic_2013]. 
+Parce que les symptômes du diabète de type 2 sont moins marqués que ceux du diabète de type 1, le diabète de type 2 est souvent diagnostiqué tardivement, et notamment suite aux complications résultantes de celui-ci. 
+Le diabète existe également sous une troisième forme, dit gestationnel. 
+Ce diabète survient chez la femme durant la grossesse, aux environs de la 24ème semaine d'aménorrhée, et présente un facteur de risque accru du développement ultérieur d’un diabète de type 2, à la fois chez la mère et chez l’enfant [@case_preventing_2006; @roglic_global_2016]. 
+
+
+### Physiopathologie du diabète de type 2
+(ref:hyperglycemia) Tissus et organes impliqués dans l'hyperglycémie et le diabète de type 2 (HGP\ : "hepatic glucose production", production hépatique de glucose).
+
+```{r hyperglycemia, fig.cap = '(ref:hyperglycemia)', out.width = "6in", include = TRUE, echo = FALSE}
+  knitr::include_graphics(path = "FiguresTables/hyperglycemia_t2d.jpg")
+```
+
+Le diabète de type 2 serait la conséquence d’une production insuffisante d’insuline en réponse à une demande accrue de l’organisme provenant d’une résistance à l’insuline [@world_health_organization_definition_1999; @world_health_organization_definition_2006]. 
+Le diabète de type 2 est une pathologie complexe dont l’origine génétique est multiple et passe notamment par des interactions avec l’environnement.
+De nombreux traits ont été identifiés comme facteurs de risque, tels le sexe, l’âge ou encore l’Indice de Masse Corporel (IMC), mais aussi l’ethnicité (p. ex., population des indiens Pima [@diamond_double_2003; @knowler_determinants_1993]) et le manque d'activité physique font également partie de ces facteurs de risques [@lyssenko_clinical_2008; @mykkanen_cardiovascular_1993; @noble_risk_2011].  
+L’hyperglycémie, dans le cadre du diabète de type 2, implique trois mécanismes principaux\ : i) une augmentation de la sécrétion de glucose par le foie (néoglucogenèse)\ ; ii) une diminution de l’entrée et donc du métabolisme du glucose dans les organes périphériques, comme le muscle (insulinorésistance)\ ; iii) une altération de la sécrétion d’insuline par le pancréas ou une altération de l’insuline elle-même (Figure \@ref(fig:hyperglycemia)).
+
+L’insulinémie et la glycémie à jeun permettent de mesurer l’insulinorésistance sur la base des indices HOMA ("HOmeostasis Model Assessment") [@matthews_homeostasis_1985]. 
+Trois indices HOMA ont été proposés, avec $I$, l’insulinémie à jeun (en mU/L) et avec $G$, la glycémie à jeun (en mmol/L)\ :
+
++ l’HOMA-IR reflétant l’insulinorésistance, dont la valeur normale est établie à 1, et qui augmente avec la gravité de l’insulinorésistance ($\textrm{HOMA-IR}=\frac{(I\times G)}{22,5}$)\ ; 
+
++ l’HOMA-B augmentant avec l’altération de la fonction des cellules $\beta$, dont la valeur normale est fixée à 100\ % ($\textrm{HOMA-B}=\frac{(20\times I)}{(G-3,5)}$)\ ; 
+
++ l’HOMA-S étant l’inverse de l’HOMA-IR et représentant la sensibilité à l’insuline ($\textrm{HOMA-S}=\frac{1}{\textrm{HOMA-IR}}\times 100$).
+
+Depuis la formulation de ces indices, @levy_correct_1998 ont proposé un nouveau modèle HOMA2, permettant la prise en compte de la variabilité de la tolérance au glucose du foie et des tissus périphériques, de la contribution à l’homéostasie de la proinsuline circulante, ainsi qu’une meilleure définition de la courbe de sécrétion d'insuline en réponse au glucose, notamment pour des concentrations en glucose supérieures à 10 mmol/L. 
+Les indices basés sur le modèle HOMA2 sont exprimés en pourcentage, contrairement aux indices HOMA.
+ 
+L’insulinorésistance correspond à la perte de sensibilité des récepteurs cibles de l’insuline, ne permettant plus à l’insuline de se fixer et bloquant ainsi l’entrée du glucose dans la cellule. 
+Cette insulinorésistance engendre une sécrétion plus importante d’insuline par les cellules $\beta$ pour compenser ce manque d’efficacité (partielle ou totale), entraînant à plus ou moins long terme la défaillance de ces cellules, et dans le même temps induisant une hyperglycémie, signe précurseur d’un potentiel diabète. 
+L’insulinorésistance des tissus se traduit, en plus de l’augmentation de la néoglucogenèse (dans le foie) et la diminution de l’entrée du glucose dans les cellules, par une augmentation de la libération d’acide-gras dans le tissu adipeux (lipolyse). 
+Cette augmentation de la lipolyse tend à aggraver les mêmes phénomènes ayant initialement induit celle-ci, à savoir l’aggravation de l’insulinorésistance, l’augmentation de la néoglucogenèse hépatique et la diminution de l’action et de la sécrétion de l’insuline.
+
+
+### La maladie du foie non alcoolique
+
+Les complications du diabète, et plus généralement les pathologies associées, sont variées et peuvent toucher tous les tissus. 
+En conséquence, l’étude de la physiopathologie du diabète de type 2 nécessite de comprendre les mécanismes biologiques, génétiques et épigénétiques, impliqués dans l’ensemble des tissus connus comme ayant un rôle dans l'hyperglycémie et l'insulinorésistance (Figure \@ref(fig:hyperglycemia)).
+
+Ainsi, les risques de maladies de peau, rétinopathie, neuropathie, néphropathie, ainsi que les pathologies cardiovasculaires (p. ex. accident cardiovasculaire, accident vasculaire cérébral et hypertension) sont accrus chez les individus diabétiques. 
+À ces pathologies s’ajoutent des pathologies spécifiques du foie, rangées principalement sous l’appellation NAFLD ("Non-Alcoholic Fatty Liver Disease") et NASH ("Non-Alcoholic Steato-Hepatitis") dans les cas les plus sévères. 
+Ces dernières pathologies se définissent à partir de l’évaluation de différents critères, au moyen d’une coupe histologique d’un échantillon de biopsie du foie\ :
+
++ Stéatose\ : pourcentage d’accumulation de triglycérides, se caractérisant par la déformation des hépatocytes et l’apparition de taches blanches\ ; 
+
++ Inflammation lobulaire\ : inflammation et infiltration des lobules du foie, entrainant des lésions du tissu\ ; 
+
++ Ballonnement hépatocytaire\ : comptage des hépatocytes présentant un gonflement anormal et une transparence accrue.
+
+Ces trois critères servent à établir un score, le "NAFLD Activity Score" (NAS) (Tableau \@ref(tab:nas)) [@kleiner_design_2005]. 
+À cela s’ajoute une potentielle fibrose du foie se caractérisant par la destruction d’une partie du tissu hépatique, et pouvant aboutir à une cirrhose, voire au développement d’un carcinome hépatique.
+
+(ref:nas) Critères constituant le score NAS ("NAFLD Activity Score").
+
+```{r nas, include = TRUE}
+dtaNAS <- as.data.frame(readxl::read_excel(path = "FiguresTables/NAS.xlsx"))
+dtaNAS[, 1] <- ifelse(is.na(dtaNAS[, 1]), "", dtaNAS[, 1])
+knitr::kable(
+    dtaNAS[seq_len(11), ],
+    booktabs = TRUE,
+    caption = '(ref:nas)',
+    format = "pandoc",
+    align = rep("c", ncol(dtaNAS)),
+    row.names = FALSE,
+    longtable = FALSE
+)
+```
+
+### La génétique et l’épigénétique du diabète de type 2
+
+(ref:MODY) Gènes identifiés dans les diabètes de type MODY ("Maturity-Onset Diabetes of the Young").
+
+```{r MODY, include = TRUE}
+dtaMODY <- as.data.frame(readxl::read_excel(path = "FiguresTables/MODY.xlsx"))
+rownames(dtaMODY) <- dtaMODY[, 1]
+knitr::kable(
+    dtaMODY[, -1],
+    booktabs = TRUE,
+    caption = '(ref:MODY)',
+    format = "pandoc",
+    align = rep("c", ncol(dtaMODY)),
+    row.names = TRUE,
+    longtable = FALSE
+)
+```
+
+Le diabète de type 2 présente une composante génétique dont les premiers éléments ont été mis en évidence dans des études portant sur des jumeaux (monozygotes et dizygotes) [@kaprio_concordance_1992], des études d’agrégation familiale, ainsi que des études portant sur des formes monogéniques de diabète, comme les diabètes dits "Maturity-Onset Diabetes of the Young" (MODY) [@thanabalasingham_diagnosis_2011], ou diabète de type adulte chez le jeune. 
+Les diabètes de type MODY n’impliquent qu’un seul gène (ou quelques-uns) (Tableau \@ref(tab:MODY)). 
+Par exemple, un individu caractérisé MODY 2 présentera une mutation au niveau du gène _GCK_ (Glucokinase), gène impliqué dans la régulation de la glycémie transformant le glucose en glucose-6-phosphate. 
+Il a été montré qu’avoir un parent diabétique augmente le risque de développer un diabète de l’ordre de 30 à 40\ %.
+Ce risque augmente à 70\ % lorsque les deux parents sont diabétiques [@kobberling_empirical_1982; @meigs_parental_2000].
+
+(ref:ProkopenkoMetaboDiagram) Diagramme de Venn des loci identifiés par études d'association pangénomiques pour leur effet sur différents traits glycémiques et le diabète de type 2 [@marullo_insights_2014]. T2D\ : diabète de type 2\ ; FG\ : glycémie à jeun\ ; FI: insulinémie à jeun\ ; FP\ : proinsulinémie à jeun\ ; 2hGlu\ : glycémie à 2 heures\ ; HbA1c\ : hémoglobine glyquée\ ; CIR\ : ratio carbohydrate-insuline.
+
+```{r ProkopenkoMetaboDiagram, fig.cap = '(ref:ProkopenkoMetaboDiagram)', out.width = "6in", include = TRUE, echo = FALSE}
+  knitr::include_graphics(path = "FiguresTables/ProkopenkoMetaboDiagram.png")
+```
+
+Au cours de la dernière décennie, et depuis la première étude d’association pangénomique ("Genome-Wide Association Study" ou GWAS) portant sur le diabète de type 2 [@sladek_genome-wide_2007], à l’heure actuelle, plus de 100 loci ont été identifiés (Figure \@ref(fig:T2Dhistory)) comme étant associés au diabète de type 2, dont certains sont également associés à la glycémie ou l’insulinémie dans des populations normoglycémiques (Figure \@ref(fig:ProkopenkoMetaboDiagram)), notamment les gènes _MTNR1B_ ("Melatonin Receptor 1B") [@bouatia-naji_variant_2009; @prokopenko_variants_2009; @sladek_genome-wide_2007; @tam_common_2010] et _TCF7L2_ ("Transcription Factor 7-Like 2") [@grant_variant_2006; @groves_association_2006; @zhang_variant_2006]. 
+
+(ref:T2Dhistory) Historique des loci de susceptibilité au diabète de type 2 identifiés par études d'association pangénomiques [@flannick_type_2016].
+
+```{r T2Dhistory, fig.cap = '(ref:T2Dhistory)', out.width = "6in", include = TRUE, echo = FALSE}
+  knitr::include_graphics(path = "FiguresTables/T2Dhistory.jpg")
+```
+
+Les études ayant mené à l’identification de ces variants regroupent des études de liaison et des études d’association de type gènes-candidats. 
+Par exemple, en utilisant la puce Illumina Metabochip [@voight_metabochip_2012] qui inclut environ 200\ 000 variants préalablement sélectionnés de résultats provenant des études d’association sur des traits métaboliques, cardiovasculaires et anthropométriques, environ 5\ 000 variants susceptibles d’être associés au diabète de type 2, et 17\ 000 autres dans des régions déjà associées dans des études antérieures (par GWAS ou séquençage du génome) ont été testés.  
+Il est à noter que les loci identifiés par GWAS et par meta-analyses présentent, en premier lieu, des effets observés faibles sur le diabète de type 2 (odds ratio compris entre 1,1 et 1,4) et ne contribuent que faiblement à l'héritabilité de cette pathologie (10 à 15\ %) [@scott_genome-wide_2007; @morris_large-scale_2012]. 
+Ces estimations de l'héritabilité ont conduit à l'émergence d'un débat portant sur "l’héritabilité manquante", ouvrant la voie vers de nouvelles pistes de recherches comme, par exemple, le séquençage de l'ensemble de l'exome ou du génome dans le but d'étudier des variants avec de faibles fréquences alléliques, et l'étude des CNV [@manolio_finding_2009].  
+La localisation intergénique ou intronique de ces loci ne permet pas d’identifier la fonction de ces variants de façon évidente, à quelques exceptions près, comme par exemple les loci au niveau de _GCKR_ ("glucokinase regulatory protein") et _SLC30A8_ ("ZnT-8 zinc transporter"), qui entraînent une altération de la séquence codante du transcrit de ces gènes [@beer_p446l_2009; @mccarthy_genome-wide_2009; @saxena_genome-wide_2007; @sladek_genome-wide_2007].
+
+La problématique de l’héritabilité manquante a renforcé l’hypothèse de "maladie commune, variants rares", laquelle stipule que des variants rares pourraient avoir une pénétrance plus forte et un effet plus important sur le risque de diabète de type 2 que les variants communs [@lupski_clan_2011; @schork_common_2009]. 
+Cette hypothèse fait contrepoids à l’hypothèse présupposée des études gènes-candidats et des GWAS, c’est-à-dire celle de "maladie commune, variant commun" [@schork_common_2009]. 
+Un variant commun est un variant dont la fréquence allélique est supérieure à 5\ % dans la population générale, ce qui représente le seuil standard pour analyse statistique des SNPs dans les GWAS. 
+<!-- Cette hypothèse de "maladie commune, variant commun" est soutenue par le fait que ces variants communs seraient le fruit d’une sélection naturelle poussée par les avantages qu’ils conféraient [@reich_allelic_2001]. -->
+
+Ces études d’associations ont pu mettre en évidence le fait que certains variants pouvaient avoir un effet sur le risque de diabète de type 2, mais également avoir un effet sur des traits cliniques, telles l’insulinémie ou la glycémie [@dupuis_new_2010; @voight_twelve_2010; @yaghootkar_recent_2013]. 
+Il est à noter qu’en raison de la prise de traitement influençant la glycémie et l’insulinémie, les études réalisées sur ces traits ne l’ont été que chez des individus normoglycémiques (non diabétiques). 
+De plus, les variants présentant un effet à la fois sur la glycémie et sur le risque de diabète de type 2 ne représentent qu’une faible proportion des variants identifiés [@dupuis_new_2010; @voight_twelve_2010; @yaghootkar_recent_2013]. 
+Cela indique que les mécanismes conduisant au diabète de type 2 et à l’élévation de la glycémie ne sont pas les mêmes, et paradoxalement qu’une élévation de la glycémie chez un individu pourrait ne pas augmenter son risque de développer un diabète de type 2.
+
+L’épigénétique, principalement la méthylation de l’ADN et les modifications d’histones, est devenue une composante importante dans l’étude de la pathogenèse du diabète de type 2. 
+En effet, ces modifications n’altèrent pas la séquence d’ADN et peuvent être transmises de génération en génération [@raciti_personalized_2014]. 
+Elles sont également le reflet de facteurs environnementaux et peuvent modifier l’expression, voire activer ou éteindre complètement certains gènes [@zierath_research_2011]. 
+Dans un sens, ces modifications peuvent avoir un effet équivalent aux SNPs ou à d’autres mutations, en bloquant la transcription d’un gène. 
+Plusieurs éléments viennent corroborer l’idée selon laquelle l’épigénétique pourrait expliquer une partie de "l’héritabilité manquante" dans le diabète de type 2, notamment en tant que reflet de l’environnement intra-utérin, comme cela a été montré dans des populations soumises à des contraintes alimentaires, où le risque de développement d’un diabète de type 2 était accru chez les enfants dont la mère avait connu une famine au moment de la grossesse [@hales_type_1992; @pettitt_congenital_1988; @ravelli_glucose_1998]. 
+Des études similaires menées chez les indiens Pima ont montré des risques de développement de diabète supérieurs chez l’enfant lorsque la mère présentait une hyperglycémie et/ou un diabète [@dabelea_intrauterine_2000; @pavkov_effect_2010; @pettitt_excessive_1983].
+
+Une autre indication vient de l’étude des perturbateurs endocriniens et de polluants qui sont présents sous différentes formes dans divers produits et outils de la vie de tous les jours (p. ex. boîte alimentaire en plastique, produits d'entretien, peintures, etc.). 
+Ces substances peuvent avoir un effet sur la méthylation de l’ADN, résultant en un changement coordonné de l’expression des gènes (mRNA, miRNA), et ainsi produire un effet sur la sécrétion d’insuline [@hall_effects_2014] ou l’homéostasie du glucose, comme cela a été observé chez l’homme [@bi_diabetes_2015] et chez les rongeurs (rat et souris) [@li_f0_2014; @rajesh_gestational_2015]. 
+En raison du caractère tissu-spécifique de la méthylation, les premières études se sont focalisées sur les tissus dont les échantillons étaient facilement prélevables, tels que le sang [@bell_integrated_2010; @canivell_differential_2014; @chambers_epigenome-wide_2015; @dayeh_dna_2016; @toperoff_genome-wide_2012] et le pancréas, notamment les îlots pancréatiques impliqués dans la sécrétion d’insuline [@dayeh_genome-wide_2014; @hall_effects_2014; @stitzel_global_2010; @volkmar_dna_2012]. 
+Dans l’une des premières études de l’épigénome à grande échelle via l’utilisation de puce Illumina HumanMethylation450 BeadChip (~480\ 000 sites CpG couverts), plus de 1\ 600 CpG (~850 gènes), incluant des loci connus tels que _TCF7L2_ et _KCNQ1_, ont été identifiés comme étant différentiellement méthylés entre des diabétiques et des non diabétiques [@dayeh_genome-wide_2014]. 
+Des études plus récentes ont apporté des pistes de réponse, quant à la nature causale de la méthylation, en considérant les polymorphismes identifiés dans le diabète de type 2 (Consortium DIAGRAM) [@morris_large-scale_2012].
+Ainsi, la méthylation du locus KCNQ1 serait causale dans le développement du diabète de type 2 [@elliott_role_2017].
+
+Bien que l’ère des GWAS ait permis d’identifier plus de 100 loci associés au diabète de type 2, les mécanismes liant ces variants à sa pathogenèse restent méconnus pour une grande partie d’entre eux. 
+À cela s’ajoute que ces variants ne constituent qu’une faible part de l’héritabilité de cette maladie complexe. 
+Ainsi, au cours des dernières années, les axes de recherches se sont progressivement déplacés vers l’étude d’autres "-omiques" comme la transcriptomique, l’épigénomique, ou encore la métabolomique. 
+La grande diversité des organes/tissus impliqués dans la pathogenèse du diabète de type 2 renforce la nécessité de recueillir et d’étudier en détail le caractère spécifique des tissus et la fonction des cellules qui les composent, afin de pouvoir établir une carte détaillée des mécanismes sous-jacents au développement du diabète de type 2. 
+Avec le développement des techniques et technologies, il est également possible non seulement d’étudier séparément la génétique, l’épigénétique et les facteurs environnementaux afin de classer les individus selon leur risque de développer un diabète, mais aussi d’étudier les interactions et les connections entre ces différentes composantes. 
+Les études fonctionnelles représentent également une étape importante dans la compréhension des mécanismes biologiques des loci identifiés à l’aide des études "-omiques". 
+La variété et la croissance de la quantité des données générées nécessitent un développement constant d'outils et de méthodes statistiques visant à identifier des gènes ou loci candidats. 
+L'intégration des différentes données "-omiques" offre la possibilité de mettre au jour de nouvelles connaissances sur la chronologie des mécanismes en amont et en aval du développement d'une pathologie, mais également de révéler les liens unissant le génome et le phénome.

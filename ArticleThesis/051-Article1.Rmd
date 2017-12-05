@@ -1,0 +1,4 @@
+<!-- \includepdf[pages=-, scale=0.76, trim=2.5cm 2.5cm 2.5cm 2.5cm, pagecommand={\thispagestyle{headings}}]{Articles/Article1.pdf} -->
+\includepdf[pages=1-12, scale=1, fitpaper=true, offset = 0cm -0.3cm, pagecommand={\thispagestyle{headings}}]{Articles/Article1.pdf}
+\includepdf[pages=13, scale=1, fitpaper=true, angle=90, offset = 0cm -0.3cm, pagecommand={\thispagestyle{headings}}]{Articles/Article1.pdf}
+\includepdf[pages=14-, scale=1, fitpaper=true, offset = 0cm -0.3cm, pagecommand={\thispagestyle{headings}}]{Articles/Article1.pdf}

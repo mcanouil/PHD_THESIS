@@ -1,0 +1,209 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+\geometry{margin=2.5cm} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+\usepackage[english, francais]{babel}
+\selectlanguage{francais}
+\frenchbsetup{StandardLists=true}
+\DecimalMathComma
+
+\title{Soutenance}
+\author{Mickaël Canouil}
+\date{29 Septembre 2017} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+\section{Contexte}
+\subsection{Le Diabète dans le Monde}
+\par{}
+
+\subsection{Les Formes de Diabète}
+\par{Il existe principalement, 2 formes de diabète, le diabète de type 1, le diabète de type 2, le diabète gestationnel et les diabètes monogéniques:}
+\par{
+    \begin{itemize}
+        \item Le diabète de type 1 est le diabète dit insulinodépendant et nécessite des injections régulières d’insuline. \\
+            Ce diabète se développe généralement chez un individu jeune qui perd rapidement sa capacité à réguler sa glycémie, suite à une réaction auto-immune contre les cellules $\beta$ du pancréas (cellules sécrétrices de l’insuline).
+        \item Le diabète de type 2 est parfois appelé diabète de l’adulte ou diabète non-insulinodépendant, par opposition au diabète de type 1. \\
+            Il se caractérise principalement par un défaut du métabolisme de l’insuline d'un ou plusieurs organes. \\
+            Le diabète de type 2 représente plus de 90\% des diabètes dans le monde. \\
+            Parce que les symptômes du diabète de type 2 sont moins marqués que ceux du diabète de type 1, le diabète de type 2 est souvent diagnostiqué tardivement, et notamment suite aux complications résultantes de celui-ci.
+    \end{itemize}
+}
+\par{La forme de diabète étudié ici est le diabète de type 2.}
+
+\subsection{Le Diabète de Type 2}
+\par{}
+
+\subsection{La Génétique du Diabète de Type 2}
+\par{}
+
+\subsection{Un Grand Nombre de Découverte, mais ...}
+\par{}
+
+\section{Glycémie et Diabète de Type 2: un Effet Génétique Conjoint?}
+\par{}
+
+\subsection{Contexte \& Objectifs}
+\par{}
+
+\subsection{Modèle Joint}
+\subsubsection{Présentation}
+\par{}
+
+\par{}
+
+\subsubsection{Motivation}
+\par{
+The initial interest stemmed from research investigating predictiveness of repeatedly measured biomarkers for clinicalmeaningfull events.\\
+There is also interest in these studies to determine surrogacy of the biomarker; that is, treatment effect manifests through the biomarker so that the event is independent of treatment given biomarker trajectories\\
+
+In an ideal situation, this research questions can be routinely addressed by an event time model in which the biomarker is included as a time-dependent covariate.\\
+For example, it is straightforward to incroporate the time-dependent biomarker into a Cox proportional hazards model and study its effect on the event.\\
+Treatment can be included as a time-fixed covariate, and its effect with and without adjustment for the biomarker is then examined to assess surrogacy.
+}
+\par{
+However, application of such models in practice is often problematix.\\
+First of all, the biomarker is not observed in a continuum interval of time; instead, measurements are available only on a set of specific time points.\\
+Thus the biomarker may be missing at some observed event times.\\
+Naive imputation methods, such as last observation carried forward, are likely to introduce bias into model estimation.\\
+Secondly, the biomarker is often subject to measurement error and high biological variation, so that the observed values may not accurately reflect the true underlying trajectories.\\
+Thus, using observed values to predict event could lead to further bias.\\
+The third issue is regarding possible noningnorable missing data in longitudinal measurements (``endogeneity'').\\
+Statistical analysis to characterise intra-subject changes and beteen-subject heterogeneity in the biomarker should take into account the missing data mechanism.\\
+
+Joint modelling of time-dependent biomarkers and event times has been developped to address the above issues.
+}
+
+\par{}
+
+\subsection{Formulation}
+\par{}
+
+\subsubsection{Composante Longitudinale}
+\par{
+For subject $i$, let $X_i(t_{ij})$ deote the underlying, smooth trajectory of biomarker, $T_i$ the event time, and $W_i(t_{ij})$ a set of possibly time-varying covariates.\\
+Because the biomarker is intermittenly measured at time points $t_{ij}$ and there are intra-subject measurements errors, $X_i(t_{ij})$ is not directly observable; instead, measurements $Y_i(t_{ij}$ are available.\\
+Where $\epsilon_{i}(t_{ij})$ are measurements errors.
+}
+\par{
+The longitudinal model focuses on charactering change on $X_i(t)$ over time.\\
+If the change can be described by a polynomial function of time $t$, then $X_i(t)$ is specified as:
+}
+
+\subsubsection{Composante de Survie}
+\par{
+A Cox proportional hazards model is used to specify the interrelatinship between $X_i(t)$, $T_i$, $Z_i$, $W_i$.\\
+
+This specification implies that given covariates and past history $\bar{Y_i}(t)$, the biomarkeris associated with the event rish through its current value $Y_i(t)$.
+}
+
+\subsection{Inférence Statistique}
+\subsubsection{EM}
+\par{}
+
+\subsection{Test d'Hypothèse}
+\par{
+$\hat{\Psi}_0$ and $\hat{\Psi}$ denotes the maximum likelihood estimates under the null and alternative hypthesis, respectively.\\
+
+$S(\cdot)$ and $\mathcal{I}(\cdot)$ denotes the score function and the observed information matrix of the model under the alternative hypothesis.\\
+
+under the nullhypothesis, the asymptotic distribution of each of these tests is a chi-squared distribution with $p$ degrees of freedom, with $p$ denoting the number of parameters being tested.
+For a single $\Psi_j$ the Wald test is equivalent to $\hat{\Psi}_j-\Psi_{0j}/\hat{s.e.}(\hat{\Psi}_j)$, which under the null follows an asymptotic standard normal distribution.
+}
+
+\subsection{\'Etude de Simulation}
+\subsubsection{Objectifs}
+\par{}
+
+\subsubsection{Génération des Données}
+\par{
+Les jeux de données de simulation, qui ont été réalisés avec R, avec la fonction de risque de base fixée ($h_0(t)=\lambda$) de façon à obtenir une incidence équivalente à celle de la cohorte D.E.S.I.R., durant la période de suivi de neuf ans.
+Les temps d'événements ont été générés selon une distribution exponentielle dans le cadre du modèle de Cox à risque proportionnel.
+}
+
+\subsubsection{Paramètres de Simulation}
+\par{}
+
+\par{Due to the complexity of the estimating algorithm within JM, convergence could not be obtained ($4.53\pm 5.81\%$ of convergence issues on average per scenario) for the whole set of 500 simulations (i.e.~algorithm ``piecewise-PH-aGH'' for a time-dependent relative risk model with a piecewise constant baseline risk function, using the adaptive Gauss-Hermite quadrature rule to approximate integrals within the Expectation-Maximisation (EM) step)}
+
+\par{}
+
+\subsubsection{Résultats}
+\par{RMSE for parameter $\gamma$ showed similar performance for JM and TS, which was expected given the formulation of the joint model within the ``Shared Parameter Models'' framework, in which $Y_i$ (mean of $Y_{ij}$ modelled within LME according to Equation X links the longitudinal data to the time of event.}
+
+\par{}
+
+\par{RMSE for parameter $\beta$ and for parameter $\alpha$ were smaller within the joint modelling framework (either JM or TS) than in the more classical CoxPH model with time varying fasting plasma glucose. While RMSE for $\beta$ was the same in the CoxPH model across all scenarios, under JM or TS it decreased with increases in the sample size, incidence rate or allele frequency. Differences in RMSE for parameter $\alpha$ were less than for parameter $\beta$, and TS and CoxPH with time-dependent covariate, performed equally probably because partial likelihood inferences were used in both approaches. JM estimations were less biased in almost all scenarios when the sample size was greater than 2,500.}
+
+\par{}
+
+\par{}
+
+\par{}
+
+\subsection{Application sur Données Réelles: D.E.S.I.R.}
+\par{}
+
+\par{MTNR1B 28,4\%; TCF7L2 24,4\%}
+
+\subsection{Conclusion}
+\par{}
+
+\section{Au delà des \'Etudes Pangénomiques}
+\subsection{Loci de Diabète et Sécrétion d'Insuline}
+\par{}
+
+\subsection{Méthylation et Expression: le Cas de PDGFA}
+\par{}
+
+\subsection{Méthylation et Expression: le Bisphénol et ses Substituants}
+\par{}
+
+\section{Apports \& Perspectives}
+\par{}
+
+\end{document}

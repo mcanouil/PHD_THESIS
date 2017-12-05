@@ -1,0 +1,1 @@
+<!--\includepdf[pages=-, scale=0.85, clip, trim=0cm 0cm 0cm -1cm, pagecommand={\thispagestyle{headings}}]{Articles/Article4.pdf} -->

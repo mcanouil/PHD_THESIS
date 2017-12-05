@@ -1,0 +1,45 @@
+---
+author: "Mickaël CANOUIL"
+date: "29 Septembre 2017"
+biblio-style: apalike
+bibliography: [bib/Mickael_ThesisClean.bib, bib/MyArticles.bib, bib/Rpackages.bib]
+csl: template/apa.csl
+fontsize: 10pt
+classoption: aspectratio=43
+colorlinks: true
+link-citations: true
+monofont: "Source Code Pro"
+monofontoptions: Scale=0.7
+output:
+  beamer_presentation:
+    citation_package: natbib
+    includes:
+      before_body: template/before_body.tex
+      in_header: template/Header_Beamer.tex
+    incremental: false
+    keep_tex: true
+    latex_engine: pdflatex
+    slide_level: 2
+    template: null
+    theme: CambridgeUS
+    toc: true
+---
+
+# Introduction
+
+## Partie 1
+
+## Partie 2
+
+# Part I
+
+## Partie 1
+
+## Partie 2
+
+
+# Part 2
+
+## Partie 1
+
+## Partie 2

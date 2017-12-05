@@ -1,0 +1,47 @@
+# Objectifs & Plan {-}  
+
+## Objectifs & Contexte {-}
+Ce travail de thèse a été conduit au sein de l'unité de "Génomique Intégrative et Modélisation des Maladies Métaboliques" UMR 8199 (CNRS / Université de Lille 2 / Institut Pasteur de Lille) sous la direction du Pr. Philippe Froguel et du Dr. Ghislain Rocheleau. 
+Le laboratoire de "Génomique Intégrative et Modélisation des Maladies Métaboliques", membre de la fédération de recherche "European Genomic Institute for Diabetes" (EGID), est un acteur majeur dans l'étude de la génétique du diabète et de l'obésité, notamment par ces nombreuses publications (`r sum(readxl::read_xlsx(path = "FiguresTables/Sampra.xlsx") [, 2])` publications entre 2007 et 2017, référencées via l'outil SAMPRA de l'Université de Lille) et la publication de la première étude d'association pangénomique sur le diabète de type 2 en 2007 [@sladek_genome-wide_2007]. 
+L'unité a développé une expertise en génomique, transcriptomique, études fonctionnelles (modèles animaux et cellulaires), et depuis quelques années en épigénomique, le volume et la variété des données générées par l'unité ont donc augmenté, nécessitant un développement méthodologique en amont (p. ex. plan d'étude/expérience, calcul de puissance statistique, calcul du nombre d'échantillons nécessaire, etc.) et en aval (p. ex. nouveau modèle statistique, correction des biais expérimentaux et technologiques, etc.) de la génération des données. 
+
+Ce travail de recherche s'inscrit dans un esprit pluridisciplinaire et transversal, se situant à l'interface entre la biologie, la génétique et la statistique, en intégrant différents types de données "-omiques". 
+Les objectifs de cette thèse consistaient à apporter un support en statistique ainsi qu'une veille méthodologique, afin d'améliorer la compréhension des mécanismes biologiques au moyen d'outils d'analyse statistique adaptés et d'outils de visualisation des données "-omiques". 
+Tous les résultats d'analyses de ces données, conduites en collaboration avec des chercheurs de l’unité et des chercheurs à l’international, ont tenté de répondre au questionnement biologique inhérent à l’étiologie du diabète de type 2, en accord avec les besoins identifiés par les chercheurs au sein de l'unité
+
+
+## Plan {-}
+Différentes méthodes statistiques et types de données seront abordés au travers de quatre chapitres, chacun correspondant à un article publié (Chapitres \@ref(Article2) et \@ref(Article4)), soumis (Chapitre \@ref(Article1) et \@ref(Article3)) dans des revues internationales à comité de lecture.  
+
+Le premier chapitre porte sur le développement et l'application d'un modèle joint permettant de modéliser conjointement deux processus stochastiques\ : d'une part, la modélisation de la trajectoire de la glycémie à jeun chez des individus issus d'une population générale, et d'autre part, l'évolution du risque de développement d'un diabète de type 2, conditionnellement à la trajectoire de la glycémie à jeun. 
+Nous nous intéressons particulièrement à l'effet simultané des polymorphismes (SNPs) sur ces deux processus. 
+Le principal objectif est d'évaluer ce modèle du point de vue de la puissance statistique, de l'erreur de type 1 et du temps de calcul, dans un contexte d'application à la génomique, c’est-à-dire avec un volume très élevé de données. 
+Cette évaluation est faite, en premier lieu, sur des données simulées, puis en second lieu, sur un jeu de données réelles générées par l’unité.
+
+<!-- + ARTICLE 1\ : Single Nucleotide Polymorphisms Associated with Fasting Blood Glucose Trajectory and Type 2 Diabetes Incidence\ : A Joint Modelling Approach (Soumis à __*Genetic Epidemiology*__) -->
++ ARTICLE 1\ : Variants génétiques associés à la trajectoire de la glycémie à jeun et à l'incidence du diabète de type 2\ : Une approche par modèle joint (Soumis à __*Genetic Epidemiology*__)
+
+Le second chapitre vise à étudier l'expression des gènes de susceptibilité au diabète de type 2, et notamment la contribution de ces gènes dans la sécrétion d'insuline au niveau des cellules $\beta$ du pancréas.  
+Deux objectifs ont été remplis\ : dans un premier temps, identifier les gènes (parmi 104 candidats) étant exprimés dans l'organe clé de la sécrétion d'insuline, soit les cellules $\beta$ (24 tissus et types cellulaires considérés, dont du tissu pancréatique), dans un second temps, évaluer l'impact de ces gènes sur la sécrétion d'insuline dans un modèle humain de cellules $\beta$. 
+Enfin, le séquençage de l'ARN a été effectué pour les gènes présentant un effet sur la sécrétion d'insuline, suivi d'une étude dans un modèle murin dont la fonction pancréatique a été altérée.
+
+<!-- + ARTICLE 2\ : Expression and Functional Assessment of Candidate Type 2 Diabetes Susceptibility Genes Identify Four New Genes Contributing to Human Insulin Secretion (Publié dans __*Molecular Metabolism*__) -->
++ ARTICLE 2\ : L'Expression et l'Évaluation Fonctionnelle des Gènes de Susceptibilité au Diabète de Type 2 Identifient Quatre Nouveaux Gènes Contribuant à la Sécrétion d'Insuline Humaine (Publié dans __*Molecular Metabolism*__)
+
+Le troisième chapitre s'intéresse à la fois au transcriptome et au méthylome dans une étude cas/témoins portant sur le diabète de type 2.
+Dans ce chapitre, le foie est l'organe étudié, notamment pour son implication dans la production de glucose, l'insulinorésistance hépatique, et dans les complications souvent associées au diabète de type 2, comme les NAFLD ("Non-Alcoholic Fatty Liver Disease").
+L'étude du méthylome a permis de mettre en évidence un site CpG (cg14496282) localisé sur le gène _PDGFA_ ("Platelet-Derived Growth Factor subunit A"), présentant une hypométhylation chez les diabétiques de type 2. 
+Cette hypométhylation est inversement corrélée avec l'expression de _PDGFA_, l'insulinémie et l'insulinorésistance (évalué par l'indice HOMA-IR). 
+Les résultats d'une étude sur un modèle d'hépatocytes humains et de différents scores de risque génétique (_Genetic Risk Score_) suggèrent une relation causale de l'hyperinsulinémie sur le niveau de méthylation du site CpG identifié, ouvrant ainsi la voie vers une potentielle cible thérapeutique.
+
+<!-- + ARTICLE 3\ : Liver Overexpression of PDGF-AA Impairs Insulin Signaling in Diabetes (Soumis à __*Nature Communications*__) -->
++ ARTICLE 3\ : La Surexpression Hépatique de PDGF-AA Affaiblit la Signalisation de l'Insuline dans le Diabète (Soumis à __*Nature Communications*__)
+
+Le quatrième chapitre propose d'étudier les effets du bisphénol A (BPA) et de ses substituants, soit les bisphénol F (BPF) et bisphénol S (BPS), sur l'expression des gènes (ARN codant et non codant) dans le tissu adipeux, et notamment les adipocytes.
+Le lien entre le BPA et les désordres métaboliques comme le diabète de type 2 ayant déjà été démontré dans des études antérieures, l'objectif consiste à mesurer au niveau transcriptomique l'effet d'une faible concentration de bisphénol correspondant à celle retrouvée chez l'Homme, et une concentration plus forte qui pourrait résulter d'un relargage massif des adipocytes lors d'une perte de poids, par exemple, ou pendant la lipolyse des adipocytes survenant dans certaines maladies métaboliques comme le diabète de type 2.
+
+<!-- + ARTICLE 4\ : Low-Dose Exposure to Bisphenols A, F and S of Human Primary Adipocyte Impacts Coding and Non-Coding RNA Profiles (Publié dans __*PLoS ONE*__) -->
++ ARTICLE 4\ : L'Exposition à Faible Dose aux Bisphénols A, F et S des Adipocytes Primaires Humains Modifie les Profils d'ARN Codant et Non-Codant (Publié dans __*PLoS ONE*__)
+
+Enfin, une discussion générale clôt cette thèse et tente de replacer ces travaux dans un contexte multi-omique élargi. 
+Elle apporte des perspectives de travail quant à l'évolution de la statistique génétique, tributaire en partie de l'évolution des technologies permettant de générer (encore) plus de données de différentes natures (biologique ou informatique), en regard notamment de la diminution exponentielle des coûts de séquençage de ces dernières années, et le développement des études d’association portant sur les variants rares dans les populations étudiées.

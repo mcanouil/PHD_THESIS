@@ -1,0 +1,38 @@
+# Résumé {-}
+
+\setstretch{1.25}\normalsize Les études d'association pangénomiques (GWAS) ont permis l'identification de plusieurs dizaines de gènes et de polymorphismes nucléotidiques (SNPs) contribuant au risque de diabète de type 2 (DT2). 
+Plus généralement, les GWAS ont permis d'identifier des milliers de SNPs contribuant à des maladies complexes chez l'Homme. 
+Cependant, la caractérisation fonctionnelle et les mécanismes biologiques impliquant ces SNPs et ces gènes restent en grande partie à explorer. 
+En effet, les conséquences de ces polymorphismes sont complexes et peu connues. 
+Une conséquence directe est l'altération de la protéine codée par un gène, voire une extinction complète de la transcription du gène (p. ex. via l’introduction d’un codon stop dans la séquence). Par ailleurs, ces polymorphismes peuvent avoir un rôle de régulation dans l'expression des gènes, par exemple, en perturbant la liaison de facteurs de transcription et d'enzymes impliqués dans la méthylation de l'ADN. Malgré des associations fortes des SNPS identifiés, ils ne peuvent expliquer la totalité de l'héritabilité du DT2, suggérant par le fait même des mécanismes d'interactions entre les différentes couches que représentent la génomique, la transcriptomique et l'épigénomique.
+
+Le changement de paradigme en statistique génétique et la disponibilité de données transcriptomiques et épigénomiques sont responsables de l'évolution du domaine, passant des analyses d'associations à des analyses transversales de type multi-omique, et permettant de fournir des éléments de réponse sur l’aspect fonctionnel des SNPs ou des gènes impliqués, et dans certains cas, permettant d'évaluer le lien causal de ces variants sur la pathologie. 
+Les développements et applications méthodologiques proposés dans cette thèse sont variés, allant d’une approche similaire aux GWAS, mettant à profit les données longitudinales disponibles dans certaines cohortes (p. ex. D.E.S.I.R.), au moyen d'un modèle joint ; de la caractérisation fonctionnelle de gènes candidats, identifiés par GWAS, dans la sécrétion d'insuline par une étude transcriptomique multi tissu et dans un modèle cellulaire ; de l'identification d'un nouveau gène candidat (PDGFA) impliqué dans la dérégulation de la voie de l'insuline dans le DT2 via des mécanismes épigénétiques et transcriptomiques ; et enfin de la caractérisation de l'effet sur le transcriptome de deux substituts du bisphénol A dans un modèle d’adipocyte primaire.
+
+L'augmentation des connaissances des processus biologiques dans lesquels sont impliqués les SNPs et gènes identifiés par GWAS pourrait permettre l'élaboration de stratégies diagnostiques plus efficaces, ainsi que l'identification de cibles thérapeutiques pour le traitement du DT2 et des complications associées (p. ex. insulinorésistance, NAFLD, cancer, etc.). 
+Plus généralement, ces études multi-omiques ouvrent la voie à l'approche émergente que représente la médecine de précision, permettant le traitement et la prévention des pathologies tout en prenant en compte ce qui fait la spécificité d'un individu, à savoir son génome et son environnement, tous deux interagissant sur son transcriptome et son épigénome.
+
+*Mots-clés\ :* Biostatistique ; Génétique ; Epigénétique ; Transcriptomique ; Diabète de type 2
+
+\normalsize \setstretch{1.5}
+
+# Abstract {-}
+<!--**Development and Application of Statistical Methods for Multi-Omics Studies in Type 2 Diabetes: Beyond the Genome-Wide Association Studies Era**-->
+
+\setstretch{1.25}\normalsize Genome-wide association studies (GWAS) have resulted in the identification of several dozen of genes and single nucleotide polymorphisms (SNPs) contributing to type 2 diabetes (T2D). 
+More generally, GWAS have identified thousands of SNPs contributing to complex diseases in human. 
+However, the functional characterization and biological mechanisms involving these SNPs and genes remain to be explored. Indeed, the consequences of these polymorphisms are complex and little known. 
+One direct consequence is the alteration of the protein encoded by a gene, or even a complete transcriptional gene silencing (e.g. codon stop in the sequence). 
+Furthermore, these polymorphisms may have a regulatory role in gene expression, for example, by interfering with the binding of transcription factors and enzymes involved in DNA methylation. 
+Despite the strong associations of SNPs identified, they cannot explain the full heritability of T2D, hence suggesting interaction mechanisms between the different layers of omics, such as genomics, transcriptomics and epigenomics.
+
+The paradigm shift in statistical genetics and the availability of transcriptomic and epigenomic data are responsible for the evolution of the discipline, moving from association studies to multi-omics studies, and providing insights on the functional aspect of the SNPs or genes involved, and in some cases allowing to evaluate the causal link of these variants on the pathology. 
+The methodological developments and their applications proposed in this thesis are various, ranging from a similar approach to GWAS, by leveraging the longitudinal data available in some cohorts (e.g. D.E.S.I.R.), using a joint model approach; to the functional characterisation of candidate genes, identified by GWAS, in insulin secretion by a multi tissue transcriptomic study and by study in a cell model; to the identification of a new candidate gene (PDGFA) involved in the deregulation of the insulin's pathway in T2D through epigenetic and transcriptomic mechanisms; and finally, to the characterisation of the effect on the transcriptome of two substitutes of bisphenol A in a primary adipocyte model.
+
+The increase of knowledge in biological processes involving SNPs and genes identified by GWAS could enable the development of more effective diagnostic strategies, and the identification of therapeutic targets for the treatment of T2D and its associated complications (e.g., insulin resistance, NAFLD, cancer, etc.). 
+More generally, these multi-omics studies pave the way for the emerging approach of precision medicine, allowing the treatment and prevention of pathologies while accounting for what makes the specificity of an individual, namely his genome and his environment, both interacting on his transcriptome and his epigenome.
+
+
+*Keywords:* Biostatistics; Genetics; Epigenetics; Transcriptomics; Type 2 Diabetes
+
+\normalsize \setstretch{1.5}

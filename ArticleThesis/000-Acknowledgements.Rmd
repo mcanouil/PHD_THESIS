@@ -1,0 +1,15 @@
+# Remerciements {-}
+
+Je tiens en premier lieu à remercier Ghislain ROCHELEAU et Philippe FROGUEL de m'avoir donné l'opportunité de travailler sur ce thème de recherche et d'avoir supervisé celui-ci pendant trois ans.
+
+Merci aux membres de ce jury\ : Alain DUHAMEL, Hélène JACQMIN-GADDA, Guillemette MAROT-BRIEND, Maria MARTINEZ, Cristian PREDA d’avoir accepté de juger mon travail.
+
+Je remercie Loïc YENGO et Ghislain ROCHELEAU pour le soutien scientifique (et pas uniquement) qu'ils m'ont apporté avant le début et pendant les trois années de cette thèse, et pour avoir cru en moi non seulement au niveau de la thèse, mais plus généralement au niveau professionnel.  
+Merci également à Loïc YENGO et à Philippe FROGUEL de m'avoir accueilli dans cette équipe de recherche source de défi m'ayant permis de développer mes compétences en biostatistique et en management.
+
+À cela s'ajoute des remerciements tout particuliers aux membres passés et présents de l'équipe de biostatistique\ : Boris S., Cécile L., Dorothée T., Ghislain R., Lijiao N., Loïc Y., Marie V. et Mathilde B. m'ayant permis d'améliorer mon travail, au gré de nombreux échanges, et de me concentrer sur ma thèse, en particulier sur cette dernière année.
+
+Je tiens à remercier les différents chercheurs avec lesquels j'ai pu collaborer durant ce travail, notamment Amar ABDERRAHMANI, Amélie BONNEFOND et Odile POULAIN-GODEFROY.
+
+Enfin, je remercie toutes les personnes qui ont contribuées à ce travail en particulier celles intervenues aussi bien sur la scène que dans les coulisses ("pause-café" et "afterwork")\ : Aurélie D., Cindy A., Clément D., David L. G., Franck D.G., Iandry R., Julie M., Julien D., Loïc D. S., Marie F., Marie V., Marine C., Mélanie H., Morgane B., Stefan G. et Véronique D.  
+Merci aux cinémas de la ville de Lille qui m'ont accueilli plus de 500 fois dans leurs salles obscures au cours des trois dernières années.

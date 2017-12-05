@@ -1,0 +1,50 @@
+% cd /disks/PROJECT/Mickael/COMMUNICATION/JAV2016/;
+% pdflatex Abstract_JAV2016.tex;
+% evince Abstract_JAV2016.pdf &
+
+\documentclass[11pt, a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[hmargin=2.5cm, vmargin=2.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{xcolor}
+% \usepackage[square, authoryear]{natbib}
+
+\usepackage[english]{babel}
+\selectlanguage{english}
+
+\setlength{\parskip}{\baselineskip}%
+
+\begin{document}
+\section*{Single Nucleotide Polymorphisms Associated With Fasting Blood Glucose Trajectory And Type 2 Diabetes Incidence: \linebreak A Joint \mbox{Modelling} Approach}
+
+\par{\small{{
+    Mickaël Canouil$^{1}$, Philippe Froguel$^{1,2}$, Ghislain Rocheleau$^{1}$\\
+    $^{1}$Univ. Lille, CNRS, CHU Lille, Institut Pasteur de Lille, UMR 8199 - EGID, F-59000 Lille, France\\
+    $^{2}$Department of Genomics of Common Disease, Imperial College London, London, United Kingdom
+}}}
+
+\par{
+In observational cohorts, longitudinal data are collected with repeated measurements at predetermined time points for many biomarkers, along with other covariates measured at baseline.
+In these cohorts, time until a certain event of interest occurs is commonly reported and very often, a relationship will be observed between a biomarker repeatedly measured over time and that event.
+Joint models were designed to efficiently estimate statistical parameters involved in these two types of data by combining a mixed model for the longitudinal biomarker trajectory and a survival model for the event risk.
+Two main approaches have been proposed to account for the link between the two models in the shared random effect approach,
+a function of the random effects (typically the expected current value of the biomarker) is introduced as an explanatory variable in the survival model.
+In the latent class approach, the population is assumed to be divided in several latent classes with class-specific trajectories for the biomarker associated with class-specific risk function for the event.
+}
+
+\par{
+Using genotypes assayed with the Metabochip DNA arrays (Illumina) from 4,500 subjects recruited in the French cohort D.E.S.I.R. (Données Épidémiologiques sur le Syndrome d’Insulino-Résistance),
+we analysed a set of SNPs, selected from published genome-wide association studies, known to be associated with fasting blood glucose (FPG) and/or type 2 diabetes (T2D).
+In our study, we focused in the shared random effect approach, where the event of interest is T2D and the longitudinal biomarker is FPG.
+As expected, our analysis confirms a robust association between FPG and incident T2D. Effect sizes for these SNPs are consistent with those reported in the literature.
+Our results suggest that SNP rs7903146 in TCF7L2 gene is associated with an increased risk of incident T2D and an elevated FPG level over time.
+SNP rs560887 in G6PC2 (known to be associated with FPG) shows a statistically significant effect on the FPG trajectory and an unexpected protective effect on incident T2D,
+which could be attributed to the limited number of incident T2D cases in our cohort.
+}
+
+\par{
+These findings need to be replicated in other cohorts and further investigation of these effects remains to be done.
+To the best of our knowledge, joint models have never been applied into a genetic epidemiology context and could help identify novel loci sharing effects on both glycaemic traits and T2D.
+}
+\end{document}

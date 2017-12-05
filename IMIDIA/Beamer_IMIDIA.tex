@@ -1,0 +1,189 @@
+% cd /disks/PROJECT/Mickael/COMMUNICATION/IMIDIA/;
+% pdflatex Beamer_IMIDIA.tex; bibtex Beamer_IMIDIA; pdflatex Beamer_IMIDIA.tex; pdflatex Beamer_IMIDIA.tex
+% evince Beamer_IMIDIA.pdf &
+
+\input{Header_Beamer.tex}
+\usepackage[english]{babel}
+\selectlanguage{english}
+
+\date[\today]{%
+    {\color{springgreen3!70!white}\today}
+}
+
+\author[Mickaël Canouil]{%
+    \texorpdfstring{Mickaël Canouil\\ \vskip -0.25cm
+    \href{mailto:mickael.canouil@cnrs.fr}{{\scriptsize mickael.canouil@cnrs.fr}}}{Mickaël Canouil}
+}
+
+\institute[CNRS UMR 8199]{%
+    {\textcolor{springgreen3!90!white}{\blue{I}ntegrated \blue{G}enomics and \blue{M}etabolic \blue{D}iseases \blue{M}odeling
+    \linebreak UMR 8199 (CNRS / Université de Lille 2 / Institut Pasteur de Lille)}}%
+}
+
+\titlegraphic{%
+    \includegraphics[height=1cm, keepaspectratio]{../UTILS/Logos/logo_cnrs.pdf}\hspace{1.5cm}
+    \includegraphics[height=1cm, keepaspectratio]{../UTILS/Logos/UL2-WEB-2014.png}\hspace{1.5cm}
+    \includegraphics[height=1cm, keepaspectratio]{../UTILS/Logos/Institut-Pasteur-de-Lille.png}\hspace{1.5cm}
+    \includegraphics[height=1cm, keepaspectratio]{../UTILS/Logos/logo_egid.pdf}%
+}
+% \cst{}
+
+\title[\texorpdfstring{\textcolor{black}{IMIDIA eQTL Analysis}}{}]{IMIDIA}
+\subtitle{%
+    \textit{eQTL Analysis}
+}
+
+\graphicspath{{figures/}}
+
+\usepackage{tikz}
+\usebackgroundtemplate{%
+    % \shorthandoff{;}%
+    \tikz\node[opacity=0.20, inner sep=0pt] {\includegraphics[height=\paperheight, width=\paperwidth]{../UTILS/Background/BG03_Beamer.jpg}};%
+}
+
+
+\begin{document}
+\maketitle
+\usebackgroundtemplate{%
+}
+\begin{frame}{\blue{\lettrine{E}}xpression Data QC}
+\begin{enumerate}
+    \item Expression data were imported from the \green{GEO} database (private until the 14th of January, 2017).
+    \item Gene annotation from \green{GEO} (GPL570) for \textit{Affymetrix Human Genome U133 Plus 2.0 Array}.
+    \item Data imported using \cmdg{affy}\cmd{::}\cmdb{ReadAffy} \citep{R_affy}.
+    \item Data were normalised using \cmdg{affy}\cmd{::}\cmdb{rma} \citep{irizarry2003exploration}.
+    \item Batch effect was corrected using \cmdg{sva}\cmd{::}\cmdb{ComBat} \citep{leek2012sva}, without the model parameter due to the unbalanced design \citep{nygaard2016methods}.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{\blue{\lettrine{G}}enotype Data QC}
+\begin{enumerate}
+    \item Genotype data generated using \textit{Illumina 2.5M Omniarray beadchip}.
+    \item Quality control not performed in Lille (MAF>0.05; HWE>0.001, Call Rate>0.95) :
+        \begin{itemize}
+            \item 421 samples
+            \item 1,233,520 SNPs
+        \end{itemize}
+    \item Imputation performed with \cmdb{ShapeIt} (v2.r790)\citep{delaneau2012linear} and \cmdb{Impute2} (v2.3.2)\citep{howie2009flexible} using 1,000 genomes panel (Phase~3)\citep{the_1000_genomes_project_consortium_global_2015} (Imputation Quality >0.9) :
+        \begin{itemize}
+            \item 421 samples
+            \item 7,574,416 SNPs
+        \end{itemize}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{\blue{\lettrine{E}}QTL Analysis}
+\begin{enumerate}
+    \item eQTL analysis was performed using \cmdb{FastQTL} \citep{ongen2015fast} on four datasets :
+        \begin{description}
+            \item[OD (Organ Donors)] All samples (n=100)
+            \item[OD (Organ Donors)] Control samples (n=81)
+            \item[LCM (Laser Capture Micro-dissection)] All samples (n=103)
+            \item[LCM (Laser Capture Micro-dissection)] Control samples (n=32)
+        \end{description}
+    \item Settings :
+        \begin{description}
+            \item[Cis Window] 1 Mb => 500 Kb
+            \item[Covariates] gender and age
+            \item[Permutation] 1,000 - 10,000 (adaptative procedure)
+        \end{description}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{\blue{\lettrine{E}}QTL Analysis}{Cis Window}
+\par{We set the cis-window of \green{500 Kb} based on the eQTL results (p-values) for a cis-window of \green{1 Mb}.}
+\begin{center}
+    \fbox{\includegraphics[width=8cm]{/disks/PROJECT/IMIDIA_eQTL/Data/04-IMIDIA_FastQTL/OD/d1000kb/OD_eQTL_Nominal_d1000kb.png}}
+\end{center}
+\end{frame}
+
+\begin{frame}{\blue{\lettrine{E}}QTL Analysis}{Results}
+\par{Number of significant eQTL pairs using the nominal or "\textit{permutation pass}" p-value from \cmdb{FastQTL} with \green{$\alpha=0.05$}.}
+\begin{center}
+\input{"/disks/DATA/IMIDIA_eQTL/06-IMIDIA_Enrichment/eQTLstats.tex"}
+\par{\vspace{0.5em}\green{$N$} is the number of Affymetrix probes.}
+\end{center}
+\end{frame}
+
+\begin{frame}{\blue{\lettrine{E}}QTL Analysis}{Manhattan Plots}
+\begin{center}
+    \fbox{\includegraphics[width=5.5cm]{/disks/DATA/IMIDIA_eQTL/06-IMIDIA_Enrichment/LCM_ALL.png}}
+    \fbox{\includegraphics[width=5.5cm]{/disks/DATA/IMIDIA_eQTL/06-IMIDIA_Enrichment/LCM_CTRL.png}}\\
+    \fbox{\includegraphics[width=5.5cm]{/disks/DATA/IMIDIA_eQTL/06-IMIDIA_Enrichment/OD_ALL.png}}
+    \fbox{\includegraphics[width=5.5cm]{/disks/DATA/IMIDIA_eQTL/06-IMIDIA_Enrichment/OD_CTRL.png}}
+\end{center}
+\end{frame}
+
+\begin{frame}{\blue{\lettrine{E}}QTL Analysis}{Venn Diagram}
+\begin{center}
+    \fbox{\includegraphics[width=5.5cm]{/disks/DATA/IMIDIA_eQTL/06-IMIDIA_Enrichment/Venn_eQTL_genes.png}}
+    \fbox{\includegraphics[width=5.5cm]{/disks/DATA/IMIDIA_eQTL/06-IMIDIA_Enrichment/Venn_eQTL_genes_corrected.png}}
+\end{center}
+\end{frame}
+
+\begin{frame}{\blue{\lettrine{E}}nrichment in GWAS}{GWAS data}
+\par{GWAS results from \green{MAGIC} and \green{DIAGRAM} downloaded from their respective website.\\
+Then annotated with \green{dbSNP} (144) and \green{refSeqGenes} (hg19) for chromosome, position and gene symbol.
+\begin{description}
+    \item[MAGIC] \href{ftp://ftp.sanger.ac.uk/pub/magic/MAGIC_FastingGlucose.txt}{"Fasting Glucose"}: 2,467,443 SNPs and 24,897 genes;
+    \item[MAGIC] \href{ftp://ftp.sanger.ac.uk/pub/magic/MAGIC_ln_FastingInsulin.txt}{"ln Fasting Insulin"}: 2,458,109 SNPs and 24,877 genes;
+    \item[MAGIC] \href{ftp://ftp.sanger.ac.uk/pub/magic/MAGIC_ln_HOMA-B.txt}{"ln HOMA-B"}: 2,453,970 SNPs and 24,864 genes;
+    \item[MAGIC] \href{ftp://ftp.sanger.ac.uk/pub/magic/MAGIC_ln_HOMA-IR.txt}{"ln HOMA-IR"}: 2,455,091 SNPs and 24,865 genes;
+    \item[DIAGRAM] \href{http://diagram-consortium.org/downloads.html}{"Stage 1 GWAS"}: 2,431,532 SNPs and 24,789 genes.
+\end{description}}
+\end{frame}
+
+\begin{frame}{\blue{\lettrine{E}}nrichment in GWAS}{Analysis}
+\par{Enrichment analysis in GWAS results, was performed using the eQTL dataset from the "\textit{permutation pass}" of \cmdb{FastQTL}, and the permutation p-value obtained via beta approximation.}
+\vspace{2em}
+\par{First, data were \green{aggregated by genes} using the \green{lowest p-value} in both GWAS results and eQTL results.}
+\vspace{2em}
+\par{Second, enrichment were obtained using \green{Fisher test} for nominal \green{p-value<0.05} in both GWAS and eQTL results (no multiple testing correction for now).}
+\end{frame}
+
+\begin{frame}{\blue{\lettrine{E}}nrichment in GWAS}{Analysis: Laser Capture Micro-dissection (LCM)}
+\begin{center}
+\par{\green{LCM} enrichment for \green{all} pancreatic samples:\\
+\input{"/disks/DATA/IMIDIA_eQTL/06-IMIDIA_Enrichment/LCM_ALL.tex"}
+}
+\vspace{2em}
+\par{\green{LCM} enrichment for \green{control} samples:\\
+\input{"/disks/DATA/IMIDIA_eQTL/06-IMIDIA_Enrichment/LCM_CTRL.tex"}
+}
+\end{center}
+\end{frame}
+
+\begin{frame}{\blue{\lettrine{E}}nrichment in GWAS}{Analysis: organ Donors (OD)}
+\begin{center}
+\par{\green{OD} enrichment for \green{all} pancreatic samples:\\
+\input{"/disks/DATA/IMIDIA_eQTL/06-IMIDIA_Enrichment/OD_ALL.tex"}
+}
+\vspace{2em}
+\par{\green{OD} enrichment for \green{control} samples:\\
+\input{"/disks/DATA/IMIDIA_eQTL/06-IMIDIA_Enrichment/OD_CTRL.tex"}
+}
+\end{center}
+\end{frame}
+
+% \begin{frame}{\blue{\lettrine{E}}nrichment in Differential Expression Analysis}{T2D Vs. ND}
+% \begin{center}
+% \par{\green{eQTL} probes enrichment in differential expression analysis (\green{p-value<0.05}):\\
+% \input{"/disks/DATA/IMIDIA_eQTL/06-IMIDIA_Enrichment/enrichDE.nom.tex"}
+% }
+% \vspace{2em}
+% \par{Number of eQTL Probes/Genes overlapping with the differential expression analysis (\green{p-value<0.05}):\\
+% \input{"/disks/DATA/IMIDIA_eQTL/06-IMIDIA_Enrichment/overlap.nom.tex"}
+% }
+% \end{center}
+% \end{frame}
+
+% \begin{frame}<beamer:0>{\blue{\lettrine{R}}eferences}
+\begin{frame}[allowframebreaks]{\blue{\lettrine{R}}eferences}{}%
+{\small
+    \bibliographystyle{apalike}
+    \bibliography{IMIDIA.bib}
+}
+\end{frame}
+
+
+\end{document}

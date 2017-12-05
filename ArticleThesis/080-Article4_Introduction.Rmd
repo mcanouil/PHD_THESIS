@@ -1,0 +1,86 @@
+# L'Exposition à Faible Dose aux Bisphénols A, F et S des Adipocytes Primaires Humains Modifie les Profils d'ARN Codant et Non-Codant {#Article4}
+`r if (knitr:::is_latex_output()) {"\\chaptermark{L'Exposition à Faible-Dose, aux Bisphénols A, F et S, des Adipocytes Primaires Humain [...]}"} else {}`
+Publié dans __*\href{http://doi.org/10.1371/journal.pone.0179583}{PLoS ONE}*__.
+
+Marie Verbanck^1,\textasteriskcentered^, __Mickaël Canouil^1,\textasteriskcentered^__, Audrey Leloire^1^, Véronique Dhennin^1^, Xavier Coumoul^2^, Loïc Yengo^1^, Philippe Froguel^1,3,\textdagger^ & Odile Poulain-Godefroy^1,\textdagger^
+
+\footnotesize
+^1^Univ. Lille, CNRS, CHU Lille, Institut Pasteur de Lille, UMR 8199 - EGID, F-59000 Lille, France\ ; 
+^2^INSERM UMR-S 1124, Toxicologie Pharmacologie et Signalisation cellulaire, 75006 Paris, France\ ; Université Paris Descartes, ComUE Sorbonne Paris Cité, 75006 Paris, France\ ; 
+^3^Department of Genomics of Common Disease, School of Public Health, Imperial College London, United Kingdom. 
+
+^\textasteriskcentered^Co-premier auteurs.  
+^\textdagger^Co-dernier auteurs.
+\normalsize
+
+`r if (knitr:::is_latex_output()) {'\\clearpage'} else {}`
+
+## Introduction
+### Contexte/objectifs
+L'exposition des populations au bisphénol A (BPA) a été suspectée de participer à l’épidémie d’obésité et de désordres métaboliques. 
+Le BPA, avant son interdiction en Europe et notamment en France, était utilisé dans la fabrication de plastiques et de résines époxy, et couramment utilisé dans les contenants alimentaires tels que les biberons ou les revêtements de protection des boîtes de conserve. 
+Le BPA se retrouve également dans certains jouets, appareils médicaux et certains papiers comme les tickets de caisse. 
+Depuis l'interdiction de l'usage du BPA, des composés analogues ont vu le jour, tels que le bisphénol S (BPS) et le bisphénol F (BPF), et sont maintenant utilisés de façon courante. 
+À ce jour, les études toxicologiques portant sur les BPS et BPF sont peu nombreuses.
+
+Notre hypothèse est que les substituts du BPA pourraient avoir un effet similaire à celui du BPA, notamment au niveau du tissu adipeux. 
+À cet effet, nous avons comparé le profil d’expression des ARN codants et non-codants d’adipocytes primaires humains exposés à ces différents bisphénols au cours de leur différenciation.
+
+### Méthodes
+Les adipocytes primaires provenant de trois patientes caucasiennes et non diabétiques ont été cultivés en présence des différents bisphénols (BPA, BPS et BPF) à deux concentrations différentes\ : 10 nM, correspondant à la concentration de BPA observée dans les fluides corporels de la population générale, et 10 µM, pour mesurer un potentiel effet de concentration. 
+Une condition contrôle, correspondant au tampon utilisé pour diluer les différents bisphénols (DMSO) lors de la culture et de la différenciation des adipocytes primaires, a été utilisée pour fins de comparaison. 
+Après différenciation des adipocytes primaires en adipocytes, l'ARN a été extrait et les profils ARN ont été évalués via une puce Agilent SurePrint G3 Human V2 pour les mRNA et lncRNA, et via une puce Agilent SurePrint G3 miRNA pour les miRNA. 
+L'ARN d'adipocyte primaire (non différencié) a également été extrait pour évaluation du statut de différenciation des cellules. 
+En effet, certains gènes ne sont exprimés que dans les adipocytes différenciés.
+
+Un contrôle-qualité des données générées par ces deux plateformes a ensuite été réalisé. 
+Un premier filtre des sondes de mRNA/lncRNA est appliqué pour exclure les sondes n'étant pas exprimées. 
+Les valeurs d'expression ont été considérées comme manquantes (car mal détectées ou non exprimées) lorsque la valeur-p de détection, telle que fournie par le logiciel d'analyse d'Agilent, était non-significative  ($\textrm{valeur-p}>0,05$). 
+Les sondes dont le taux de valeurs manquantes était inférieur à 5\ % étaient conservées pour analyse (c.-à-d. les sondes exprimées dans au moins 95\ % des échantillons). 
+Les données ont ensuite été normalisées via une normalisation quantile implémentée dans les extensions R _limma_ et _AgiMicroRna_, pour corriger un "effet plaque" résultant de l'utilisation de plusieurs puces. 
+Afin de limiter l’impact de cet éventuel "effet plaque", les différentes conditions expérimentales ont été réparties sur les différentes puces selon un plan factoriel. 
+À cette étape de correction de l’effet plaque s'ajoute une normalisation de l'expression des gènes à partir de gènes de ménage (gènes ubiquitaires dont le niveau d'expression est constant dans l'ensemble des tissus), afin de rendre l'expression des gènes d'intérêt comparable, en forçant l'expression des gènes de ménage à être constante (p. ex. égal à 1 dans le cas de l'utilisation du ratio $\frac{G_{cible}}{G_{ménage}}$, ou de façon équivalente, égal à 0 après transformation logarithmique).
+Une analyse en composantes principales a été réalisée sur l'ensemble des sondes passant le contrôle-qualité pour les données de mRNA/lncRNA et miRNA dans le but d'identifier une structuration des données associée au statut de différenciation des adipocytes primaires ou aux différents patients.
+
+Pour chacun des trois patients, 4 échantillons contrôles (DMSO\ : contrôle négatif), 2 échantillons pour chaque combinaison de bisphénols (BPA, BPS, BPF) et de concentrations (10 nM et 10 µM) ont produit globalement $4 + 2\times(3\times2) = 16$ échantillons par patient. 
+Les sondes mRNA, lncRNA et miRNA différentiellement exprimées ont été identifiées à l'aide d'un modèle linéaire mixte, pour un bisphénol donné, avec en effet fixe la concentration de bisphénol (10 nM et/ou 10 µM) comparée à la condition contrôle (DMSO), et  avec effet aléatoire le patient. 
+L'analyse portant sur plus de 22\ 000 sondes mRNA/lncRNA et 483 sondes miRNA, une correction pour tests multiples a été appliquée pour déterminer la significativité des effets selon la méthode de Benjamini et Hochberg au seuil de 5\ %.
+Pour visualiser efficacement les similarités et dissimilarités des différentes sondes entre les conditions analysées, une représentation en "heatmap" a été utilisée.
+
+### Résultats
+Les analyses ont permis de mettre en évidence un ensemble de 846 sondes mRNA/lncRNA dont l'expression était réduite en présence d'un bisphénol (BPA, BPF et BPS) dans une concentration "physiologique" de 10 nM et de 417 sondes dont l'expression était augmentée par rapport à la condition contrôle (DMSO). 
+Avec une concentration "forte" de 10 µM lors de différenciation des adipocytes primaires, nous avons pu identifier 774 et 1\ 106 sondes présentant, respectivement, une diminution et une augmentation de l'expression en présence de bisphénols.
+Certaines de ces dérégulations dans l'expression de ces sondes, associées à la présence de bisphénols dans le milieu de culture pendant la différenciation, sont partagées entre les BPA, BPF et BPS, mais aussi entre les deux concentrations (10 nM et 10 µM). 
+Des résultats similaires ont également pu être observés pour l'ARN non codant (miRNA).
+
+L'utilisation de l'outil IPA (_Ingenuity Pathway Analysis_) a permis d'identifier des voies/fonctions biologiques/métaboliques présentant un enrichissement des sondes identifiées dans ces voies.
+Les dérégulations associées à la présence de bisphénols pourraient être impliquées dans les voies liées au "cancer" et à des "anomalies et blessures de l’organisme". 
+IPA a permis également d’analyser les régulateurs en amont des dix gènes dérégulés communs pour les trois bisphénols et les deux concentrations. 
+Parmi ces régulateurs, la voie des estrogènes a été mise en évidence.
+
+### Conclusion
+L'identification de profils transcriptomiques dérégulés similaires entre les bisphénols A, S et F, ainsi que l'identification de gènes dont les éléments de régulation sont d'origine hormonale, suggèret un potentiel caractère de perturbateur endocrinien pour les BPF et BPS, au même titre que le BPA. 
+Aussi, les résultats de notre étude suggèrent, qu'en raison des fortes similarités entre les substituts du BPA, que sont les BPF et BPS, que ceux-ci devraient être soumis aux mêmes restrictions.
+
+### Note
+
+(ref:ScatterPlotGlobMethSample) Profil de methylation globale selon différentes concentrations de bisphénols A, F et S.
+
+```{r ScatterPlotGlobMethSample, fig.cap = '(ref:ScatterPlotGlobMethSample)', out.width = "3.75in", out.height = '3in', include = TRUE, echo = FALSE}
+  knitr::include_graphics(path = "FiguresTables/ScatterPlot_GlobMethSample_16348_PilotAll.png")
+```
+
+Dans une étude pilote portant sur les cellules d'un patient, la méthylation globale d'environ 381\ 000 sites CpG (puce Illumina HumanMethylation 450K) a été analysée en fonction de la concentration en bisphénol (10 nM, 100 nM, 1 µM, 10 µM et 100 µM), introduite dans le milieu de culture lors de la différenciation des adipocytes primaires. 
+Ces premiers résultats suggéraient un effet dose-réponse de la méthylation, pouvant être modélisé par un polynôme de degré deux (Figure \@ref(fig:ScatterPlotGlobMethSample)), dont les effets les plus importants ont été observés au niveau du gène PTPRN2 (Protein Tyrosine Phosphatase, Receptor type N2) avec 91 sites CpG présentant un effet d'ordre deux significatif du logarithme de la concentration de bisphénol. 
+Ces sites présentaient une hypométhylation pour des concentrations non physiologiques (c.-à-d. supérieures à 10 nM), et un retour proche du niveau de méthylation pour une forte concentration de 100 µM, suggérant ainsi que la méthylation des adipocytes pouvait être sensible à l'ajout de bisphénols dans le milieu, notamment pour des concentrations de 10 nM et de 10 µM, tel qu’observé sur la méthylation globale. 
+
+Conjointement à l'étude du transcriptome des adipocytes, le méthylome de ces mêmes cellules a été examiné.
+Cependant, la forte variabilité inter et intra-patients n'a pas permis, en plus du faible nombre de patients ($n=3$ en duplicats) d'identifier des sites CpG différentiellement méthylés partagés entre les différents bisphénols. 
+De plus, contrairement à l'analyse transcriptomique où le statut de différenciation des adipocytes a pu être évalué (via l'utilisation de gènes spécifiquement exprimés dans les adipocytes matures), le méthylome des adipocytes comparés aux adipocytes primaires n'a pas permis d'identifier de marques de méthylation spécifiques reflétant cet état de différenciation.
+Les mRNA et les miRNA identifiés dans l'analyse transcriptomique ont fait l'objet d'une étude de corrélation avec les sites CpG annotés (Illumina) sur les gènes correspondants. 
+Aucune corrélation significative entre les sondes miRNA/mRNA et la méthylation n'a pu être mise en évidence, vraisemblablement en raison d'un manque de puissance.
+Le faible nombre d'échantillons combiné à la variabilité de la méthylation observée dans ces échantillons a probablement altéré notre capacité à détecter des sites CpG impactés de façon similaire par les bisphénols, malgré des études ayant démontré un effet sur la méthylation du BPA, comme la déméthylation globale de l'ADN au cours de la différenciation d'adipocytes (lignée cellulaire 3T3-L1) [@bastos_sales_effects_2013].
+
+## Article
+Article disponible en ligne sur __*PLoS ONE*__ (\url{http://doi.org/10.1371/journal.pone.0179583})
+\clearpage

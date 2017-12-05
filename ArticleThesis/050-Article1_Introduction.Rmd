@@ -1,0 +1,48 @@
+# Variants génétiques associés à la trajectoire de la glycémie à jeun et à l'incidence du diabète de type 2 : Une approche par modèle joint {#Article1}
+`r if (knitr:::is_latex_output()) {"\\chaptermark{Variants génétiques associés à la trajectoire de la glycémie à jeun et à l'incidence du diabète de type 2 [...]}"} else {}`
+Soumis à __*Genetic Epidemiology*__.
+
+__Mickaël Canouil^1,2,3^__, Philippe Froguel^1,2,3,4^ & Ghislain Rocheleau^1,2,3^
+
+\footnotesize
+^1^Université de Lille, UMR 8199 - EGID, F-59000 Lille, France\ ; 
+^2^CNRS, UMR 8199, F-59000 Lille, France\ ; 
+^3^Institut Pasteur de Lille, F-59000 Lille, France\ ; 
+^4^Department of Genomics of Common Disease, Imperial College London, London, United Kingdom.
+\normalsize
+
+## Introduction
+### Contexte/objectifs
+Dans le but d’optimiser l’utilisation des données phénotypiques existantes, nous proposons une approche statistique par modèle joint (JM) permettant l’identification de marqueurs génétiques simultanément associés à la trajectoire temporelle d’un trait phénotypique et à la survenue d’un événement. 
+Nous illustrons l’application du modèle joint dans un contexte génétique des maladies métaboliques, en exploitant la forte association entre la trajectoire temporelle de la glycémie à jeun et l’incidence du diabète de type 2 (DT2).
+
+### Méthodes
+Le modèle proposé dans notre étude consiste en un modèle de régression linéaire mixte combiné à un modèle de survie dit de Cox à risque proportionnel. 
+À partir des données de génotypage (Illumina Metabochip DNA arrays) obtenues pour près de 4\ 500 individus de la cohorte D.E.S.I.R. (Données Épidémiologiques sur le Syndrome d’Insulino-Résistance), nous avons analysé l’ensemble des variants génétiques disponibles (SNPs).
+Sur la base de simulations faisant varier plusieurs paramètres comme le nombre de mesures, le nombre d'individus, la fréquence allélique et/ou le taux d'incidence, aboutissant ainsi à 240 scénarios différents (c.-à-d. 240 combinaisons des valeurs possibles pour chaque paramètre) chacun simulés 500 fois, l'erreur de type I, la puissance statistique et les estimations obtenues ont fait l'objet d'une étude comparative entre l’approche par modèle joint et les approches classiques utilisées dans les études d’association pangénomiques (GWAS).
+
+### Résultats
+Nos résultats démontrent la forte association entre la glycémie à jeun et l’incidence du DT2 (ce qui était attendu selon la définition clinique du DT2), et confirment également l’association entre la glycémie et certains SNPs rapportés dans les études de type GWAS, tels que les SNPs situés dans les gènes _G6PC2_ ou encore _TCF7L2_. 
+Les associations relevées ici sont pour la plupart nominales ($\textrm{valeur-p} < 0,05$), principalement en raison de la faible taille de notre cohorte en comparaison aux tailles d’effectifs rapportée en méta-analyse, et aussi en raison du nombre peu élevé de cas de DT2 incident (environ 5\ % sur 9 ans de suivi dans la cohorte D.E.S.I.R.).
+Notre analyse par modèle joint a révélé que les SNPs se situant près ou dans le gène _MTNR1B_ pourraient ne pas avoir d’effet simultané sur l’élévation de la glycémie à jeun et le risque de survenue du DT2.
+
+Notre étude comparative des différents modèles révèle que l'approche JM pourrait être plus puissante, en comparaison des approches transversales (c.-à-d. régression linéaire et logistique), pour détecter des effets de polymorphisme, aussi bien sur le trait longitudinal (paramètre $\gamma$) que sur le risque de survenue d'un événement (paramètre $\alpha$), tout en maintenant l'erreur de type I près du niveau global de 5\ %. 
+En outre, nous avons pu observer que l'approche en deux-étapes ("Two-Step" ou TS) présentait une puissance et une erreur de type I similaires à celles obtenues avec l'approche JM.
+
+L'étude du RMSE (_Root Mean Square Error_) montre que l'estimation de $\alpha$ est impactée par le nombre d'individus et la fréquence du polymorphisme, mais reste similaire entre l'approche JM et l'approche par modèle linéaire mixte.
+Les valeurs de RMSE divergent selon les méthodes, notamment pour l'estimation de $\beta$ (effet de la trajectoire sur le risque d'événement)\ : le modèle de Cox avec covariable dépendante du temps fournit les valeurs de RMSE les plus élevées sur l'ensemble des scénarios.
+Les valeurs de RMSE de l'approche TS tendent à se rapprocher de celles de l'approche JM, particulièrement lorsque le nombre de mesures longitudinales augmente.
+Dans le cas du paramètre $\alpha$, les valeurs de RMSE se montrent sensibles au nombre d'individus ($<1\,000$), au faible nombre d'événements (taux d'incidence $<2,5\,\%$), et à la fréquence du polymorphisme ($<5\,\%$).
+Dans ces scénarios de faible fréquence allélique, faible taux d'incidence ou petit nombre d'individus, l'approche JM présente les valeurs de RMSE les plus faibles comparativement aux approches TS et Cox, ces différences tendant à s'estomper lorsque le nombre d'individus est supérieur à 2\ 500, ou que la fréquence allélique est supérieure à 5\ %.
+Enfin, la maximisation de la vraisemblance jointe de l'approche JM se révèle être consommatrice de temps, à hauteur d'un facteur de 30 à 40 fois le temps de calculs requis par l'approche TS.
+
+### Conclusion
+L’analyse par modèle joint a montré, d’une part, une grande cohérence avec les résultats des études antérieures de type GWAS, et d’autre part, semble indiquer un gain de puissance statistique pour détecter l’effet d’un SNP sur l’évolution de la glycémie à jeun et/ou sur la survenue du DT2. 
+Cependant, l'approche JM présente un frein important dû au temps de calcul énorme qui ne permet pas l’exploration systématique de tous les SNPs à une échelle pangénomique. 
+L'approche TS ayant montré des caractéristiques (estimation, puissance et erreur de type I) proches de celles de JM, et réalisable dans un temps raisonnable, pourrait être employée comme un  filtre sur les polymorphismes. 
+Dans un second temps, un affinage des estimations pourrait s’obtenir au moyen de l'approche JM.
+Enfin, le résultat obtenu pour le gène _MTNR1B_ tend à montrer qu’une modélisation statistique simultanée des deux processus pourrait mener à une identification plus fine des variants génétiques associés à l’homéostasie du glucose sanguin ou à la physiopathologie du diabète.
+
+## Article
+
+\clearpage

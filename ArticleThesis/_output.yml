@@ -1,0 +1,21 @@
+bookdown::pdf_book:
+    latex_engine: pdflatex
+    keep_tex: true
+    citation_package: natbib
+    number_sections: true
+    includes:
+        in_header: template/preamble.tex
+        before_body: template/before_body.tex
+        after_body: template/after_body.tex
+    template: null
+    pandoc_args:  --top-level-division=chapter #--chapters
+    toc_depth: 3
+    toc_unnumbered: false
+    toc_appendix: true
+    quote_footer: ["\\VA{", "}{}"]
+    highlight: tango # haddock
+bookdown::word_document2:
+    toc: false
+    keep_md: true
+    md_extensions: -autolink_bare_uris
+    reference_docx: template/ArticleTemplate.docx

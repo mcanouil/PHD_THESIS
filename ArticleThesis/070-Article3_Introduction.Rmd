@@ -1,0 +1,100 @@
+# La Surexpression Hépatique de PDGF-AA Affaiblit la Signalisation de l'Insuline dans le Diabète {#Article3}
+`r if (knitr:::is_latex_output()) {"\\chaptermark{La Surexpression Hépatique de PDGF-AA Affaiblit la Signalisation de l'Insuline dans le Diabète}"} else {}`
+Soumis à __*Nature Communications*__.
+
+Amar Abderrahmani^1,2\textasteriskcentered^, Loïc Yengo^1\textasteriskcentered^, Robert Caiazzo^3\textasteriskcentered^, __Mickaël Canouil^1\textasteriskcentered^__, Stéphane Cauchi^1^, Violeta Raverdy^2^, Valérie Plaisance^1^, Stéphane Lobbens^1^, Julie Maillet^1^, Laure Rolland^1^, Raphael Boutry^1^, Maxime Kwapich^1^, Mathie Tenenbaum^1^, Julien Bricambert^1^, Sophie Saussenthaler^4^, Elodie Anthony^5^, Pooja Jha^6^, Julien Derop^1^, Olivier Sand^1^, Iandry Rabearivelo^1^, Audrey Leloire^1^, Marie Pigeyre^2^, Martine Daujat-Chavanieu^7^, Sabine Gerbal-Chaloin^7^, Tasnim Dayeh^8^, Guillaume Lassailly^2^, Philippe Mathurin^9^, Bart Staels^10^, Johan Auwerx^5^, Annette Schürmann^4^, Catherine Postic^5^, Clemens Schafmayer^11^, Jochen Hampe^12^, Amélie Bonnefond^1,2^, François Pattou^3\textdagger^ & Philippe Froguel^1,2\textdagger^
+
+\footnotesize
+^1^Univ. Lille, CNRS, Institut Pasteur de Lille, UMR 8199 - EGID, F-59000 Lille, France\ ; 
+^2^Department of genomics of common disease, Imperial College London, UK\ ; 
+^3^Univ. Lille, Inserm, CHU Lille, U1190 - EGID, F-59000 Lille, France\ ; 
+^4^Department of Experimental Diabetology, German Institute of Human Nutrition Potsdam-Rehbrüecke, Nuthetal and German Center for Diabetes Research (DZD), München-Neuherberg, Germany\ ; 
+^5^Inserm, U1016, Institut Cochin, Paris, France CNRS UMR 8104, Paris, France Université Paris Descartes, Sorbonne Paris Cité, Paris, France\ ; 
+^6^Laboratory of Integrative and Systems Physiology, École Polytechnique Fédérale de Lausanne, 1015 Lausanne, Switzerland\ ; 
+^7^INSERM U1183, Univ. Montpellier, UMR 1183, Institute for Regenerative Medicine and Biotherapy, CHU Montpellier, France\ ; 
+^8^Department of clinical science\ ; Skane University Hospital Malmö, Malmö, Sweden\ ; 
+^9^Univ. Lille, Inserm, CHU Lille, U995 - LIRIC - Lille Inflammation Research International Center, F-59000 Lille, France\ ; 
+^10^Univ. Lille, Inserm, CHU Lille, Institut Pasteur de Lille, U1011- EGID, F-59000 Lille, France\ ; 
+^11^Department of Visceral and Thoracic Surgery, University Hospital Schleswig-Holstein, Kiel, Germany\ ; 
+^12^Medical Department 1, Technische Universität Dresden (TU Dresden), Dresden, Germany. 
+
+^\textasteriskcentered^Co-premier auteurs.  
+^\textdagger^Co-dernier auteurs.
+\normalsize
+
+`r if (knitr:::is_latex_output()) {'\\clearpage'} else {}`
+
+## Introduction
+### Contexte/objectifs
+Les études d'association pangénomique (GWAS) n'ont pu expliquer qu'environ 15\ % de l'héritabilité du diabète de type 2 (DT2).
+Les mécanismes sous-jacents à la pathophysiologie du DT2 et aux complications dérivées de celui-ci, comme les stéatoses hépatiques non-alcooliques (NAFLD\ : "Non-Alcoholic Fatty Liver Disease"\ ; NASH : "Non-Alcoholic SteatoHepatitis"), restent en grande partie méconnus. 
+Les modifications épigénétiques de l'ADN dans un tissu clé tel que le foie pourraient contribuer à expliquer une partie de cette héritabilité manquante dans le DT2 et/ou fournir des indications sur le lien entre le DT2 et ses complications.
+Une étude du méthylome et du transcriptome du foie de patientes obèses a été réalisée selon une approche cas/témoins (96 DT2 contre 96 normoglycémiques). 
+
+### Méthodes
+#### Génome
+Le génotypage des 192 individus provenant de la cohorte ABOS (Atlas Biologique de l'Obésité Sévère), a été réalisé au moyen de la puce Illumina Metabochip, une puce personnalisée comportant 200\ 000 SNPs, dont environ 120\ 000 situés près de 257 loci identifiés par GWAS pour plusieurs traits comme le diabète de type 2 ou la glycémie.
+Ces données de génotypage ont fait l'objet d'un contrôle-qualité visant à exclure les SNPs dont le taux de génotypage était inférieur à 95\ % et dont l'équilibre de Hardy-Weinberg n'était pas respecté ($\textrm{valeur-p}<=10^{-4}$).
+Afin de vérifier l'homogénéité ethnique de nos indivius, une analyse en composantes principales a été réalisée sur un jeu de données combinant les génotypes (196\ 470 SNPs) des 192 individus, aux génotypes de 272 individus provenant du projet de génotypage HapMap comportant 87 individus caucasiens (Europe de l'ouest et du nord), 97 individus asiatiques (Chine, Beijing) et 88 individus africains (Nigéria).
+À partir des SNPs précédemment identifiés par GWAS (disponibles sur la puce Illumina Metabochip) comme étant associés à l'insulinémie à jeun (19 SNPs), à la glycémie à jeun (24 SNPs), au risque de DT2 (65 SNPs) et à l'indice de masse corporelle (97 SNPs), quatre scores de risque génétique (GRS) ont été construits en prenant la somme des allèles à risque portés par chaque individu.
+
+#### Méthylome
+L'ensemble des sites de méthylation disponibles au sein de la puce Illumina HumanMethylation450 ont été analysés dans l'objectif d'identifier des marques de méthylation associées au statut diabétique des individus. 
+Une étape de contrôle-qualité des données brutes (format IDAT) a été réalisée sur la base de deux critères\ :
+
++ exclusion des individus avec moins de 75\ % des sites de méthylation détectés ($\textrm{valeur-p}<10^{-16}$) selon le logiciel Illumina GenomeStudio (outil permettant la lecture des images de fluorescence)\ ;
+
++ exclusion des sites de méthylation lorsque le niveau de méthylation n'a pu être détecté ($\textrm{valeur-p}<10^{-16}$) dans au moins 95\ % des individus, selon le logiciel Illumina GenomeStudio.
+
+Suite à l'application de ces critères, l'ensemble des individus et environ 85\ % (416\ 693) des sites de méthylation ont été conservés pour analyse.
+
+La puce Illumina HumanMethylation450 comporte deux technologies de détection des niveaux de méthylation (valeur-$\beta$)\ : sondes Infinium I et sondes Infinium II.
+Une étape de normalisation  est effectuée, d'une part, pour corriger un éventuel effet plaque, et d'autre part, pour corriger les différences de méthylation entre les deux types de sondes, en particulier au niveau de la distribution des niveaux de méthylation. 
+La méthode BMIQ ("Beta-MIxture Quantile normalisation") a permis de normaliser la distribution des valeurs-$\beta$ des sondes Infinium II par rapport à celles des sondes Infinium I, tout en conservant la variabilité biologique inhérente aux différentes sondes (p. ex. Infinium I principalement employée pour les îlots CpG tandis que Infinium II est employée pour des sites CpG isolés), ainsi que le caractère monotone (rang) des valeurs-$\beta$ pour chaque type de sonde. 
+Cette méthode consiste à modéliser la distribution des valeurs-$\beta$ (Infinium II) sur la base de trois états de méthylation, soit méthylé, semi-méthylé et non-méthylé, dont les paramètres sont estimés au moyen d'un algorithme EM (Espérance-Maximisation). 
+Une transformation quantile des valeurs-$\beta$ (Infinium II) est ensuite appliquée sur la base de la distribution estimée.
+Une analyse en composantes principales est réalisée sur l'ensemble des données afin d'identifier une potentielle structure (p. ex. plusieurs sous-populations) et de potentiels individus extrêmes en termes de profil de méthylation. 
+
+Les sites différentiellement méthylés, selon le statut diabétique, ont été identifiés au moyen d'une régression linéaire avec un ajustement sur le niveau de stéatose (en pourcentage), la NASH (trait binaire) et la fibrose (trait binaire) en plus des covariables classiques tels l’âge et l’indice de masse corporelle (IMC). 
+Les valeurs-p sont ensuite corrigées par un facteur d'inflation selon la méthode du "contrôle génomique" utilisée dans les GWAS pour corriger des effets liés à une éventuelle stratification du groupe cas et du groupe témoin menant à une inflation de l'erreur de type 1. 
+Enfin, une correction de Bonferroni pour tests multiples est appliquée, produisant un seuil de significativité nominal $10^{-7}$.
+
+#### Transcriptome
+Le transcriptome a été étudié sur l'ensemble des individus via la puce Illumina HumanHT-12 v4, qui permet de mesurer l'ARN sur plus de 47\ 000 sondes, dont moins de 4\ 000 correspondant à de l'ARN non-codant. 
+Après lecture de la fluorescence et attribution d'une valeur-p par le logiciel Illumina GenomeStudio, les données provenant de deux expérimentations font l'objet d'une normalisation quantile pour corriger les différences de distribution entre les mesures d'expression des deux séries de puces. 
+Les sondes d'expression ne présentant pas une valeur-p de détection inférieure à $\alpha = 0,05$ pour l'ensemble des individus étaient exclues, aboutissant à 18\ 412 sondes (13\ 664 gènes) et 189 individus conservés pour les analyses. 
+À cela s'ajoute l'exclusion de deux individus présentant des profils transcriptomiques extrêmes, et détectés au moyen d'une analyse en composantes principales. 
+L'expression différentielle selon le statut DT2 a été testée par une approche de régression linéaire avec ajustement pour l'âge et l'IMC, et dont la significativité a été évaluée sur la base d'un seuil FDR ("False Discovery Rate") à 5\ %.
+
+### Résultats
+#### Diabète de type 2
+Après correction des valeurs-p, le site CpG cg14496282 localisé sur le gène _PDGFA_ ("Platelet-Derived Growth Factor subunit A") a été mis en évidence comme associé significativement au risque de DT2 ($\beta = -15,6 \%$\ ; $\textrm{valeur-p}=2,5\times 10^{-8}$), avec une hypométhylation chez les DT2 ($41,3$\ % en moyenne) et une hyperméthylation chez les témoins ($60,3$\ % en moyenne). 
+Cette association persiste lorsqu'on ajuste sur la composition cellulaire du tissu ($\beta = -14,9 \%$\ ; $\textrm{valeur-p}=6,9\times 10^{-7}$), celle-ci étant évaluée au moyen d'une méthode d'estimation de la contribution au méthylome global, d'un nombre donné de types cellulaires déterminés selon une approche "Bootstrap" (méthode de rééchantillonnage).
+De plus, une étude de réplication dans une cohorte allemande comportant 12 cas et 53 témoins, a montré des résultats cohérents avec notre étude ($\beta = -14 \%$\ ; $\textrm{valeur-p}=0,01$). 
+L'étude de l'expression du gène _PDGFA_ démontre que celle-ci est inversement corrélée au niveau de méthylation du site cg14496282. 
+La méthylation du site cg14496282 a également été montrée dans notre étude (dans le groupe témoin) comme étant associée à une diminution de l'insulinémie à jeun et de l'insulinorésistance (indice HOMA2-IR), pendant que l'expression de _PDGFA_ était associée à une augmentation de l'insuline à jeun et une diminution de l'insulinorésistance.
+
+#### Complication\ : stéatose/fibrose
+La méthylation de cg14496282 a également été montrée comme étant associée à une diminution du risque de NASH C chez les individus diabétiques et les individus normoglycémiques, alors que la méthylation était associée à une diminution de fibrose hépatique, et l'expression à une augmentation de fibrose hépatique chez les DT2.
+Ces résultats sont cohérents avec des études ayant précédemment montré que l'activation du récepteur PDGF stimule les cellules stellaires et accroît ainsi la fibrose du foie. 
+De plus, il a été montré que la surexpression de _Pdgfa_ dans le foie de souris engendre une fibrose spontanée du foie.
+
+#### _PDGFA_ et action de l'insuline
+L'association négative entre le GRS associé à l'insulinémie et la méthylation de cg14496282 ($1,05 \%$\ ; $\textrm{valeur-p}=4\times 10^{-3}$), demeurant robuste aux ajustements à l'IMC, au cholestérol (HDL) ou aux triglycérides, suggère que l'hyperinsulinémie contribue à la modification (diminution) du niveau de méthylation du site cg14496282 de _PDGFA_.
+Dans le même temps, aucune association entre la méthylation de cg14496282 et les GRS associés à la glycémie à jeun, le statut DT2 et l'obésité (IMC), n'a été observée dans notre étude.
+La relation entre l'expression de _PDGFA_ et la méthylation de cg14496282 dans des conditions hyperinsulinémiques a également été vérifiée _in vitro_ (c.-à-d. avec des hépatocytes primaires humains et des hépatocytes humains immortalisés).
+Un modèle murin a permis l'étude de l'expression de _Pdgfa_, qui était augmentée sous stimulation insuline.
+Cependant, la méthylation de cg14496282 n'a pu être étudiée dans ce dernier modèle, puisque le site n'est pas conservé entre l'Homme et la souris.
+
+### Conclusion
+La contribution de l'épigénétique dans la pathophysiologie du DT2, notamment dans la dérégulation des fonctions du foie, reste compliquée à appréhender mais fournit tout de même de nouvelles pistes d'investigation. 
+En effet, l'étude _in vitro_ et _in vivo_, en plus de l'étude génétique au moyen des GRS dans notre étude, nous indique que l'hyperinsulinémie pourrait avoir un effet causal sur la méthylation de cg14496282 et sur l'expression de _PDGFA_. 
+De plus, notre étude fonctionnelle suggère que _PDGFA_ pourrait avoir un effet autocrine sur l'hyperinsulinémie, c'est-à-dire parallélement à la stimulation de l'expression de _PDGFA_ par la voie de l'insuline, l'expression de _PDFGA_ induit la sécrétion d'insuline via l'activation de PKC (Protéine Kinase C).
+
+Les associations de _PDFGA_ et des altérations du foie (plus précisément, fibrose et stéatose) trouvées dans plusieurs études et la nôtre soutiennent l'hypothèse du rôle fibrotique de _PDFGA_ dans le foie au moyen d'une élévation de l'insulinémie.
+En outre, les études fonctionnelles réalisées sur des modèles cellulaires, incluant l'étude de la metformine (traitement principal utilisé dans le diabète de type 2), soulignent la portée de nos découvertes, en particulier, en tant que cible thérapeutique du DT2 et de ses complications.
+L'étude du méthylome se révèle être un outil efficace dans l'étude de la pathogenèse des maladies communes, particulièrement lorsqu'elle cible un type cellulaire ou un tissu spécifique.
+
+## Article
+
+\clearpage
