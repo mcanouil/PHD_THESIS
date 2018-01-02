@@ -1,0 +1,142 @@
+# Figures {-}
+
+`r if (knitr:::is_latex_output()) {'\\clearpage'} else {}`
+
+```{r initFigCounter}
+fig.counter <- 0
+figsup.counter <- 0
+```
+
+(ref:DiagramJM) Causal diagram for joint modelling applied to fasting plasma glucose (FPG) and type 2 diabetes (T2D) (adapted from @ibrahim_basic_2010). SNP: Single Nucleotide Polymorphism.
+
+```{r DiagramJM, fig.cap = '(ref:DiagramJM)', fig.width = 7.5, fig.height = 6, dpi = 300, include = TRUE, echo = FALSE}
+    fig.counter <- fig.counter + 1
+    # trash <- file.copy(from = "jointModel.tiff", to = paste0(gsub("/Routput", "", getwd()), "/", "Figure", fig.counter,".tiff"), overwrite = TRUE)
+    knitr::include_graphics(path = "figures/jointModel.png") # normalizePath("jointModel.png")
+```
+
+(ref:RMSEgamma) Simulation study for accuracy of estimator $\hat{\gamma}$ provided by the joint model ("JM" package) and by the two-step linear mixed effect model ("nlme" package). $m$: number of measures; $n$: number of individuals; $d$: diabetes incidence rate.
+
+```{r RMSEgamma, fig.cap = '(ref:RMSEgamma)', fig.width = 12, fig.height = 6, dpi = 300, include = TRUE}
+    fig.counter <- fig.counter + 1
+    pRMSEgamma <- plotlist.RMSE[[1]] + theme(legend.position = "right") +
+        scale_fill_manual(
+            name = NULL,
+            values = viridis_pal(option = "viridis", begin = 0.25, end = 0.75)(4)[c(1, 3)],
+            drop = TRUE,
+            breaks = c("JointModel", "MixedModel"),
+            labels = c("Joint Model", "Two-Step /\n Linear Mixed Model")
+        ) +
+    labs(y = bquote("RMSE"==sqrt(symbol(E)((hat(gamma)-gamma)^2))))
+    ggsave(file = paste0("Figure", fig.counter,".tiff"), plot = pRMSEgamma, width = 12, height = 6, units = "in", dpi = 300)
+    print(pRMSEgamma)
+```
+
+(ref:RMSEbeta) Simulation study for accuracy of estimator $\hat{\beta}$ provided by the joint model ("JM" package), by the two-step linear mixed effect model ("nlme" package) and by the Cox model with time-varying covariate. $m$: number of measures; $n$: number of individuals; $d$: diabetes incidence rate.
+
+```{r RMSEbeta, fig.cap = '(ref:RMSEbeta)', fig.width = 12, fig.height = 6, dpi = 300, include = TRUE}
+    fig.counter <- fig.counter + 1
+    pRMSEbeta <- plotlist.RMSE[[2]] + theme(legend.position = "right") +
+        scale_fill_manual(
+            name = NULL,
+            values = viridis_pal(option = "viridis", begin = 0.25, end = 0.75)(4)[c(1, 2, 4)],
+            drop = TRUE,
+            breaks = c("JointModel", "TwoStep", "SurvivalModelTime"),
+            labels = c("Joint Model", "Two-Step", "Cox Model with\ntime varying covariate")
+        ) +
+        labs(y = bquote("RMSE"==sqrt(symbol(E)((hat(beta)-beta)^2))))
+    ggsave(file = paste0("Figure", fig.counter,".tiff"), plot = pRMSEbeta, width = 12, height = 6, units = "in", dpi = 300)
+    print(pRMSEbeta)
+```
+
+(ref:RMSEalphaZoom) Simulation study for accuracy of estimator $\hat{\alpha}$ provided by the joint model ("JM" package), by the two-step linear mixed effect model ("nlme" package) and by the Cox model with time-varying covariate. $m$: number of measures; $n$: number of individuals; $d$: diabetes incidence rate. (A) Displays RMSE for $n=500$ to $n=2,500$. (B) Displays RMSE for $n=5,000$ to $n=10,000$.
+
+```{r RMSEalphaZoom, fig.cap = '(ref:RMSEalphaZoom)', fig.width = 12, fig.height = 6, dpi = 300, include = TRUE}
+    fig.counter <- fig.counter + 1
+    ratio.p <- 9/10
+    alpha.p1 <- alpha.p1 + labs(y = bquote("RMSE"==sqrt(symbol(E)((hat(alpha)-alpha)^2))))
+    alpha.p2 <- alpha.p2 + labs(y = bquote("RMSE"==sqrt(symbol(E)((hat(alpha)-alpha)^2))))
+    alpha.p <- ggdraw() +
+        draw_plot(alpha.p1 + theme(legend.position = "none"), x = 0, y = 1-ratio.p, width = 0.575, height = ratio.p) +
+        draw_plot(alpha.p2 + theme(legend.position = "none"), x = 0.575, y = 1-ratio.p, width = 0.425, height = ratio.p) +
+        draw_plot(get_legend(alpha.p1 + theme(legend.direction = "horizontal")), x = 0, y = 0, width = 1, height = 1-ratio.p) +
+        draw_plot_label(label = c("A", "B"), x = c(0, 0.575), y = c(1, 1))
+    ggsave(file = paste0("Figure", fig.counter,".tiff"), plot = alpha.p, width = 12, height = 6, units = "in", dpi = 300)
+    print(alpha.p)
+```
+
+(ref:estimateJMsign) Results from statistical analysis using "JM" [@rizopoulos_jm:_2010; @R-JM]. Estimated effects of $\gamma$ are displayed on the x-axis, with corresponding estimated hazard ratio $\exp(\alpha)$ on the y-axis. Statistical power reported is the theoretical (retrospective) power to detect a genetic joint effect $\beta\gamma+\alpha$ based on estimated model parameters [@chen_sample_2011].
+
+```{r estimateJMsign, fig.cap = '(ref:estimateJMsign)', fig.width = 12, fig.height = 6, dpi = 300, include = TRUE}
+    fig.counter <- fig.counter + 1
+    p.estimateJM.sign <- p.estimateJM.sign + labs(x = "Fasting plasma glucose per allele effect (mmol/L)", y = bquote("Type 2 diabetes hazard ratio (fasting plasma glucose">="7.0 mmol/L)"))
+    ggsave(file = paste0("Figure", fig.counter,".tiff"), plot = p.estimateJM.sign, width = 12, height = 6, units = "in", dpi = 300)
+    print(p.estimateJM.sign)
+```
+
+(ref:ManhattanJM) Manhattan plot for estimated effects of $\gamma$ and $\alpha$ using "JM" [@rizopoulos_jm:_2010; @R-JM]. Results are presented for the cleaned set of `r format(length(snps), big.mark = ",")` SNPs.
+
+```{r ManhattanJM, fig.cap = '(ref:ManhattanJM)', fig.width = 12, fig.height = 6, dpi = 300, include = TRUE}
+    fig.counter <- fig.counter + 1
+    ggsave(file = paste0("Figure", fig.counter,".tiff"), plot = p.ManhattanJM, width = 12, height = 6, units = "in", dpi = 300)
+    print(p.ManhattanJM)
+```
+
+(ref:TSvsJMpvalue) Testing for $\alpha$ (SNP effect on onset of T2D) and $\gamma$ (SNP effect on the trajectory of FPG) using Two-Step approach compared to Joint Model approach. On the x-axis, $-\log_{10}(\text{p-value})$ from the Joint Model and on the y-axis the corresponding $-\log_{10}(\text{p-value})$ from the approximate Two-Step approach.
+
+```{r TSvsJMpvalue, fig.cap = '(ref:TSvsJMpvalue)', fig.width = 12, fig.height = 6, dpi = 300, include = TRUE}
+    fig.counter <- fig.counter + 1
+    ggsave(file = paste0("Figure", fig.counter,".tiff"), plot = p.TSvsJM, width = 12, height = 6, units = "in", dpi = 300)
+    print(p.TSvsJM)
+```
+
+<!-- (ref:TSvsJMpower) Power and Type I Error based on the `r dim(results.sign)[1]` top associations found via a Joint Model approach for 265 SNPs with significant associations for $\alpha$ and $\gamma$. Power and Type I Error are compared between Joint Model, Two-Step model and Cox or linear model regression, respectively for $\alpha$ and $\gamma$. -->
+
+<!-- ```{r TSvsJMpower, fig.cap = '(ref:TSvsJMpower)', fig.width = 12, fig.height = 6, dpi = 300, include = TRUE} -->
+<!--     fig.counter <- fig.counter + 1 -->
+<!--     ggsave(file = paste0("Figure", fig.counter,".tiff"), plot = plotlist.CMvJM, width = 12, height = 6, units = "in", dpi = 300) -->
+<!--     print(plotlist.CMvJM) -->
+<!-- ``` -->
+
+(ref:DESIRFlowchart) Study flowchart of people from the French cohort D.E.S.I.R .
+
+```{r DESIRFlowchart, fig.cap = '(ref:DESIRFlowchart) ', fig.width = 7.5, fig.height = 6, dpi = 300, include = TRUE}
+    figsup.counter <- figsup.counter + 1
+    ggsave(file = paste0("SupplementaryFigureS", figsup.counter,".tiff"), plot = pFlowchart, width = 7.5, height = 6, units = "in", dpi = 300)
+    print(pFlowchart)
+```
+
+(ref:ProflingJM) Call tree diagram of the main function jointmodel in the R package JM. Call based on a simulated dataset with three longitudinal measures and 5,000 individuals (other parameter values set as in Table \@ref(tab:SimulationSettings)).
+
+```{r ProflingJM, fig.cap = '(ref:ProflingJM)', fig.width = 7.5, fig.height = 6, dpi = 300, include = TRUE, echo = FALSE}
+    figsup.counter <- figsup.counter + 1
+    tiff(filename = paste0("SupplementaryFigureS", figsup.counter,".tiff"), width = 7.5, height = 6, units = "in", res = 300)
+        plotProfileCallGraph(pd,
+            layout = "dot",
+            style = plain.style,
+            shape = "box",
+            score = "total",
+            GC = FALSE,
+            total.pct = 10,
+            nodeColorMap = viridis_pal(option = "inferno", begin = 2/3, end = 1)(100),
+            nodeDetails = TRUE,
+            # nodeSizeScore = "total",
+            edgeDetails = FALSE
+        )
+    trash <- dev.off()
+    plotProfileCallGraph(pd,
+        layout = "dot",
+        style = plain.style,
+        shape = "box",
+        score = "total",
+        GC = FALSE,
+        total.pct = 10,
+        nodeColorMap = viridis_pal(option = "inferno", begin = 2/3, end = 1)(100),
+        nodeDetails = TRUE,
+        # nodeSizeScore = "total",
+        edgeDetails = FALSE
+    )
+```
+
+`r if (knitr:::is_latex_output()) {'\\clearpage'} else {}`
+

@@ -1,0 +1,25 @@
+# Introduction
+
+With the increased availability of longitudinal and survival data in large cohorts, joint models have emerged as an appropriate approach to account for both types of data, especially when dealing with  informative/non-informative dropouts which commonly occur in such cohorts. 
+Joint models have been studied and overviewed in the literature  [@chen_sample_2011; @elashoff_joint_2016; @tsiatis_joint_2004; @wulfsohn_joint_1997], and their implementation has been proposed in different softwares and platforms [@diggle_informative_1994; @elashoff_joint_2008; @proust-lima_joint_2009; @rizopoulos_jm:_2010; @rizopoulos_bayesian_2011; @sun_regression_2007]. 
+Main applications of the joint model approach are: i) to efficiently model the survival process with a time-varying covariate, accounting for missing data and measurement error; and ii) to account for informative dropouts in the longitudinal data. 
+To model the two processes of a joint model, a linear mixed effects (LME) model and a Cox proportional hazards model (CoxPH) are classically used to, respectively, fit the longitudinal component and the survival component. 
+Unlike the CoxPH model, in which the time-varying covariate is assumed to be exogenous, i.e. not modified by the occurrence of an event [@kalbfleisch_statistical_2002], the joint modelling framework allows to account for an endogenous time-varying covariate. 
+An example of an endogenous covariate is the fasting blood plasma glucose which is irremediably modified due to glucose lowering medication, once T2D is diagnosed.
+
+Two approaches can be used for estimation and inference of the model parameters: a "naive" two-step (TS) method or a joint likelihood method (JM). 
+In the first method, the random effects of the trajectory are estimated by an LME model, then included as a time-varying covariate in a CoxPH model and estimated using the partial likelihood approach [@therneau_modeling_2000]. 
+The second method is based on a joint likelihood of the two stochastic components (longitudinal and survival) estimated at the same time. 
+Comparison of these two approaches showed that the latter offers more consistent and efficient estimators than the former [@albert_approach_2010; @albert_estimating_2010]. 
+But JM can be challenging to compute, especially when it comes to achieving convergence during the Expectation-Maximisation (EM) step. 
+Moreover, depending on the number of time points and/or the sample size, the overall computational time can substantially increase.
+
+In this paper, we conducted a comprehensive simulation study to compare these two approaches, JM and TS, when jointly modelling the longitudinal and the survival components. 
+Our main goal is to show that the JM approach, when compared to TS, increases statistical power to detect an effect on either or both the longitudinal and the survival processes, while resulting in bias reduction in parameter estimation. 
+We also showed that, while highly demanding computation and convergence issues might arise during JM computation, TS offers a good alternative to JM in greatly reducing computational time, especially when applied at the genome-scale level.  
+We also investigated and decomposed the computational time required by R package "JM" [@rizopoulos_jm:_2010; @R-JM], and by the TS approach which combines R packages "survival" [@R-survival] and "nlme" [@R-nlme].
+
+Finally, we applied both approaches to a real dataset, the D.E.S.I.R. cohort (_Data from the Epidemiological Study on the Insulin Resistance syndrome_), which included `r format(dim(phenotypesDesirData)[1], big.mark = ",")` individuals with extensive phenotypic measurements recorded at four three-yearly intervals, spanning a nine-year follow up. 
+Individuals were genotyped using the Illumina Metabochip DNA array of nearly 200,000 SNPs [@voight_metabochip_2012]. 
+Relying on the conventional cross-sectional genome-wide association study design, the D.E.S.I.R. cohort was instrumental in identifying novel loci associated with prevalent type 2 diabetes (T2D) and fasting plasma glucose (FPG) level in normoglycaemic individuals [@sladek_genome-wide_2007; @bouatia-naji_polymorphism_2008; @rung_genetic_2009]. 
+We specifically focus on prediabetes conditions, such as Impaired Fasting Glucose (IFG), and on time-to-onset of T2D, in order to identify novel loci or to confirm published ones, which could simultaneously be associated with higher risk of developing T2D and/or increased FPG. Our results were compared to the genetic variants reported in the literature [@vaxillaire_type_2014; @welter_nhgri_2014] and to the meta-analyses published by large consortia, such as DIAGRAM [@morris_large-scale_2012] and MAGIC [@dupuis_new_2010] consortia.

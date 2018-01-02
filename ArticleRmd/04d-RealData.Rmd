@@ -1,0 +1,14 @@
+## Application in real data
+
+Applying the R package "JM" to our D.E.S.I.R. cleaned dataset, `r dim(results.sign)[1]` SNPs (Figure \@ref(fig:estimateJMsign)) were associated (with $\text{p-value}<0.05$) with FPG and T2D events through their respective parameters $\gamma$ and $\alpha$. 
+Amongst these `r dim(results.sign)[1]` SNPs (`r length(unique(results.sign[, "GeneSymbol.Closest"]))` unique genes), we identified `r nrow(results.topsign.unique)` genes (Table \@ref(tab:resultstopsignunique)) which had already been reported to be associated with FPG and/or T2D risk. 
+Parameter $\beta$ was highly significant (below the genome-wide threshold of $5\times 10^{-8}$) for all these SNPs, which was expected considering that $\beta$ estimates the association between FPG trajectory and T2D risk.  
+
+In Figure \@ref(fig:ManhattanJM), we specifically focused on parameters $\gamma$ and $\alpha$. 
+After Bonferroni correction (nominal $\text{p-value}\simeq 5\times 10^{-7}$), no genetic variants showed a highly significant association with both parameters $\gamma$ and $\alpha$ simultaneously; only SNPs in the following genes (or within a 100 kb window) remained significant when testing for $\gamma$: _G6PC2_/_ABCB11_, _GCK_/_YKT6_, _GCKR_ and _MTNR1B_, with per-allele increasing effect varying on FPG from 0.100 mmol/L to 0.047 mmol/L. 
+Zooming in on simultaneous associations with the longitudinal and survival processes revealed well known genes, such as _TCF7L2_, which has been shown in many meta-analyses to be associated with elevated FPG and an increased risk of T2D (Table \@ref(tab:resultsConsistent)). 
+_MTNR1B_ was also found to be associated (`r dim(subset(results.sign, GeneSymbol.Closest=="MTNR1B"))[1]` SNPs within `r paste0(ceiling(max(abs(subset(results.sign, GeneSymbol.Closest=="MTNR1B", position, drop = TRUE)-subset(read.table("./refSeqGenes_hg19.txt", header = TRUE), name2=="MTNR1B", txStart, drop = TRUE)))/1000), " kb")`) with estimated $\hat{\alpha}=`r round(subset(results.sign, RSID=="rs10830963", alpha.estimate, drop = TRUE), digits = 3)`$ ($\textrm{p-value}=`r formatScientific(subset(results.sign, RSID=="rs10830963", alpha.p.value, drop = TRUE))`$) and $\hat{\gamma}=`r round(subset(results.sign, RSID=="rs10830963", gamma.estimate, drop = TRUE), digits = 3)`$ ($\textrm{p-value}=`r formatScientific(subset(results.sign, RSID=="rs10830963", gamma.p.value, drop = TRUE))`$) for SNP rs10830963, the SNP usually reported in the literature. 
+
+To better compare JM and TS, we repeated the analysis on the whole dataset using TS.
+As shown in Figure \@ref(fig:TSvsJMpvalue), p-values differ, especially when testing parameter $\alpha$; however for tests on parameter $\gamma$, approximations were quite close to the p-values provided via the joint likelihood framework. 
+<!-- Moreover, type I error is controlled and statistical power is shown to be closer to the joint model than the cross-sectional model (Figure ref(fig:TSvsJMpower)). -->

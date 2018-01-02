@@ -15,7 +15,14 @@
 **.aux
 **.toc
 **.snm
+**.fdb_latexmk
+**.fls
+**.log
+
+Article.*
 
 /UTILS
-/ArticleRmd
+/ArticleRmd/Routput
+/ArticleRmd/ArticleOutput
+/ArticleRmd/figures
 .Rproj.user

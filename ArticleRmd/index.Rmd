@@ -1,0 +1,39 @@
+---
+title: "Single Nucleotide Polymorphisms Associated with Fasting Plasma Glucose Trajectory and Type 2 Diabetes Incidence: A Joint Modelling Approach"
+author: 'Mickaël Canouil^1,2,3,\*^, Beverley Balkau^4,5,6^, Ronan Roussel^7,8,9^, Philippe Froguel^1,2,3,10^ and Ghislain Rocheleau^1,2,3,\*^'
+documentclass: article
+classoption: a4paper,notrimm
+bibliography: [bib/Mickael_ThesisClean.bib, bib/Rpackages.bib]
+biblio-style: apalike
+csl: csl/apa.csl
+link-citations: false
+colorlinks: false
+lot: false
+lof: false
+fontsize: 12pt
+monofont: "Source Code Pro"
+monofontoptions: "Scale=0.7"
+description: ""
+site: "bookdown::bookdown_site"
+knit: "bookdown::render_book"
+---
+
+^1^Univ. Lille, UMR 8199 - EGID, F-59000 Lille, France.  
+^2^CNRS, UMR 8199, F-59000 Lille, France.  
+^3^Institut Pasteur de Lille, F-59000 Lille, France.  
+^4^CESP Centre for Research in Epidemiology and Population Health, Villejuif, France.  
+^5^Univ. Paris-Saclay, Univ. Paris Sud, UVSQ, UMRS 1018, F-94807, Villejuif, France.  
+^6^INSERM U1018, CESP, Renal and Cardiovascular Epidemiology, UVSQ-UPS, Villejuif, France.  
+^7^INSERM U1138 (équipe 2: Pathophysiology and Therapeutics of Vascular and Renal Diseases Related to Diabetes, Centre de Recherches des Cordeliers), Paris, France.  
+^8^Univ. Paris 7 Denis Diderot, Sorbonne Paris Cité, France.  
+^9^AP-HP, DHU FIRE, Department of Endocrinology, Diabetology, Nutrition, and Metabolic Diseases, Bichat Claude Bernard Hospital, Paris, France.  
+^10^Department of Genomics of Common Disease, Imperial College London, London, United Kingdom.
+ 
+
+**Correspondence^\*^**
+
+Mickaël Canouil  
+mickael.canouil@cnrs.fr
+
+Ghislain Rocheleau  
+grocheleau@maelstrom-research.org

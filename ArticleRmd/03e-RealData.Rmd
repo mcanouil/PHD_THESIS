@@ -1,0 +1,22 @@
+## Real data
+
+SNP genotyping was performed with Metabochip DNA arrays [@voight_metabochip_2012] using Illumina HiScan technology and GenomeStudio software (Illumina, San Diego, USA) in `r format(dim(phenotypesDesirData)[1], big.mark = ",")` individuals from the French cohort D.E.S.I.R. [@balkau_epidemiologic_1996].
+These participants have been followed for nine years, and extensive phenotypic data has been recorded at four different three-yearly time interval during that follow-up.
+Quality control was performed using PLINK 1.90 beta version [@chang_second-generation_2015; @purcell_plink_2015]. 
+SNPs with call rate of at least 95%, with no significant deviation from Hardy-Weinberg equilibrium  at $\text{p-value}>1\times 10^{-5}$, and with minor allele frequency (MAF) over 5% were kept for analysis, resulting in `r format(length(snps), big.mark = ",")` SNPs.
+Due to missing phenotypes which did not allow to confirm T2D status, `r format(N_Raw-N_GoodPhenotypes, big.mark = ",")` individuals were removed.
+An additional `r format(N_GoodPhenotypes-N_GoodGenotype, big.mark = ",")` individuals were excluded due to individual call rate lower than 95%, leaving  `r format(N_GoodGenotype, big.mark = ",")` individuals for analysis after these quality control steps (Supplementary Figure S\@ref(fig:DESIRFlowchart)).
+
+Principal component analysis was performed using a combined dataset comprised of the `r format(N_GoodGenotype, big.mark = ",")` D.E.S.I.R. participants, along with participants from the publicly available 1,000 Genomes database [@the_1000_genomes_project_consortium_global_2015].
+SNPs retained for analysis were restricted to those common to both sample sets.
+The first two components were sufficient to discriminate ethnic origin, which led to exclusion of `r format(N_GoodGenotype-N_Caucasians, big.mark = ",")` non Caucasians.
+A further `r format(N_Caucasians-N_NoPrev, big.mark = ",")` prevalent cases of T2D at baseline were also removed. 
+As a result, the final dataset included `r format(N_NoPrev, big.mark = ",")` individuals, of whom `r format(N_IncT2D, big.mark = ",")` were diagnosed as T2D incident cases. 
+Type 2 diabetes was defined using one of the following criteria: use of glucose lowering medication, and/or fasting plasma glucose $[FPG] \geq 7$ mmol/L, and/or glycated heamoglobin A1c $[HbA1c] \geq 6.5\%$ (48 mmol/mol).
+
+Using the joint modelling approach implemented in the package "JM" [@rizopoulos_jm:_2010; @R-JM] within the R software version `r server.Rversion` [@r_core_team_r:_2015], all `r format(length(snps), big.mark = ",")` SNPs were tested for joint association with FPG and T2D. 
+Following the above joint modelling formulation, $Y_{ij}$ denotes the observed values of FPG, $Z_i$ represents the genotype of individual $i$ at each SNP, with $W_i$ being covariates such as age, sex and BMI (Figure \@ref(fig:DiagramJM)).
+Finally, $T_i$ gives the time at which an individual is diagnosed with T2D.  
+In the joint modelling framework, the trajectory of FPG could be viewed as a dropout process, because all FPG values are flagged as missing after T2D diagnosis.
+In effect, individuals receiving a diabetes diagnostic are immediately placed under treatment to lower and regulate their blood glucose level. 
+Therefore, FPG must be considered as an endogenous covariate, because the dropout process is not independent from the measured glucose values prior to T2D diagnosis.

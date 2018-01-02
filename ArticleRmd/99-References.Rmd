@@ -1,0 +1,3 @@
+`r if (knitr:::is_html_output()) {'# References {-}'} else {}`
+
+`r if (is_docx_output()) {'# References {-}'} else {}`

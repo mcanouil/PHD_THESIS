@@ -1,0 +1,3 @@
+book_filename: "Article"
+output_dir: "ArticleOutput"
+clean: ["ArticleOutput", "Routput", "_bookdown_files"]
