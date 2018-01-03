@@ -1,6 +1,7 @@
 ```{r global, cache = FALSE, include = FALSE, echo = FALSE}
     rm(list = ls())
     options(stringsAsFactors = FALSE)
+    options(encoding = "UTF-8")
     dir.create("Routput")
     library(knitr)
     

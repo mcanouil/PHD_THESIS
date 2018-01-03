@@ -1,9 +1,9 @@
 ---
 title: "Single Nucleotide Polymorphisms Associated with Fasting Plasma Glucose Trajectory and Type 2 Diabetes Incidence: A Joint Modelling Approach"
-author: 'Mickaël Canouil^1,2,3,\*^, Beverley Balkau^4,5,6^, Ronan Roussel^7,8,9^, Philippe Froguel^1,2,3,10^ and Ghislain Rocheleau^1,2,3,\*^'
+author: '**Mickaël Canouil^1,2,3,\*^, Beverley Balkau^4,5,6^, Ronan Roussel^7,8,9^, Philippe Froguel^1,2,3,10^ and Ghislain Rocheleau^1,2,3,\*^**'
 documentclass: article
 classoption: a4paper,notrimm
-bibliography: [bib/Mickael_ThesisClean.bib, bib/Rpackages.bib]
+bibliography: [bib/Article.bib, bib/Rpackages.bib]
 biblio-style: apalike
 csl: csl/apa.csl
 link-citations: false

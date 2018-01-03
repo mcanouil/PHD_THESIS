@@ -13,7 +13,7 @@ Datasets were simulated by varying the number of longitudinal measurements $m\in
 Each scenario was simulated `r nKeep` times.
 
 The Root-Mean Square Error (RMSE)
-`r numberEq.docx("\\text{RMSE}(\\hat{\\theta})=\\sqrt{E((\\hat{\\theta}-\\theta)^2)}", "eq:SurvTime")`
+`r numberEq.docx("\\text{RMSE}(\\hat{\\theta})=\\sqrt{E((\\hat{\\theta}-\\theta)^2)}", "eq:RMSE")`
 
 was used to assess precision of estimators of $\beta$, $\gamma$ and $\alpha$, when testing the association between $Y_{ij}$, and $T_i$, the effect of Z_i$ on $Y_{ij}$ and the effect of $Z_i$ on $T_i$, respectively. 
 In addition, statistical power and type I error were also estimated. 

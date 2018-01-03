@@ -10,5 +10,5 @@ An alternative model approximating the joint model, called the Two-Step approach
 Although the joint model shows more precise and less biased estimators than its alternative counterpart, the TS approach results in much reduced computational times, and could thus be used for testing millions of SNPs at the genome-wide scale.
 
 
-# Key words {-}
+# Keywords {-}
 Diabetes; fasting plasma glucose; genetic association; joint modelling; longitudinal studies; survival; mixed model

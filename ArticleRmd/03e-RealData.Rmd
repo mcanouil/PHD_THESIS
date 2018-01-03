@@ -14,7 +14,7 @@ A further `r format(N_Caucasians-N_NoPrev, big.mark = ",")` prevalent cases of T
 As a result, the final dataset included `r format(N_NoPrev, big.mark = ",")` individuals, of whom `r format(N_IncT2D, big.mark = ",")` were diagnosed as T2D incident cases. 
 Type 2 diabetes was defined using one of the following criteria: use of glucose lowering medication, and/or fasting plasma glucose $[FPG] \geq 7$ mmol/L, and/or glycated heamoglobin A1c $[HbA1c] \geq 6.5\%$ (48 mmol/mol).
 
-Using the joint modelling approach implemented in the package "JM" [@rizopoulos_jm:_2010; @R-JM] within the R software version `r server.Rversion` [@r_core_team_r:_2015], all `r format(length(snps), big.mark = ",")` SNPs were tested for joint association with FPG and T2D. 
+Using the joint modelling approach implemented in the package "JM" [@rizopoulos_jm:_2010; @R-JM] within the R software version `r server.Rversion` [@r_core_team], all `r format(length(snps), big.mark = ",")` SNPs were tested for joint association with FPG and T2D. 
 Following the above joint modelling formulation, $Y_{ij}$ denotes the observed values of FPG, $Z_i$ represents the genotype of individual $i$ at each SNP, with $W_i$ being covariates such as age, sex and BMI (Figure \@ref(fig:DiagramJM)).
 Finally, $T_i$ gives the time at which an individual is diagnosed with T2D.  
 In the joint modelling framework, the trajectory of FPG could be viewed as a dropout process, because all FPG values are flagged as missing after T2D diagnosis.
