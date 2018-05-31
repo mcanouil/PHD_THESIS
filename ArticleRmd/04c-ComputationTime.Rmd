@@ -1,7 +1,0 @@
-## Computational time
- 
-Computational times are reported in Table \@ref(tab:sprof).
-The time required to complete JM or TS algorithms increased linearly with sample size in our simulations. 
-However, these times are very optimistic since our simulations did not include any covariate or more complex random parameters. 
-The main issue appears within the "_jointmodel_" function which took over 95% of the global computation time (Supplementary Figure S\@ref(fig:ProflingJM)). 
-After examination of the call tree diagram, we observe that the more time-consuming task within the "_jointmodel_" function happens during the optimisation of the EM algorithm (described in @rizopoulos_joint_2012, Appendix B), despite the use of a calculation trick (i.e. adaptive Gauss-Hermite quadrature for numerical integration).

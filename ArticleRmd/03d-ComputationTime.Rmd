@@ -1,8 +1,0 @@
-## Computational times
-
-Based on our simulations, we calculated approximate computational times for four sample sizes with parameters as listed in Table \@ref(tab:SimulationSettings), using a UNIX system with `r server.info` (`r server.nCores` such CPUs available computing in parallel). 
-Table \@ref(tab:sprof) shows computational times for one SNP, and for extrapolating the total computational time for 100,000 SNPs, which is the approximate number of SNPs on the Metabochip, after data cleaning and quality-control for common SNPs (minor allele frequency > 0.05).
-
-To investigate further computational time issues, we profiled the execution of the main function "_jointmodel_" from the R package "JM", which implements the joint likelihood modelling approach as described in this paper. 
-In the "JM" package, the linear mixed effect sub-model is handled by the function "_lme_" from the "nlme" package. 
-One may argue that using a faster approach, e.g. as implemented in the R package "lme4", might decrease the computational time. 
